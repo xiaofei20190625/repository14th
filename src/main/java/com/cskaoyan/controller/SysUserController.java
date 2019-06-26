@@ -8,16 +8,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.sql.DataSource;
+
 
 @Controller
 public class SysUserController {
     @Autowired
     SysUserService sysUserService;
 
+    @Autowired
+    DataSource dataSource;
 
     @RequestMapping("home")
     public String home() {
-        return "/jsp/home.jsp";
+
+        return "home";
     }
 
     @RequestMapping("query/{id}")
