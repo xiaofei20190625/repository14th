@@ -14,6 +14,12 @@ public class SysUserController {
     @Autowired
     SysUserService sysUserService;
 
+
+    @RequestMapping("home")
+    public String home() {
+        return "/jsp/home.jsp";
+    }
+
     @RequestMapping("query/{id}")
     @ResponseBody
     public SysUser selectByPrimaryKey(@PathVariable("id") String id){

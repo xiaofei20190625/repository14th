@@ -15,5 +15,6 @@
 
     <mvc:annotation-driven />
 
+    <mvc:resources mapping="/jsp/**" location="/WEB-INF/jsp/"/>
 
 </beans>
