@@ -9,13 +9,7 @@
 
     <!-- bean definitions here -->
     <context:component-scan base-package="com.cskaoyan.controller"/>
-<<<<<<< HEAD
-    <mvc:annotation-driven/>
-    <mvc:resources mapping="/image/**" location="/WEB-INF/image/"/>
-    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
-    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
-    <!--视图转换器-->
-=======
+
 
     <mvc:annotation-driven />
 
@@ -26,13 +20,10 @@
 
 
     <!--视图解析器-->
->>>>>>> b2d3b826f44b43d523f24b3820b4ddbda487d953
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-<<<<<<< HEAD
-=======
 
->>>>>>> b2d3b826f44b43d523f24b3820b4ddbda487d953
 </beans>
