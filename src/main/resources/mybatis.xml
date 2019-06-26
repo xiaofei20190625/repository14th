@@ -11,7 +11,11 @@
             <dataSource type="POOLED">
                 <property name="driver" value="${driverClassName}"/>
                 <property name="url" value="${url}"/>
+<<<<<<< HEAD
                 <property name="username" value="${user}"/>
+=======
+                <property name="username" value="${username}"/>
+>>>>>>> b2d3b826f44b43d523f24b3820b4ddbda487d953
                 <property name="password" value="${password}"/>
             </dataSource>
         </environment>
