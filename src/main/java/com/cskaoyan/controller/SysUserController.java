@@ -15,9 +15,6 @@ public class SysUserController {
     @Autowired
     SysUserService sysUserService;
 
-    @Autowired
-    DataSource dataSource;
-
     @RequestMapping("query/{id}")
     @ResponseBody
     public SysUser selectByPrimaryKey(@PathVariable("id") String id){
