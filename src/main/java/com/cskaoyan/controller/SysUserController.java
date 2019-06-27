@@ -14,7 +14,7 @@ public class SysUserController {
     SysUserService sysUserService;
 
 
-    @RequestMapping("home")
+    @RequestMapping("erp/home")
     public String home() {
         return "home";
     }
