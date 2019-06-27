@@ -18,12 +18,12 @@ public class PersonController {
 
     /*转到显示部门页面*/
     @RequestMapping("department/find")
-    public String findDepartment(HttpSession session) {
-        List<String> sysPermissionList = new ArrayList<>();
+    public String findDepartment() {
+        /*List<String> sysPermissionList = new ArrayList<>();
         sysPermissionList.add("department:add");
         sysPermissionList.add("department:edit");
         sysPermissionList.add("'department:delete'");
-        session.setAttribute("sysPermissionList", sysPermissionList);
+        session.setAttribute("sysPermissionList", sysPermissionList);*/
         return "department_list";
     }
 
@@ -36,6 +36,22 @@ public class PersonController {
         List<Department> departments = departmentService.selectAllDepartment();
         return departments;
     }
+
+    /*新增部门返回值，因为不需要返回值所有返回null*/
+    @RequestMapping("department/add_judge")
+    @ResponseBody
+    public String addDepartment() {
+        return null;
+    }
+
+    /*新增部门返回值，因为不需要返回值所有返回null*/
+    @RequestMapping("department/add")
+    public String showaddDepartment() {
+        return "department_add";
+    }
+
+
+
 
 
 }
