@@ -1,6 +1,9 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Employee;
+import com.cskaoyan.bean.EmployeeResponse;
+
+import java.util.List;
 
 public interface EmployeeMapper {
     int deleteByPrimaryKey(String empId);
@@ -10,6 +13,8 @@ public interface EmployeeMapper {
     int insertSelective(Employee record);
 
     Employee selectByPrimaryKey(String empId);
+
+    List<EmployeeResponse> queryAllEmployee();
 
     int updateByPrimaryKeySelective(Employee record);
 

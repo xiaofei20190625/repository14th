@@ -1,11 +1,15 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.Department;
+import com.cskaoyan.bean.Employee;
+import com.cskaoyan.bean.EmployeeResponse;
 import com.cskaoyan.service.DepartmentService;
+import com.cskaoyan.service.EmployeeService;
 import com.cskaoyan.vo.ResponseVo;
 import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PersonController {
     @Autowired
     DepartmentService departmentService;
+    @Autowired
+    EmployeeService employeeService;
 
     /*转到显示部门页面*/
     @RequestMapping("department/find")
@@ -134,7 +140,29 @@ public class PersonController {
         }
     }
 
+    /*----------------------以上是department,以下是employee--------------------------------*/
 
+    //查询员工列表,返回到列表的jsp页面
+    @RequestMapping("employee/find")
+    public String findEmployee() {
+        return "employee_list";
+    }
+
+    //执行查询员工，返回员工的json数据
+    @RequestMapping("employee/list")
+    @ResponseBody
+    public Vo<EmployeeResponse> returnEmployeeVo(int page, int rows) {
+        Vo<EmployeeResponse> employeeResponseVo = employeeService.queryAllEmployee(page, rows);
+        return employeeResponseVo;
+    }
+
+    //查询员工时，点击部门进行回显
+    @RequestMapping("department/get/{myid}")
+    @ResponseBody
+    public Department showDepartmentFromEmployee(@PathVariable("myid")String departmentId) {
+        Department department = departmentService.selectByPrimaryKey(departmentId);
+        return department;
+    }
 
 
 }

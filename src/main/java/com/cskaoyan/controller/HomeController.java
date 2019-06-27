@@ -20,6 +20,9 @@ public class HomeController {
         sysPermissionList.add("department:add");
         sysPermissionList.add("department:edit");
         sysPermissionList.add("department:delete");
+        sysPermissionList.add("employee:add");
+        sysPermissionList.add("employee:edit");
+        sysPermissionList.add("employee:delete");
         session.setAttribute("sysPermissionList", sysPermissionList);
         return "home";
     }
