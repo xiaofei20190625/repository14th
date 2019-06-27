@@ -14,22 +14,22 @@ public class DeviceController {
 	}
 	
 	@RequestMapping("/deviceType")
-	public String deviceType() throws Exception{
+	public String deviceType() {
 		return "deviceType";
 	}
 	
 	@RequestMapping("/deviceCheck")
-	public String deviceCheck() throws Exception{
+	public String deviceCheck() {
 		return "deviceCheck";
 	}
 	
 	@RequestMapping("/deviceFault")
-	public String deviceFault() throws Exception{
+	public String deviceFault() {
 		return "deviceFault";
 	}
 	
 	@RequestMapping("/deviceMaintain")
-	public String deviceMaintain() throws Exception{
+	public String deviceMaintain() {
 		return "deviceMaintain";
 	}
 	
