@@ -12,9 +12,9 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/project_erp?characterEncoding=utf-8"
+                        connectionURL="jdbc:mysql://localhost:3306/production_ssm?useSSL=false"
                         userId="root"
-                        password="325601">
+                        password="123456">
             <!--是否去除同名表-->
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
@@ -87,127 +87,61 @@
                    selectByExampleQueryId="false" ></table>-->
 
                <!-- 指定数据库表，要生成哪些表，就写哪些表，要和数据库中对应，不能写错！ -->
-                <table  tableName="employee"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="Employee"
-               > </table>
-                <table  tableName="department"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="Department"
-               > </table>
-                <table  tableName="product"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="Product"
-               > </table>
-                <table  tableName="unqualify_apply"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="UnqualifyApply"
-               > </table>
-                <table  tableName="c_order"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="Corder"
-               > </table>
-                <table  tableName="final_count_check"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="FinalCountCheck"
-               > </table>
-                <table  tableName="final_measuret_check"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="FinalMeasuretCheck"
-               > </table>
-                <table  tableName="process"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="Process"
-               > </table>
-                <table  tableName="process_count_check"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="ProcessCountCheck"
-               > </table>
-                <table  tableName="process_measure_check"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="ProcessMeasureCheck"
-               > </table>
+        <table  tableName="device"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                enableInsert="true"
+                enableDeleteByPrimaryKey="true"
+                enableSelectByPrimaryKey="true"
+                selectByExampleQueryId="false"
+                domainObjectName="Device"
+        > </table>
+        <table  tableName="device_check"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                enableInsert="true"
+                enableDeleteByPrimaryKey="true"
+                enableSelectByPrimaryKey="true"
+                selectByExampleQueryId="false"
+                domainObjectName="DeviceCheck"
+        > </table>
+        <table  tableName="device_fault"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                enableInsert="true"
+                enableDeleteByPrimaryKey="true"
+                enableSelectByPrimaryKey="true"
+                selectByExampleQueryId="false"
+                domainObjectName="DeviceFault"
+        > </table>
+        <table  tableName="device_maintain"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                enableInsert="true"
+                enableDeleteByPrimaryKey="true"
+                enableSelectByPrimaryKey="true"
+                selectByExampleQueryId="false"
+                domainObjectName="DeviceMaintain"
+        > </table>
+        <table  tableName="device_type"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                enableInsert="true"
+                enableDeleteByPrimaryKey="true"
+                enableSelectByPrimaryKey="true"
+                selectByExampleQueryId="false"
+                domainObjectName="DeviceType"
+        > </table>
 
-                <!--<table tableName="j14_student_t" domainObjectName="Studentz"/>
-                <table tableName="j14_product_t" domainObjectName="Product"/>
--->
-        <!--      <table schema="" tableName="orders"></table>
-             <table schema="" tableName="items"></table>
-             <table schema="" tableName="orderdetail"></table>
-      -->
-               <!-- 有些表的字段需要指定java类型
-                <table schema="" tableName="">
-                   <columnOverride column="" javaType="" />
-               </table> -->
     </context>
 </generatorConfiguration>
