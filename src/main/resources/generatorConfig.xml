@@ -86,20 +86,9 @@
                    selectByExampleQueryId="false" ></table>-->
 
                <!-- 指定数据库表，要生成哪些表，就写哪些表，要和数据库中对应，不能写错！ -->
-               <table  tableName="sys_user"
-                       enableCountByExample="false"
-                       enableUpdateByExample="false"
-                       enableDeleteByExample="false"
-                       enableSelectByExample="false"
-                       enableInsert="true"
-                       enableDeleteByPrimaryKey="true"
-                       enableSelectByPrimaryKey="true"
-                       selectByExampleQueryId="false"
-                       domainObjectName="SysUser"
-               > </table>
-                <!--<table tableName="j14_student_t" domainObjectName="Studentz"/>
-                <table tableName="j14_product_t" domainObjectName="Product"/>
--->
+
+                <table tableName="c_order" domainObjectName="COrder"/>
+                <!--<table tableName="j14_product_t" domainObjectName="Product"/>-->
         <!--      <table schema="" tableName="orders"></table>
              <table schema="" tableName="items"></table>
              <table schema="" tableName="orderdetail"></table>

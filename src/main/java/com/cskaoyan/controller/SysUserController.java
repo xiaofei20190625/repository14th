@@ -19,7 +19,7 @@ public class SysUserController {
     @Autowired
     DataSource dataSource;
 
-    @RequestMapping("home")
+    @RequestMapping("erp/home")
     public String home() {
 
         return "home";
