@@ -26,3 +26,4 @@ public interface TechnologyService {
     //工序管理
     Vo<Process> findProcess(int page, int rows);
 }
+

@@ -19,4 +19,5 @@ public interface TechnologyPlanMapper {
     int updateByPrimaryKey(TechnologyPlan record);
 
     List<TechnologyPlan> findTechnologyPlan();
+
 }
