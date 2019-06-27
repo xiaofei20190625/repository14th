@@ -7,18 +7,32 @@ public class TechnologyRequirement {
 
     private String technologyId;
 
+    private String technologyName;
+
     private String requirement;
 
     private Date addTime;
 
     private Date reviseTime;
 
+    public TechnologyRequirement() {
+    }
+
+    public TechnologyRequirement(String technologyRequirementId, String technologyId, String technologyName, String requirement, Date addTime, Date reviseTime) {
+        this.technologyRequirementId = technologyRequirementId;
+        this.technologyId = technologyId;
+        this.technologyName = technologyName;
+        this.requirement = requirement;
+        this.addTime = addTime;
+        this.reviseTime = reviseTime;
+    }
+
     public String getTechnologyRequirementId() {
         return technologyRequirementId;
     }
 
     public void setTechnologyRequirementId(String technologyRequirementId) {
-        this.technologyRequirementId = technologyRequirementId == null ? null : technologyRequirementId.trim();
+        this.technologyRequirementId = technologyRequirementId;
     }
 
     public String getTechnologyId() {
@@ -26,7 +40,15 @@ public class TechnologyRequirement {
     }
 
     public void setTechnologyId(String technologyId) {
-        this.technologyId = technologyId == null ? null : technologyId.trim();
+        this.technologyId = technologyId;
+    }
+
+    public String getTechnologyName() {
+        return technologyName;
+    }
+
+    public void setTechnologyName(String technologyName) {
+        this.technologyName = technologyName;
     }
 
     public String getRequirement() {
@@ -34,7 +56,7 @@ public class TechnologyRequirement {
     }
 
     public void setRequirement(String requirement) {
-        this.requirement = requirement == null ? null : requirement.trim();
+        this.requirement = requirement;
     }
 
     public Date getAddTime() {
@@ -51,5 +73,17 @@ public class TechnologyRequirement {
 
     public void setReviseTime(Date reviseTime) {
         this.reviseTime = reviseTime;
+    }
+
+    @Override
+    public String toString() {
+        return "TechnologyRequirement{" +
+                "technologyRequirementId='" + technologyRequirementId + '\'' +
+                ", technologyId='" + technologyId + '\'' +
+                ", technologyName='" + technologyName + '\'' +
+                ", requirement='" + requirement + '\'' +
+                ", addTime=" + addTime +
+                ", reviseTime=" + reviseTime +
+                '}';
     }
 }

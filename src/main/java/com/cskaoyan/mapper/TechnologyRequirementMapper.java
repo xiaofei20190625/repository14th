@@ -5,6 +5,7 @@ import com.cskaoyan.bean.TechnologyRequirement;
 import java.util.List;
 
 public interface TechnologyRequirementMapper {
+
     int deleteByPrimaryKey(String technologyRequirementId);
 
     int insert(TechnologyRequirement record);
@@ -17,5 +18,5 @@ public interface TechnologyRequirementMapper {
 
     int updateByPrimaryKey(TechnologyRequirement record);
 
-    List<TechnologyRequirement> findAllTechnologyRequirement();
+    List<TechnologyRequirement> findTechnologyRequirement();
 }
