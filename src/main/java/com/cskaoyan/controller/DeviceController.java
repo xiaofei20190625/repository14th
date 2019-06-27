@@ -1,6 +1,5 @@
 package com.cskaoyan.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DeviceController {
 
 	@RequestMapping("/deviceList")
-	public String deviceList() throws Exception{
+	public String deviceList() {
 		return "deviceList";
 	}
 	
@@ -34,3 +33,4 @@ public class DeviceController {
 	}
 	
 }
+

@@ -1,3 +1,4 @@
+
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.DeviceMaintain;
@@ -26,4 +27,5 @@ public interface DeviceMaintainMapper {
     List<DeviceMaintain> searchDeviceMaintainByDeviceMaintainId(String deviceMaintainId);
 
     List<DeviceMaintain> searchDeviceMaintainByDeviceFaultId(String deviceFaultId);
+
 }

@@ -1,3 +1,4 @@
+
 package com.cskaoyan.service.impl;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class DeviceMaintainServiceImpl implements  DeviceMaintainService {
+public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 
 	@Autowired
 	DeviceMaintainMapper deviceMaintainMapper;
@@ -124,3 +125,4 @@ public class DeviceMaintainServiceImpl implements  DeviceMaintainService {
 		return deviceMaintains;
 	}
 }
+

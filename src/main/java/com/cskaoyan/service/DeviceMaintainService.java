@@ -1,3 +1,4 @@
+
 package com.cskaoyan.service;
 
 
@@ -32,3 +33,4 @@ public interface DeviceMaintainService {
 
 	List<DeviceMaintain> find();
 }
+

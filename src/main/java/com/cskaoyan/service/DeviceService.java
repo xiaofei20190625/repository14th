@@ -1,3 +1,4 @@
+
 package com.cskaoyan.service;
 
 import java.util.List;
@@ -34,3 +35,4 @@ public interface DeviceService {
 	Vo searchDeviceByDeviceTypeName(Integer page, Integer rows,
 			String deviceTypeName) ;
 }
+

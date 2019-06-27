@@ -20,4 +20,6 @@ public interface TechnologyMapper {
     int updateByPrimaryKey(Technology record);
 
     List<Technology> findTechnology();
+
+    Technology getTechnology(@Param("tid")int tid);
 }

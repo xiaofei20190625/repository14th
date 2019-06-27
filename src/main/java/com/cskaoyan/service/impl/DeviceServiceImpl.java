@@ -1,3 +1,4 @@
+
 package com.cskaoyan.service.impl;
 
 import java.util.List;
@@ -142,3 +143,4 @@ public class DeviceServiceImpl implements  DeviceService  {
 		return result;
 	}
 }
+

@@ -1,3 +1,4 @@
+
 package com.cskaoyan.controller;
 
 import java.util.List;
@@ -138,8 +139,5 @@ public class DeviceListController {
         }
         return deviceService.updateAll(device);
     }
-
-
-
 
 }

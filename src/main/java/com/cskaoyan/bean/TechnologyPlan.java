@@ -7,6 +7,8 @@ public class TechnologyPlan {
 
     private String technologyId;
 
+    private String technologyName;
+
     private Integer batchAmount;
 
     private Date startPlan;
@@ -19,12 +21,42 @@ public class TechnologyPlan {
 
     private Date technologyPlanEnd;
 
+    public TechnologyPlan() {
+    }
+
+    public TechnologyPlan(String technologyPlanId, String technologyId, String technologyName, Integer batchAmount, Date startPlan, Date endPlan, Date commitPlan, Date technologyPlanStart, Date technologyPlanEnd) {
+        this.technologyPlanId = technologyPlanId;
+        this.technologyId = technologyId;
+        this.technologyName = technologyName;
+        this.batchAmount = batchAmount;
+        this.startPlan = startPlan;
+        this.endPlan = endPlan;
+        this.commitPlan = commitPlan;
+        this.technologyPlanStart = technologyPlanStart;
+        this.technologyPlanEnd = technologyPlanEnd;
+    }
+
+    @Override
+    public String toString() {
+        return "TechnologyPlan{" +
+                "technologyPlanId='" + technologyPlanId + '\'' +
+                ", technologyId='" + technologyId + '\'' +
+                ", technologyName='" + technologyName + '\'' +
+                ", batchAmount=" + batchAmount +
+                ", startPlan=" + startPlan +
+                ", endPlan=" + endPlan +
+                ", commitPlan=" + commitPlan +
+                ", technologyPlanStart=" + technologyPlanStart +
+                ", technologyPlanEnd=" + technologyPlanEnd +
+                '}';
+    }
+
     public String getTechnologyPlanId() {
         return technologyPlanId;
     }
 
     public void setTechnologyPlanId(String technologyPlanId) {
-        this.technologyPlanId = technologyPlanId == null ? null : technologyPlanId.trim();
+        this.technologyPlanId = technologyPlanId;
     }
 
     public String getTechnologyId() {
@@ -32,7 +64,15 @@ public class TechnologyPlan {
     }
 
     public void setTechnologyId(String technologyId) {
-        this.technologyId = technologyId == null ? null : technologyId.trim();
+        this.technologyId = technologyId;
+    }
+
+    public String getTechnologyName() {
+        return technologyName;
+    }
+
+    public void setTechnologyName(String technologyName) {
+        this.technologyName = technologyName;
     }
 
     public Integer getBatchAmount() {

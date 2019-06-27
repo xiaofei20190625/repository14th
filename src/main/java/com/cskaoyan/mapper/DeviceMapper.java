@@ -1,3 +1,4 @@
+
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Device;
@@ -32,4 +33,5 @@ public interface DeviceMapper {
     List<Device> searchDeviceByDeviceName(String deviceName);
 
     List<Device> searchDeviceByDeviceTypeName(String deviceTypeName);
+
 }

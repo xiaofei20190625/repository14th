@@ -92,7 +92,26 @@
       revise_time = #{reviseTime,jdbcType=TIMESTAMP}
     where technology_requirement_id = #{technologyRequirementId,jdbcType=VARCHAR}
   </update>
-  <select id="findAllTechnologyRequirement" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/> from technology_requirement
+
+
+  <!--连接查询封装TechnologyRequirement-->
+  <resultMap id="requirementMap" type="com.cskaoyan.bean.TechnologyRequirement">
+    <id column="technology_requirement_id" jdbcType="VARCHAR" property="technologyRequirementId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="requirement" jdbcType="VARCHAR" property="requirement" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="revise_time" jdbcType="TIMESTAMP" property="reviseTime" />
+    <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
+  </resultMap>
+  <select id="findTechnologyRequirement" resultMap="requirementMap">
+    SELECT
+      req.technology_requirement_id,
+      req.technology_id,
+      req.requirement,
+      req.add_time,
+      req.revise_time,
+      tech.technology_name
+    from technology_requirement req LEFT JOIN technology tech
+    ON req.technology_id = tech.technology_id
   </select>
 </mapper>
