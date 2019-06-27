@@ -1,4 +1,4 @@
-package com.cskaoyan.service.impl;
+/*package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.SysUser;
 import com.cskaoyan.mapper.SysUserMapper;
@@ -16,4 +16,4 @@ public class SysUserServiceImpl implements SysUserService {
         SysUser sysUser = sysUserMapper.selectByPrimaryKey(id);
         return sysUser;
     }
-}
+}*/
