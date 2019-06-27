@@ -45,4 +45,15 @@
         <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
 
+
+    <!--访问WEB-INF下页面-->
+  <!--  <servlet>
+        <servlet-name>jsp</servlet-name>
+        <jsp-file>/WEB-INF/jsp/deviceList.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>/deviceList</url-pattern>
+    </servlet-mapping>-->
+
 </web-app>

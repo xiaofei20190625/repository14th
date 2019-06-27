@@ -79,4 +79,5 @@
       locked = #{locked,jdbcType=CHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
 </mapper>
