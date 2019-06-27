@@ -3,10 +3,11 @@ package com.cskaoyan.controller;
 
 import javax.validation.Valid;
 
-import org.hqu.production_ms.domain.DeviceCheck;
-import org.hqu.production_ms.domain.customize.CustomResult;
-import org.hqu.production_ms.domain.customize.EUDataGridResult;
-import org.hqu.production_ms.service.DeviceCheckService;
+
+import com.cskaoyan.bean.DeviceCheck;
+import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.customiz.EUDataGridResult;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/deviceCheck")
 public class DeviceCheckController {
 
-    @Autowired
+/*    @Autowired
     private DeviceCheckService deviceCheckService;
 
     @RequestMapping("/list")
@@ -39,12 +40,12 @@ public class DeviceCheckController {
         return "deviceCheck_edit";
     }
 
-    /*
+    *//*
      *此处的method可以取两个值，
      *一个是RequestMethod.GET，一个是RequestMethod.POST，
      *就是请求该方法使用的模式，是get还是post，即参数提交的方法
      *ajax或者form表单提交数据有两种方法，即get和post。
-     */
+     *//*
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
     private CustomResult insert(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
@@ -104,5 +105,5 @@ public class DeviceCheckController {
             throws Exception {
         EUDataGridResult result = deviceCheckService.searchDeviceCheckByDeviceName(page, rows, searchValue);
         return result;
-    }
+    }*/
 }

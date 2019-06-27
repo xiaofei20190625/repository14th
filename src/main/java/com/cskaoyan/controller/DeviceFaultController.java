@@ -1,13 +1,14 @@
+/*
 package com.cskaoyan.controller;
 
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.hqu.production_ms.domain.DeviceFault;
-import org.hqu.production_ms.domain.customize.CustomResult;
-import org.hqu.production_ms.domain.customize.EUDataGridResult;
-import org.hqu.production_ms.service.DeviceFaultService;
+
+import com.cskaoyan.bean.DeviceFault;
+import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.customiz.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DeviceFaultController {
 	
 	@Autowired
-	private DeviceFaultService deviceFaultService;
+	private org.hqu.production_ms.service.DeviceFaultService deviceFaultService;
 	
 	@RequestMapping("/list")
 	@ResponseBody
@@ -55,12 +56,14 @@ public class DeviceFaultController {
 		return "deviceFault_edit";
 	}
 	
-	/*
+	*/
+/*
 	 *此处的method可以取两个值，
 	 *一个是RequestMethod.GET，一个是RequestMethod.POST，
 	 *就是请求该方法使用的模式，是get还是post，即参数提交的方法
 	 *ajax或者form表单提交数据有两种方法，即get和post。
-	 */
+	 *//*
+
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	@ResponseBody
 	private CustomResult insert(@Valid DeviceFault deviceFault, BindingResult bindingResult) throws Exception {
@@ -132,3 +135,4 @@ public class DeviceFaultController {
 		return result;
 	}
 }
+*/

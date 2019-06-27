@@ -4,10 +4,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.hqu.production_ms.domain.Device;
-import org.hqu.production_ms.domain.customize.CustomResult;
-import org.hqu.production_ms.domain.customize.EUDataGridResult;
-import org.hqu.production_ms.service.DeviceService;
+
+import com.cskaoyan.bean.Device;
+import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.customiz.EUDataGridResult;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/deviceList")
 public class DeviceListController {
-
+/*
     @Autowired
     private DeviceService deviceService;
 
@@ -130,5 +131,5 @@ public class DeviceListController {
             throws Exception {
         EUDataGridResult result = deviceService.searchDeviceByDeviceTypeName(page, rows, searchValue);
         return result;
-    }
+    }*/
 }

@@ -3,10 +3,11 @@ package com.cskaoyan.controller;
 
 import javax.validation.Valid;
 
-import org.hqu.production_ms.domain.DeviceMaintain;
-import org.hqu.production_ms.domain.customize.CustomResult;
-import org.hqu.production_ms.domain.customize.EUDataGridResult;
-import org.hqu.production_ms.service.DeviceMaintainService;
+
+import com.cskaoyan.bean.DeviceMaintain;
+import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.customiz.EUDataGridResult;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/deviceMaintain")
 public class DeviceMaintainController {
-
+/*
 	@Autowired
 	private DeviceMaintainService deviceMaintainService;
 	
@@ -29,7 +30,7 @@ public class DeviceMaintainController {
 		EUDataGridResult result = deviceMaintainService.getList(page, rows, deviceMaintain);
 		return result;
 	}
-	
+	  mymyy
 	@RequestMapping("/add")
 	public String add() throws Exception{
 		return "deviceMaintain_add";
@@ -40,12 +41,12 @@ public class DeviceMaintainController {
 		return "deviceMaintain_edit";
 	}
 	
-	/*
+	*//*
 	 *此处的method可以取两个值，
 	 *一个是RequestMethod.GET，一个是RequestMethod.POST，
 	 *就是请求该方法使用的模式，是get还是post，即参数提交的方法
 	 *ajax或者form表单提交数据有两种方法，即get和post。
-	 */
+	 *//*
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	@ResponseBody
 	private CustomResult insert(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult) throws Exception {
@@ -106,5 +107,5 @@ public class DeviceMaintainController {
 			throws Exception{
 		EUDataGridResult result = deviceMaintainService.searchDeviceMaintainByDeviceFaultId(page, rows, searchValue);
 		return result;
-	}
+	}*/
 }
