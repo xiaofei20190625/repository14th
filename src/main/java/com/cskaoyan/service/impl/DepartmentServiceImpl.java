@@ -62,4 +62,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public int deleteByIds(String[] ids) {
         return departmentMapper.deleteByIds(ids);
     }
+
+    @Override
+    public Department selectByPrimaryKey(String departmentId) {
+        return departmentMapper.selectByPrimaryKey(departmentId);
+    }
 }

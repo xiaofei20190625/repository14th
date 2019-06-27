@@ -1,8 +1,12 @@
 package com.lyn.mytest;
 
 import com.cskaoyan.bean.Department;
+import com.cskaoyan.bean.Employee;
+import com.cskaoyan.bean.EmployeeResponse;
 import com.cskaoyan.mapper.DepartmentMapper;
+import com.cskaoyan.mapper.EmployeeMapper;
 import com.cskaoyan.service.DepartmentService;
+import com.cskaoyan.service.EmployeeService;
 import com.cskaoyan.vo.Vo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +22,11 @@ public class PersonTest {
     @Autowired
     DepartmentMapper departmentMapper;
     @Autowired
+    EmployeeMapper employeeMapper;
+    @Autowired
     DepartmentService departmentService;
+    @Autowired
+    EmployeeService employeeService;
     @Test
     public void mytest1() {
         List<Department> departments = departmentMapper.selectAllDepartment();
@@ -34,5 +42,11 @@ public class PersonTest {
     public void mytest3() {
         int delete = departmentService.deleteByIds(new String[]{"015", "016"});
         System.out.println(delete);
+    }
+
+    @Test
+    public void mytest4() {
+        Vo<EmployeeResponse> employeeResponseVo = employeeService.queryAllEmployee(1, 10);
+        System.out.println(employeeResponseVo);
     }
 }
