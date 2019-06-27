@@ -1,9 +1,6 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.COrder;
-import com.cskaoyan.bean.COrderExample;
-import com.cskaoyan.service.COrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
