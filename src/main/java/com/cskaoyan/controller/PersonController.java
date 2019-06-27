@@ -18,12 +18,7 @@ public class PersonController {
 
     /*转到显示部门页面*/
     @RequestMapping("department/find")
-    public String findDepartment(HttpSession session) {
-        List<String> sysPermissionList = new ArrayList<>();
-        sysPermissionList.add("department:add");
-        sysPermissionList.add("department:edit");
-        sysPermissionList.add("'department:delete'");
-        session.setAttribute("sysPermissionList", sysPermissionList);
+    public String findDepartment() {
         return "department_list";
     }
 
