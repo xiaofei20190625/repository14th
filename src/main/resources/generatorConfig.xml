@@ -75,19 +75,32 @@
 
             <!-- 指定所有数据库表 -->
 
-            <!--<table tableName="%"
+            <table tableName="custom"
                    enableCountByExample="false"
                    enableUpdateByExample="false"
                    enableDeleteByExample="false"
                    enableSelectByExample="false"
-                   enableInsert="false"
+                   enableInsert="true"
                    enableDeleteByPrimaryKey="true"
                    enableSelectByPrimaryKey="true"
-                   selectByExampleQueryId="false" ></table>-->
+                   selectByExampleQueryId="false"
+                   domainObjectName="Custom"
+            ></table>
+        <table tableName="product"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableInsert="true"
+               enableDeleteByPrimaryKey="true"
+               enableSelectByPrimaryKey="true"
+               selectByExampleQueryId="false"
+               domainObjectName="Product"
+        ></table>
 
                <!-- 指定数据库表，要生成哪些表，就写哪些表，要和数据库中对应，不能写错！ -->
 
-                <table tableName="c_order" domainObjectName="COrder"/>
+               <!-- <table tableName="c_order" domainObjectName="COrder"/>-->
                 <!--<table tableName="j14_product_t" domainObjectName="Product"/>-->
         <!--      <table schema="" tableName="orders"></table>
              <table schema="" tableName="items"></table>

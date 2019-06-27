@@ -15,22 +15,14 @@ import java.util.List;
 public class COrderServiceImpl implements COrderService {
     @Autowired
     COrderMapper cOrderMapper;
+
     @Override
-    public COrder selectByPrimaryKey(String orderId) {
-        COrder cOrder = cOrderMapper.selectByPrimaryKey(orderId);
-        return cOrder;
+    public List<COrder> selectCOrderlist() {
+        return cOrderMapper.selectCOrderlist();
     }
 
     @Override
-    public List<COrder> selectByExample(COrderExample example) {
-
-        List<COrder> cOrders = cOrderMapper.selectByExample(example);
-        return cOrders;
-    }
-
-    @Override
-    public long countByExample(COrderExample example) {
-        long l = cOrderMapper.countByExample(example);
-        return l;
+    public Long countCOrder() {
+        return cOrderMapper.countCOrder();
     }
 }

@@ -204,6 +204,81 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+  <select id="countCOrder"  resultType="java.lang.Long">
+    select count(*) from c_order
+  </select>
+
+
+  <!--一对多左连接查找-->
+  <resultMap id="courseMap" type="com.cskaoyan.bean.COrder">
+
+    <result column="order_id" property="orderId"/>
+    <result column="order_date" property="orderDate"/>
+    <result column="request_date" property="name"/>
+    <result column="note" property="note"/>
+    <result column="quantity" property="quantity"/>
+    <result column="unit_price" property="unitPrice"/>
+    <result column="unit" property="unit"/>
+    <result column="image" property="image"/>
+    <result column="file" property="file"/>
+    <result column="status" property="status"/>
+
+    <association property="custom" javaType="com.cskaoyan.bean.Custom">
+      <result column="custom_id" property="customId"/>
+      <result column="custom_name" property="customName"/>
+      <result column="full_name" property="fullName"/>
+      <result column="address" property="address"/>
+      <result column="fax" property="fax"/>
+      <result column="email" property="email"/>
+      <result column="ownerName" property="ownerName"/>
+      <result column="owner_tel" property="ownerTel"/>
+      <result column="status" property="status"/>
+    </association>
+
+    <association property="product" javaType="com.cskaoyan.bean.Product">
+      <result column="product_id" property="productId"/>
+      <result column="product_name" property="productName"/>
+      <result column="product_type" property="productType"/>
+      <result column="image" property="image"/>
+      <result column="note" property="note"/>
+      <result column="status" property="status"/>
+
+    </association>
+  </resultMap>
+
+  <select id="selectCOrderlist" resultMap="cOrderMap1">
+    select
+    order_id,
+    order_date,
+    request_date,
+    note,
+    quantity,
+    unit_price,
+    unit,
+    image,
+    file,
+    status,
+    custom_id,
+    custom_name,
+    full_name,
+    address,
+    fax,
+    email,
+    ownerName,
+    owner_tel,
+    status,
+    product_id,
+    product_name,
+    product_type,
+    image,
+    note,
+    status,
+    from c_order co
+    LEFT JOIN custom c on c.custom_id = co.custom_id
+    LEFT JOIN product p on p.product_id =co.product_id
+  </select>
+
   <update id="updateByExampleSelective" parameterType="map">
     update c_order
     <set>

@@ -23,20 +23,14 @@ public class PlanController {
     COrderExample cOrderExample = new COrderExample();
     COrderExample.Criteria criteria =cOrderExample.createCriteria();
 
-    @RequestMapping("order/{orderId}")
-    @ResponseBody
-    public COrder selectByPrimaryKey(@PathVariable("orderId")String orderId) {
-        COrder cOrder =cOrderService.selectByPrimaryKey(orderId);
-        return cOrder;
-    }
+
 
     @RequestMapping("order/list")
     @ResponseBody
     public COrderList cOrderList() {
         COrderList cOrderList = new COrderList();
         criteria.andOrderIdIsNotNull();
-        cOrderList.setRows(cOrderService.selectByExample(cOrderExample));
-        cOrderList.setTotal(Math.toIntExact(cOrderService.countByExample(cOrderExample)));
+
         return cOrderList;
     }
     @RequestMapping("order/find")

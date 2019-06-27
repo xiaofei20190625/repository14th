@@ -18,6 +18,9 @@ public interface COrderMapper {
 
     List<COrder> selectByExample(COrderExample example);
 
+    List<COrder> selectCOrderlist();
+    Long countCOrder();
+
     COrder selectByPrimaryKey(String orderId);
 
     int updateByExampleSelective(@Param("record") COrder record, @Param("example") COrderExample example);
