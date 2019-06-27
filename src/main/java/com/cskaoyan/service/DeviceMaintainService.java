@@ -1,29 +1,36 @@
+
 package com.cskaoyan.service;
 
 
 import com.cskaoyan.bean.DeviceMaintain;
 import com.cskaoyan.customiz.CustomResult;
-import com.cskaoyan.customiz.EUDataGridResult;
+import com.cskaoyan.vo.Vo;
+
+import java.util.List;
+
 
 public interface DeviceMaintainService {
 
-	EUDataGridResult getList(int page, int rows, DeviceMaintain deviceMaintain) throws Exception;
+	Vo getList(int page, int rows, DeviceMaintain deviceMaintain) ;
 	
-	DeviceMaintain get(String string) throws Exception;
+	DeviceMaintain get(String string) ;
 	
-	CustomResult insert(DeviceMaintain deviceMaintain) throws Exception;
+	CustomResult insert(DeviceMaintain deviceMaintain) ;
 	
-	CustomResult delete(String deviceMaintainId) throws Exception;
+	CustomResult delete(String deviceMaintainId) ;
 	
-	CustomResult deleteBatch(String[] deviceMaintainIds) throws Exception;
+	CustomResult deleteBatch(String[] deviceMaintainIds) ;
 
-    CustomResult update(DeviceMaintain deviceMaintain) throws Exception;
+    CustomResult update(DeviceMaintain deviceMaintain) ;
 
-	CustomResult updateNote(DeviceMaintain deviceMaintain) throws Exception;
+	CustomResult updateNote(DeviceMaintain deviceMaintain) ;
 
-	EUDataGridResult searchDeviceMaintainByDeviceMaintainId(Integer page,
-			Integer rows, String deviceMaintainId) throws Exception;
+	Vo searchDeviceMaintainByDeviceMaintainId(Integer page,
+			Integer rows, String deviceMaintainId) ;
 
-	EUDataGridResult searchDeviceMaintainByDeviceFaultId(Integer page,
-			Integer rows, String deviceFaultId) throws Exception;
+	Vo searchDeviceMaintainByDeviceFaultId(Integer page,
+			Integer rows, String deviceFaultId) ;
+
+	List<DeviceMaintain> find();
 }
+

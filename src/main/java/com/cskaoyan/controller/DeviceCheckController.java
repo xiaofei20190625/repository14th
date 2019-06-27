@@ -6,8 +6,9 @@ import javax.validation.Valid;
 
 import com.cskaoyan.bean.DeviceCheck;
 import com.cskaoyan.customiz.CustomResult;
-import com.cskaoyan.customiz.EUDataGridResult;
 
+import com.cskaoyan.service.DeviceCheckService;
+import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,13 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/deviceCheck")
 public class DeviceCheckController {
 
-/*    @Autowired
+    @Autowired
     private DeviceCheckService deviceCheckService;
 
     @RequestMapping("/list")
     @ResponseBody
-    public EUDataGridResult getListType(Integer page, Integer rows, DeviceCheck deviceCheck) throws Exception {
-        EUDataGridResult result = deviceCheckService.getList(page, rows, deviceCheck);
+    public Vo getListType(Integer page, Integer rows, DeviceCheck deviceCheck) throws Exception {
+        Vo result = deviceCheckService.getList(page, rows, deviceCheck);
         return result;
     }
 
@@ -40,12 +41,12 @@ public class DeviceCheckController {
         return "deviceCheck_edit";
     }
 
-    *//*
-     *此处的method可以取两个值，
+    
+/*     *此处的method可以取两个值，
      *一个是RequestMethod.GET，一个是RequestMethod.POST，
      *就是请求该方法使用的模式，是get还是post，即参数提交的方法
-     *ajax或者form表单提交数据有两种方法，即get和post。
-     *//*
+     *ajax或者form表单提交数据有两种方法，即get和post。*/
+     
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
     private CustomResult insert(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
@@ -92,18 +93,18 @@ public class DeviceCheckController {
     //搜索
     @RequestMapping("/search_deviceCheck_by_deviceCheckId")
     @ResponseBody
-    public EUDataGridResult searchDeviceCheckByDeviceCheckId(Integer page, Integer rows, String searchValue)
+    public Vo searchDeviceCheckByDeviceCheckId(Integer page, Integer rows, String searchValue)
             throws Exception {
-        EUDataGridResult result = deviceCheckService.searchDeviceCheckByDeviceCheckId(page, rows, searchValue);
+        Vo result = deviceCheckService.searchDeviceCheckByDeviceCheckId(page, rows, searchValue);
         return result;
     }
 
     //搜索
     @RequestMapping("/search_deviceCheck_by_deviceName")
     @ResponseBody
-    public EUDataGridResult searchDeviceCheckByDeviceName(Integer page, Integer rows, String searchValue)
+    public Vo searchDeviceCheckByDeviceName(Integer page, Integer rows, String searchValue)
             throws Exception {
-        EUDataGridResult result = deviceCheckService.searchDeviceCheckByDeviceName(page, rows, searchValue);
+        Vo result = deviceCheckService.searchDeviceCheckByDeviceName(page, rows, searchValue);
         return result;
-    }*/
+    }
 }

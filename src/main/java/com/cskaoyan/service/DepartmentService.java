@@ -18,5 +18,7 @@ public interface DepartmentService {
 
     int deleteByIds(String[] ids);
 
+    Department selectByPrimaryKey(String departmentId);
+
 
 }

@@ -1,13 +1,12 @@
+
 package com.cskaoyan.controller;
 
 
 import javax.validation.Valid;
-
-
 import com.cskaoyan.bean.DeviceMaintain;
 import com.cskaoyan.customiz.CustomResult;
-import com.cskaoyan.customiz.EUDataGridResult;
-
+import com.cskaoyan.service.DeviceMaintainService;
+import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,40 +15,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/deviceMaintain")
 public class DeviceMaintainController {
-/*
 	@Autowired
 	private DeviceMaintainService deviceMaintainService;
-	
+
 	@RequestMapping("/list")
 	@ResponseBody
-	public EUDataGridResult getListType(Integer page, Integer rows, DeviceMaintain deviceMaintain)
-			throws Exception{
-		EUDataGridResult result = deviceMaintainService.getList(page, rows, deviceMaintain);
+	public Vo getListType(Integer page, Integer rows, DeviceMaintain deviceMaintain)
+			{
+		Vo result = deviceMaintainService.getList(page, rows, deviceMaintain);
 		return result;
 	}
-	  mymyy
+
+	@RequestMapping("get_data")
+	@ResponseBody
+	public List<DeviceMaintain> getdata(){
+		List<DeviceMaintain> list = deviceMaintainService.find();
+		return  list;
+	}
+
 	@RequestMapping("/add")
-	public String add() throws Exception{
+	public String add() {
 		return "deviceMaintain_add";
 	}
-	
+
 	@RequestMapping("/edit")
-	public String edit() throws Exception{
+	public String edit() {
 		return "deviceMaintain_edit";
 	}
-	
-	*//*
-	 *此处的method可以取两个值，
+
+
+/*	 *此处的method可以取两个值，
 	 *一个是RequestMethod.GET，一个是RequestMethod.POST，
 	 *就是请求该方法使用的模式，是get还是post，即参数提交的方法
-	 *ajax或者form表单提交数据有两种方法，即get和post。
-	 *//*
+	 *ajax或者form表单提交数据有两种方法，即get和post。*/
+
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	@ResponseBody
-	private CustomResult insert(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult) throws Exception {
+	private CustomResult insert(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)  {
 		CustomResult result;
 		if(bindingResult.hasErrors()){
 			FieldError fieldError = bindingResult.getFieldError();
@@ -62,50 +69,51 @@ public class DeviceMaintainController {
 		}
 		return result;
 	}
-	
+
 	@RequestMapping(value="/update")
 	@ResponseBody
-	private CustomResult update(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult) throws Exception {
+	private CustomResult update(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)  {
 		if(bindingResult.hasErrors()){
 			FieldError fieldError = bindingResult.getFieldError();
 			return CustomResult.build(100, fieldError.getDefaultMessage());
 		}
 		return  deviceMaintainService.update(deviceMaintain);
 	}
-	
+
 	@RequestMapping(value="/delete_batch")
 	@ResponseBody
-	private CustomResult deleteBatch(String[] ids) throws Exception {
+	private CustomResult deleteBatch(String[] ids)  {
 		CustomResult result = deviceMaintainService.deleteBatch(ids);
 		return result;
 	}
-	
+
 	@RequestMapping(value="/update_note")
 	@ResponseBody
 	private CustomResult updateNote(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)
-			throws Exception {
+			 {
 		if(bindingResult.hasErrors()){
 			FieldError fieldError = bindingResult.getFieldError();
 			return CustomResult.build(100, fieldError.getDefaultMessage());
 		}
 		return deviceMaintainService.updateNote(deviceMaintain);
 	}
-	
+
 	//根据设备维修编号查找
 	@RequestMapping("/search_deviceMaintain_by_deviceMaintainId")
 	@ResponseBody
-	public EUDataGridResult searchDeviceMaintainByDeviceMaintainId(Integer page, Integer rows, String searchValue) 
-			throws Exception{
-		EUDataGridResult result = deviceMaintainService.searchDeviceMaintainByDeviceMaintainId(page, rows, searchValue);
+	public Vo searchDeviceMaintainByDeviceMaintainId(Integer page, Integer rows, String searchValue)
+			{
+		Vo result = deviceMaintainService.searchDeviceMaintainByDeviceMaintainId(page, rows, searchValue);
 		return result;
 	}
-	
+
 	//根据设备故障编号查找
 	@RequestMapping("/search_deviceMaintain_by_deviceFaultId")
 	@ResponseBody
-	public EUDataGridResult searchDeviceMaintainByDeviceFaultId(Integer page, Integer rows, String searchValue) 
-			throws Exception{
-		EUDataGridResult result = deviceMaintainService.searchDeviceMaintainByDeviceFaultId(page, rows, searchValue);
+	public Vo searchDeviceMaintainByDeviceFaultId(Integer page, Integer rows, String searchValue)
+			{
+		Vo result = deviceMaintainService.searchDeviceMaintainByDeviceFaultId(page, rows, searchValue);
 		return result;
-	}*/
+	}
 }
+

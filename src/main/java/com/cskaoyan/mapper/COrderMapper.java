@@ -1,3 +1,4 @@
+
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.COrder;
@@ -30,4 +31,5 @@ public interface COrderMapper {
     int updateByPrimaryKeySelective(COrder record);
 
     int updateByPrimaryKey(COrder record);
+
 }

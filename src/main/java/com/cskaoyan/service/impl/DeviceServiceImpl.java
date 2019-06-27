@@ -1,29 +1,31 @@
+
 package com.cskaoyan.service.impl;
 
 import java.util.List;
 
 import com.cskaoyan.bean.Device;
-import com.cskaoyan.customiz.EUDataGridResult;
-
+import com.cskaoyan.customiz.CustomResult;
 import com.cskaoyan.mapper.DeviceMapper;
 import com.cskaoyan.service.DeviceService;
+import com.cskaoyan.vo.Vo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class DeviceServiceImpl  {
+public class DeviceServiceImpl implements  DeviceService  {
 
 	@Autowired
 	DeviceMapper deviceMapper;
-/*
 	@Override
-	public EUDataGridResult getList(int page, int rows, Device device) throws Exception {
+	public Vo getList(int page, int rows, Device device)  {
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<Device> list = deviceMapper.find(device);
 		//创建一个返回值对象
-		EUDataGridResult result = new EUDataGridResult();
+		Vo result = new Vo();
 		result.setRows(list);
 		//取记录总条数
 		PageInfo<Device> pageInfo = new PageInfo<>(list);
@@ -32,19 +34,19 @@ public class DeviceServiceImpl  {
 	}
 	
 	@Override
-	public List<Device> find() throws Exception {
+	public List<Device> find()  {
 		List<Device> deviceList = deviceMapper.getData();
 		return deviceList;
 	}
 
 	
 	@Override
-	public Device get(String id) throws Exception {
+	public Device get(String id)  {
 		return deviceMapper.selectByPrimaryKey(id);
 	}
 	
 	@Override
-	public CustomResult insert(Device device) throws Exception {
+	public CustomResult insert(Device device)  {
 		int i = deviceMapper.insert(device);
 		if(i>=0){
 			return CustomResult.ok();
@@ -54,7 +56,7 @@ public class DeviceServiceImpl  {
 	}
 
 	@Override
-	public CustomResult deleteBatch(String[] deviceIds) throws Exception {
+	public CustomResult deleteBatch(String[] deviceIds)  {
 		int i = deviceMapper.deleteBatch(deviceIds);
 		if(i>=0){
 			return CustomResult.ok();
@@ -64,10 +66,10 @@ public class DeviceServiceImpl  {
 	}
 
 	@Override
-	public CustomResult update(Device device) throws Exception {
+	public CustomResult update(Device device)  {
 		System.out.println("device update service");
 		System.out.println(device.getNote());
-		System.out.println(JsonUtils.objectToJson(device));
+		//System.out.println(JsonUtils.objectToJson(device));
 		int i = deviceMapper.updateByPrimaryKeySelective(device);
 		if(i>=0){
 			return CustomResult.ok();
@@ -77,7 +79,7 @@ public class DeviceServiceImpl  {
 	}
 
 	@Override
-	public CustomResult updateNote(Device device) throws Exception {
+	public CustomResult updateNote(Device device)  {
 		int i = deviceMapper.updateNote(device);
 		if(i>0){
 			return CustomResult.ok();
@@ -87,7 +89,7 @@ public class DeviceServiceImpl  {
 	}
 	
 	@Override
-	public CustomResult updateAll(Device device) throws Exception {
+	public CustomResult updateAll(Device device)  {
 		int i = deviceMapper.updateByPrimaryKey(device);
 		if(i>0){
 			return CustomResult.ok();
@@ -97,13 +99,13 @@ public class DeviceServiceImpl  {
 	}
 
 	@Override
-	public EUDataGridResult searchDeviceByDeviceId(Integer page, Integer rows,
+	public Vo searchDeviceByDeviceId(Integer page, Integer rows,
 			String deviceId) {
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<Device> list = deviceMapper.searchDeviceByDeviceId(deviceId);
 		//创建一个返回值对象
-		EUDataGridResult result = new EUDataGridResult();
+		Vo result = new Vo();
 		result.setRows(list);
 		//取记录总条数
 		PageInfo<Device> pageInfo = new PageInfo<>(list);
@@ -112,13 +114,13 @@ public class DeviceServiceImpl  {
 	}
 
 	@Override
-	public EUDataGridResult searchDeviceByDeviceName(Integer page,
+	public Vo searchDeviceByDeviceName(Integer page,
 			Integer rows, String deviceName) {
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<Device> list = deviceMapper.searchDeviceByDeviceName(deviceName);
 		//创建一个返回值对象
-		EUDataGridResult result = new EUDataGridResult();
+		Vo result = new Vo();
 		result.setRows(list);
 		//取记录总条数
 		PageInfo<Device> pageInfo = new PageInfo<>(list);
@@ -127,17 +129,18 @@ public class DeviceServiceImpl  {
 	}
 
 	@Override
-	public EUDataGridResult searchDeviceByDeviceTypeName(Integer page,
+	public Vo searchDeviceByDeviceTypeName(Integer page,
 			Integer rows, String deviceTypeName) {
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<Device> list = deviceMapper.searchDeviceByDeviceTypeName(deviceTypeName);
 		//创建一个返回值对象
-		EUDataGridResult result = new EUDataGridResult();
+		Vo result = new Vo();
 		result.setRows(list);
 		//取记录总条数
 		PageInfo<Device> pageInfo = new PageInfo<>(list);
 		result.setTotal(pageInfo.getTotal());
 		return result;
-	}*/
+	}
 }
+

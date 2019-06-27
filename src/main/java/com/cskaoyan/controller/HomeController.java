@@ -38,6 +38,9 @@ public class HomeController {
         sysPermissionList.add("process:edit");
         sysPermissionList.add("process:delete");
 
+        sysPermissionList.add("employee:add");
+        sysPermissionList.add("employee:edit");
+        sysPermissionList.add("employee:delete");
 
         session.setAttribute("sysPermissionList", sysPermissionList);
         return "home";

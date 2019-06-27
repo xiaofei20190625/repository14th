@@ -1,27 +1,32 @@
+
 package com.cskaoyan.service.impl;
 
 import java.util.List;
 
+
+import com.cskaoyan.bean.DeviceMaintain;
+import com.cskaoyan.customiz.CustomResult;
 import com.cskaoyan.mapper.DeviceMaintainMapper;
 import com.cskaoyan.service.DeviceMaintainService;
-
+import com.cskaoyan.vo.Vo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class DeviceMaintainServiceImpl  {
+public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 
 	@Autowired
 	DeviceMaintainMapper deviceMaintainMapper;
-	/*
 	@Override
-	public EUDataGridResult getList(int page, int rows, DeviceMaintain deviceMaintain) throws Exception {
+	public Vo getList(int page, int rows, DeviceMaintain deviceMaintain)  {
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<DeviceMaintain> list = deviceMaintainMapper.find(deviceMaintain);
 		//创建一个返回值对象
-		EUDataGridResult result = new EUDataGridResult();
+		Vo result = new Vo();
 		result.setRows(list);
 		//取记录总条数
 		PageInfo<DeviceMaintain> pageInfo = new PageInfo<>(list);
@@ -30,12 +35,12 @@ public class DeviceMaintainServiceImpl  {
 	}
 	
 	@Override
-	public DeviceMaintain get(String id) throws Exception {
+	public DeviceMaintain get(String id)  {
 		return deviceMaintainMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
-	public CustomResult insert(DeviceMaintain deviceMaintain) throws Exception {
+	public CustomResult insert(DeviceMaintain deviceMaintain)  {
 		int i = deviceMaintainMapper.insert(deviceMaintain);
 		if(i>=0){
 			return CustomResult.ok();
@@ -45,7 +50,7 @@ public class DeviceMaintainServiceImpl  {
 	}
 
 	@Override
-	public CustomResult delete(String deviceMaintainId) throws Exception {
+	public CustomResult delete(String deviceMaintainId)  {
 		int i = deviceMaintainMapper.deleteByPrimaryKey(deviceMaintainId);
 		if(i>=0){
 			return CustomResult.ok();
@@ -55,7 +60,7 @@ public class DeviceMaintainServiceImpl  {
 	}
 
 	@Override
-	public CustomResult deleteBatch(String[] deviceMaintainIds) throws Exception {
+	public CustomResult deleteBatch(String[] deviceMaintainIds)  {
 		int i = deviceMaintainMapper.deleteBatch(deviceMaintainIds);
 		if(i>=0){
 			return CustomResult.ok();
@@ -65,7 +70,7 @@ public class DeviceMaintainServiceImpl  {
 	}
 
 	@Override
-	public CustomResult update(DeviceMaintain deviceMaintain) throws Exception {
+	public CustomResult update(DeviceMaintain deviceMaintain)  {
 		int i = deviceMaintainMapper.updateByPrimaryKeySelective(deviceMaintain);
 		if(i>=0){
 			return CustomResult.ok();
@@ -75,7 +80,7 @@ public class DeviceMaintainServiceImpl  {
 	}
 
 	@Override
-	public CustomResult updateNote(DeviceMaintain deviceMaintain) throws Exception {
+	public CustomResult updateNote(DeviceMaintain deviceMaintain)  {
 		int i = deviceMaintainMapper.updateNote(deviceMaintain);
 		if(i>0){
 			return CustomResult.ok();
@@ -85,13 +90,13 @@ public class DeviceMaintainServiceImpl  {
 	}
 
 	@Override
-	public EUDataGridResult searchDeviceMaintainByDeviceMaintainId(
+	public Vo searchDeviceMaintainByDeviceMaintainId(
 			Integer page, Integer rows, String deviceMaintainId) {
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<DeviceMaintain> list = deviceMaintainMapper.searchDeviceMaintainByDeviceMaintainId(deviceMaintainId);
 		//创建一个返回值对象
-		EUDataGridResult result = new EUDataGridResult();
+		Vo result = new Vo();
 		result.setRows(list);
 		//取记录总条数
 		PageInfo<DeviceMaintain> pageInfo = new PageInfo<>(list);
@@ -100,17 +105,24 @@ public class DeviceMaintainServiceImpl  {
 	}
 
 	@Override
-	public EUDataGridResult searchDeviceMaintainByDeviceFaultId(Integer page,
+	public Vo searchDeviceMaintainByDeviceFaultId(Integer page,
 			Integer rows, String deviceFaultId) {
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<DeviceMaintain> list = deviceMaintainMapper.searchDeviceMaintainByDeviceFaultId(deviceFaultId);
 		//创建一个返回值对象
-		EUDataGridResult result = new EUDataGridResult();
+		Vo result = new Vo();
 		result.setRows(list);
 		//取记录总条数
 		PageInfo<DeviceMaintain> pageInfo = new PageInfo<>(list);
 		result.setTotal(pageInfo.getTotal());
 		return result;
-	}*/
+	}
+
+	@Override
+	public List<DeviceMaintain> find() {
+		List<DeviceMaintain> deviceMaintains = deviceMaintainMapper.find(new DeviceMaintain());
+		return deviceMaintains;
+	}
 }
+
