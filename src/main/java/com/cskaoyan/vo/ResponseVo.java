@@ -1,16 +1,16 @@
 package com.cskaoyan.vo;
 
-public class AddDepartmentResult {
+public class ResponseVo {
     int status;
 
     String msg;
 
     String data;
 
-    public AddDepartmentResult() {
+    public ResponseVo() {
     }
 
-    public AddDepartmentResult(int status, String msg, String data) {
+    public ResponseVo(int status, String msg, String data) {
         this.status = status;
         this.msg = msg;
         this.data = data;
@@ -42,7 +42,7 @@ public class AddDepartmentResult {
 
     @Override
     public String toString() {
-        return "AddDepartmentResult{" +
+        return "ResponseVo{" +
                 "status=" + status +
                 ", msg='" + msg + '\'' +
                 ", data='" + data + '\'' +

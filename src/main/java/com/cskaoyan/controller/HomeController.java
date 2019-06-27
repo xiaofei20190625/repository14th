@@ -19,7 +19,7 @@ public class HomeController {
         List<String> sysPermissionList = new ArrayList<>();
         sysPermissionList.add("department:add");
         sysPermissionList.add("department:edit");
-        sysPermissionList.add("'department:delete'");
+        sysPermissionList.add("department:delete");
         session.setAttribute("sysPermissionList", sysPermissionList);
         return "home";
     }

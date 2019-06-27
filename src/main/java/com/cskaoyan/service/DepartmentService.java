@@ -9,4 +9,14 @@ public interface DepartmentService {
     Vo<Department> selectAllDepartment(int page, int rows);
 
     int insertSelective(Department record);
+
+    int updateByPrimaryKeySelective(Department record);
+
+    Vo<Department> fuzzySelectById(String departmentId,int page, int rows);
+
+    Vo<Department> fuzzySelectByname(String departmentName, int page, int rows);
+
+    int deleteByIds(String[] ids);
+
+
 }
