@@ -1,6 +1,7 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.TechnologyRequirement;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface TechnologyRequirementMapper {
 
     int deleteByPrimaryKey(String technologyRequirementId);
 
-    int insert(TechnologyRequirement record);
+    int insert(@Param("tr")TechnologyRequirement tr);
 
     int insertSelective(TechnologyRequirement record);
 

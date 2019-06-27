@@ -32,7 +32,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     @Autowired
     ProcessMapper processMapper;
 
-    //工艺管理
+    //---------------工艺管理---------------
     @Override
     public Vo<Technology> findTechnology(int page, int rows) {
         //开启分页
@@ -43,8 +43,51 @@ public class TechnologyServiceImpl implements TechnologyService {
         Vo<Technology> technologyList = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
         return technologyList;
     }
+    @Override
+    public List<Technology> findAllTechnology() {
+        return technologyMapper.findTechnology();
+    }
+    //查询指定工艺
+    @Override
+    public Technology getTechnology(int tid) {
+        return technologyMapper.getTechnology(tid);
+    }
+    @Override
+    public int insertTechnology(Technology technology) {
+        int insert = technologyMapper.insert(technology);
+        return insert;
+    }
+    @Override
+    public int updateTechnology(Technology technology) {
+        return technologyMapper.updateByPrimaryKeySelective(technology);
+    }
+    @Override
+    public int deleteTechnologyList(String[] ids) {
+        return technologyMapper.deleteTechnologyList(ids);
+    }
+    @Override
+    public Vo<Technology> searchTechnologyById(String searchValue, int page, int rows) {
+        //开启分页
+        PageHelper.startPage(page, rows);
+        //查询technology
+        List<Technology> technologies = technologyMapper.searchTechnologyById(searchValue);
+        PageInfo<Technology> pageInfo = new PageInfo<>(technologies);
+        Vo<Technology> technologyList = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
+        return technologyList;
+    }
 
-    //工艺要求
+    @Override
+    public Vo<Technology> searchTechnologyByName(String searchValue, int page, int rows) {
+        //开启分页
+        PageHelper.startPage(page, rows);
+        //查询technology
+        List<Technology> technologies = technologyMapper.searchTechnologyByName(searchValue);
+        PageInfo<Technology> pageInfo = new PageInfo<>(technologies);
+        Vo<Technology> technologyList = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
+        return technologyList;
+    }
+
+    //---------------工艺要求---------------
     @Override
     public Vo<TechnologyRequirement> findTechnologyRequirement(int page, int rows) {
         //开启分页
@@ -56,13 +99,20 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technologyRequirementVo;
     }
 
-    //查询指定工艺
     @Override
-    public Technology getTechnology(int tid) {
-        return technologyMapper.getTechnology(tid);
+    public List<TechnologyRequirement> findAllTechnologyRequirement() {
+        List<TechnologyRequirement> technologyRequirement = technologyRequirementMapper.findTechnologyRequirement();
+        return technologyRequirement;
     }
 
-    //工艺计划
+    @Override
+    public int insertTechnologyRequirement(TechnologyRequirement technologyRequirement) {
+        int insert = technologyRequirementMapper.insert(technologyRequirement);
+        return insert;
+    }
+
+
+    //---------------工艺计划---------------
     @Override
     public Vo<TechnologyPlan> findTechnologyPlan(int page, int rows) {
         //开启分页
@@ -74,7 +124,7 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technologyPlanVo;
     }
 
-    //工序管理
+    //---------------工序管理---------------
     @Override
     public Vo<Process> findProcess(int page, int rows) {
         //开启分页
@@ -85,5 +135,16 @@ public class TechnologyServiceImpl implements TechnologyService {
         Vo<Process> processVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
         return processVo;
     }
+
+    @Override
+    public TechnologyPlan getTechnologyPlan(int planid) {
+        return technologyPlanMapper.getTechnologyPlan(planid);
+    }
+
+
+
+
+
+
 }
 

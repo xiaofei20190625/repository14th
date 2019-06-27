@@ -147,4 +147,19 @@
     select <include refid="Base_Column_List"/> from technology where technology_id = #{tid}
   </select>
 
+  <delete id="deleteTechnologyList">
+    delete from technology where technology_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="searchTechnologyById" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from technology where technology_id like "%"#{searchValue}"%"
+  </select>
+
+  <select id="searchTechnologyByName" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from technology where technology_name like "%"#{searchValue}"%"
+  </select>
+
 </mapper>
