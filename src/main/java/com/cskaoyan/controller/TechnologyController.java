@@ -1,6 +1,8 @@
 package com.cskaoyan.controller;
 
+import com.cskaoyan.bean.Process;
 import com.cskaoyan.bean.Technology;
+import com.cskaoyan.bean.TechnologyPlan;
 import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.service.TechnologyService;
 import com.cskaoyan.vo.Vo;
@@ -47,10 +49,34 @@ public class TechnologyController {
         return technologyRequirementVo;
     }
 
+    //查找指定工艺
     @RequestMapping("technology/get/{tid}")
     @ResponseBody
     public Technology getTechnology(@PathVariable("tid")int tid){
         return technologyService.getTechnology(tid);
     }
 
+    //工艺计划
+    @RequestMapping("technologyPlan/find")
+    public String findTechnologyPlan(){
+        return "technologyPlan_list";
+    }
+    @RequestMapping("technologyPlan/list")
+    @ResponseBody
+    public Vo<TechnologyPlan> returnTechnologyPlan(int page, int rows){
+        Vo<TechnologyPlan> technologyPlanVo = technologyService.findTechnologyPlan(page, rows);
+        return technologyPlanVo;
+    }
+
+    //工序管理
+    @RequestMapping("process/find")
+    public String findProcess(){
+        return "process_list";
+    }
+    @RequestMapping("process/list")
+    @ResponseBody
+    public Vo<Process> returnProcess(int page, int rows){
+        Vo<Process> processVo = technologyService.findProcess(page, rows);
+        return processVo;
+    }
 }
