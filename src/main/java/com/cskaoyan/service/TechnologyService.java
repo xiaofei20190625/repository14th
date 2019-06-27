@@ -1,14 +1,10 @@
 package com.cskaoyan.service;
 
+import com.cskaoyan.bean.Process;
 import com.cskaoyan.bean.Technology;
+import com.cskaoyan.bean.TechnologyPlan;
 import com.cskaoyan.bean.TechnologyRequirement;
-import com.cskaoyan.mapper.TechnologyMapper;
 import com.cskaoyan.vo.Vo;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by IceFloe_Rot
@@ -23,4 +19,11 @@ public interface TechnologyService {
 
     //查询工艺
     Technology getTechnology(int tid);
+
+    //工艺计划
+    Vo<TechnologyPlan> findTechnologyPlan(int page, int rows);
+
+    //工序管理
+    Vo<Process> findProcess(int page, int rows);
 }
+
