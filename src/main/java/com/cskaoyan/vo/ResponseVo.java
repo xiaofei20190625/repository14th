@@ -1,5 +1,4 @@
 package com.cskaoyan.vo;
-
 /**
  * Created by IceFloe_Rot
  * Date 2019/6/27 Time 20:33
@@ -16,6 +15,7 @@ public class ResponseVo {
                 ", msg='" + msg + '\'' +
                 ", data='" + data + '\'' +
                 '}';
+
     }
 
     public int getStatus() {

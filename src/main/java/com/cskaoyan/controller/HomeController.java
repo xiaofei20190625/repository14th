@@ -19,7 +19,8 @@ public class HomeController {
         List<String> sysPermissionList = new ArrayList<>();
         sysPermissionList.add("department:add");
         sysPermissionList.add("department:edit");
-        sysPermissionList.add("'department:delete'");
+        sysPermissionList.add("department:delete");
+
         //工艺模块：
         sysPermissionList.add("technology:add");
         sysPermissionList.add("technology:edit");
@@ -36,6 +37,7 @@ public class HomeController {
         sysPermissionList.add("process:add");
         sysPermissionList.add("process:edit");
         sysPermissionList.add("process:delete");
+
 
         session.setAttribute("sysPermissionList", sysPermissionList);
         return "home";

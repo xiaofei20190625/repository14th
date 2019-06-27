@@ -24,4 +24,15 @@ public class PersonTest {
         List<Department> departments = departmentMapper.selectAllDepartment();
         System.out.println(departments);
     }
+    @Test
+    public void mytest2() {
+        Vo<Department> departments = departmentService.fuzzySelectByname("人", 1, 10);
+        System.out.println(departments);
+    }
+
+    @Test
+    public void mytest3() {
+        int delete = departmentService.deleteByIds(new String[]{"015", "016"});
+        System.out.println(delete);
+    }
 }
