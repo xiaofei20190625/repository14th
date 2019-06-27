@@ -22,29 +22,12 @@ import java.util.List;
  * Date 2019/6/26 Time 21:17
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:application.xml")
+@ContextConfiguration("classpath:applicationContext-spring.xml")
 public class TechnologyTest {
     @Autowired
     TechnologyService technologyService;
 
-    @Test
-    public void test1(){
-        List<Technology> allTechnologies = technologyService.findAllTechnology();
-        System.out.println(allTechnologies);
-    }
-
-    SqlSessionFactory sqlSessionFactory;
-    SqlSession sqlSession;
-
-    @Before
-    public void init(){
-        Resources.getResourceAsStream("")
-    }
 
 
-    @Test
-    public void insert1(){
-
-    }
 
 }

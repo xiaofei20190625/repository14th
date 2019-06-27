@@ -139,11 +139,8 @@
       overfulfil_capacity = #{overfulfilCapacity,jdbcType=INTEGER}
     where technology_id = #{technologyId,jdbcType=VARCHAR}
   </update>
-  <select id="findAllTechnologies" resultMap="BaseResultMap">
+  <select id="findTechnology" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from technology
-  </select>
-  <select id="findPageTechnologies" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/> from technology limit #{offset},#{rows}
   </select>
 
 </mapper>

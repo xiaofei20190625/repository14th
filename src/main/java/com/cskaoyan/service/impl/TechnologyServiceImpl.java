@@ -4,6 +4,9 @@ import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.mapper.TechnologyMapper;
 import com.cskaoyan.service.TechnologyService;
+import com.cskaoyan.vo.Vo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,19 +22,18 @@ public class TechnologyServiceImpl implements TechnologyService {
     TechnologyMapper technologyMapper;
 
     @Override
-    public List<Technology> findAllTechnology() {
-        List<Technology> allTechnologies = technologyMapper.findAllTechnologies();
-        return allTechnologies;
+    public Vo<Technology> findTechnology(int page, int rows) {
+        //开启分页
+        PageHelper.startPage(page, rows);
+        //查询technology
+        List<Technology> technologies = technologyMapper.findTechnology();
+        PageInfo<Technology> pageInfo = new PageInfo<>(technologies);
+        Vo<Technology> technologyList = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
+        return technologyList;
     }
 
     @Override
-    public List<Technology> findPageTechnology(int page, int rows) {
-        int offset = (page - 1) * rows;//计算偏移量
-        return technologyMapper.findPageTechnologies(offset, rows);
-    }
-
-    @Override
-    public List<TechnologyRequirement> findAllTechnologyRequirement() {
+    public Vo<TechnologyRequirement> findAllTechnologyRequirement() {
         return null;
     }
 }

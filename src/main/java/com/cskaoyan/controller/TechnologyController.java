@@ -3,6 +3,7 @@ package com.cskaoyan.controller;
 import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.service.TechnologyService;
+import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +28,8 @@ public class TechnologyController {
 
     @RequestMapping("technology/list")
     @ResponseBody
-    public List<Technology> returnTechnology(int page, int rows){
-        List<Technology> technologies = technologyService.findPageTechnology(page, rows);
+    public Vo<Technology> returnTechnology(int page, int rows){
+        Vo<Technology> technologies = technologyService.findTechnology(page, rows);
         return technologies;
     }
 
@@ -38,8 +39,8 @@ public class TechnologyController {
     }
 
     @RequestMapping("technologyRequirement/list")
-    public List<TechnologyRequirement> returnTechnologyRequirement(){
-        List<TechnologyRequirement> technologyRequirements = technologyService.findAllTechnologyRequirement();
+    public Vo<TechnologyRequirement> returnTechnologyRequirement(){
+        Vo<TechnologyRequirement> technologyRequirements = technologyService.findAllTechnologyRequirement();
         return technologyRequirements;
     }
 

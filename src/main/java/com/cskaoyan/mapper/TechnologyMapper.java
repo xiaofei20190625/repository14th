@@ -1,6 +1,7 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Technology;
+import com.cskaoyan.vo.Vo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,6 +19,5 @@ public interface TechnologyMapper {
 
     int updateByPrimaryKey(Technology record);
 
-    List<Technology> findAllTechnologies();
-    List<Technology> findPageTechnologies(@Param("offset")int offset,@Param("rows")int rows);
+    List<Technology> findTechnology();
 }
