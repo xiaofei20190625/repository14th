@@ -2,6 +2,7 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
     <properties resource="mydb.properties"/>
     <environments default="development">
@@ -10,7 +11,7 @@
             <dataSource type="POOLED">
                 <property name="driver" value="${driverClassName}"/>
                 <property name="url" value="${url}"/>
-                <property name="username" value="${username}"/>
+                <property name="username" value="${user}"/>
                 <property name="password" value="${password}"/>
             </dataSource>
         </environment>
