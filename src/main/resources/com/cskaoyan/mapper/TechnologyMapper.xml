@@ -143,4 +143,8 @@
     select <include refid="Base_Column_List"/> from technology
   </select>
 
+  <select id="getTechnology" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from technology where technology_id = #{tid}
+  </select>
+
 </mapper>

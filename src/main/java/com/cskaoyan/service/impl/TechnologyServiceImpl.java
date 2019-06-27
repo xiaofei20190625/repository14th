@@ -3,6 +3,7 @@ package com.cskaoyan.service.impl;
 import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.mapper.TechnologyMapper;
+import com.cskaoyan.mapper.TechnologyRequirementMapper;
 import com.cskaoyan.service.TechnologyService;
 import com.cskaoyan.vo.Vo;
 import com.github.pagehelper.PageHelper;
@@ -20,7 +21,10 @@ import java.util.List;
 public class TechnologyServiceImpl implements TechnologyService {
     @Autowired
     TechnologyMapper technologyMapper;
+    @Autowired
+    TechnologyRequirementMapper technologyRequirementMapper;
 
+    //工艺管理
     @Override
     public Vo<Technology> findTechnology(int page, int rows) {
         //开启分页
@@ -32,8 +36,20 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technologyList;
     }
 
+    //工艺要求
     @Override
-    public Vo<TechnologyRequirement> findAllTechnologyRequirement() {
-        return null;
+    public Vo<TechnologyRequirement> findTechnologyRequirement(int page, int rows) {
+        //开启分页
+        PageHelper.startPage(page, rows);
+        //查询technologyRequirement
+        List<TechnologyRequirement> technologyRequirements = technologyRequirementMapper.findTechnologyRequirement();
+        PageInfo<TechnologyRequirement> pageInfo = new PageInfo<>(technologyRequirements);
+        Vo<TechnologyRequirement> technologyRequirementVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
+        return technologyRequirementVo;
+    }
+
+    @Override
+    public Technology getTechnology(int tid) {
+        return technologyMapper.getTechnology(tid);
     }
 }

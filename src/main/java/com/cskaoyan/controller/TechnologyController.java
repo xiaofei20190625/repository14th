@@ -4,9 +4,11 @@ import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.service.TechnologyService;
 import com.cskaoyan.vo.Vo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,27 +23,34 @@ public class TechnologyController {
     @Autowired
     TechnologyService technologyService;
 
+    //工艺管理
     @RequestMapping("technology/find")
     public String findTechnology(){
         return "technology_list";
     }
-
     @RequestMapping("technology/list")
     @ResponseBody
     public Vo<Technology> returnTechnology(int page, int rows){
-        Vo<Technology> technologies = technologyService.findTechnology(page, rows);
-        return technologies;
+        Vo<Technology> technologyVo = technologyService.findTechnology(page, rows);
+        return technologyVo;
     }
 
+    //工艺要求
     @RequestMapping("technologyRequirement/find")
     public String findTechnologyRequirement(){
         return "technologyRequirement_list";
     }
-
     @RequestMapping("technologyRequirement/list")
-    public Vo<TechnologyRequirement> returnTechnologyRequirement(){
-        Vo<TechnologyRequirement> technologyRequirements = technologyService.findAllTechnologyRequirement();
-        return technologyRequirements;
+    @ResponseBody
+    public Vo<TechnologyRequirement> returnTechnologyRequirement(int page, int rows){
+        Vo<TechnologyRequirement> technologyRequirementVo = technologyService.findTechnologyRequirement(page, rows);
+        return technologyRequirementVo;
+    }
+
+    @RequestMapping("technology/get/{tid}")
+    @ResponseBody
+    public Technology getTechnology(@PathVariable("tid")int tid){
+        return technologyService.getTechnology(tid);
     }
 
 }
