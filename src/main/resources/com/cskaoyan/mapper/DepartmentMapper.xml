@@ -22,6 +22,12 @@
     from department
   </select>
 
+  <select id="showAllDepartment" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from department
+  </select>
+
   <!--根据id模糊查询-->
   <select id="fuzzySelectById" resultMap="BaseResultMap">
     select

@@ -1,7 +1,7 @@
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.COrder;
-import com.cskaoyan.bean.COrderExample;
+
 import com.cskaoyan.mapper.COrderMapper;
 import com.cskaoyan.service.COrderService;
 

@@ -11,7 +11,6 @@
     <!-- bean definitions here -->
     <context:component-scan base-package="com.cskaoyan.controller"/>
 
-
     <mvc:annotation-driven />
     
     <mvc:resources mapping="/erp/image/**" location="/WEB-INF/image/"/>
@@ -19,10 +18,19 @@
     <mvc:resources mapping="/erp/js/**" location="/WEB-INF/js/"/>
 
 
+
     <!--视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--日期格式转换器-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.cskaoyan.converter.StringToDateConverter"/>
+            </set>
+        </property>
     </bean>
 
 

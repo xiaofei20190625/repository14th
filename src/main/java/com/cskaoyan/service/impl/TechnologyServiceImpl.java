@@ -25,19 +25,17 @@ import java.util.List;
 public class TechnologyServiceImpl implements TechnologyService {
     @Autowired
     TechnologyMapper technologyMapper;
-    @Autowired
-    TechnologyRequirementMapper technologyRequirementMapper;
+
     @Autowired
     TechnologyPlanMapper technologyPlanMapper;
     @Autowired
     ProcessMapper processMapper;
 
+    //==================================================================================================
     //---------------工艺管理---------------
     @Override
     public Vo<Technology> findTechnology(int page, int rows) {
-        //开启分页
         PageHelper.startPage(page, rows);
-        //查询technology
         List<Technology> technologies = technologyMapper.findTechnology();
         PageInfo<Technology> pageInfo = new PageInfo<>(technologies);
         Vo<Technology> technologyList = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
@@ -67,9 +65,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
     @Override
     public Vo<Technology> searchTechnologyById(String searchValue, int page, int rows) {
-        //开启分页
         PageHelper.startPage(page, rows);
-        //查询technology
         List<Technology> technologies = technologyMapper.searchTechnologyById(searchValue);
         PageInfo<Technology> pageInfo = new PageInfo<>(technologies);
         Vo<Technology> technologyList = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
@@ -78,68 +74,18 @@ public class TechnologyServiceImpl implements TechnologyService {
 
     @Override
     public Vo<Technology> searchTechnologyByName(String searchValue, int page, int rows) {
-        //开启分页
         PageHelper.startPage(page, rows);
-        //查询technology
         List<Technology> technologies = technologyMapper.searchTechnologyByName(searchValue);
         PageInfo<Technology> pageInfo = new PageInfo<>(technologies);
         Vo<Technology> technologyList = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
         return technologyList;
     }
 
-    //---------------工艺要求---------------
-    @Override
-    public Vo<TechnologyRequirement> findTechnologyRequirement(int page, int rows) {
-        //开启分页
-        PageHelper.startPage(page, rows);
-        //查询technologyRequirement
-        List<TechnologyRequirement> technologyRequirements = technologyRequirementMapper.findTechnologyRequirement();
-        PageInfo<TechnologyRequirement> pageInfo = new PageInfo<>(technologyRequirements);
-        Vo<TechnologyRequirement> technologyRequirementVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
-        return technologyRequirementVo;
-    }
-
-    @Override
-    public List<TechnologyRequirement> findAllTechnologyRequirement() {
-        List<TechnologyRequirement> technologyRequirement = technologyRequirementMapper.findTechnologyRequirement();
-        return technologyRequirement;
-    }
-
-    @Override
-    public int insertTechnologyRequirement(TechnologyRequirement technologyRequirement) {
-        int insert = technologyRequirementMapper.insert(technologyRequirement);
-        return insert;
-    }
 
 
-    //---------------工艺计划---------------
-    @Override
-    public Vo<TechnologyPlan> findTechnologyPlan(int page, int rows) {
-        //开启分页
-        PageHelper.startPage(page, rows);
-        //查询technologyRequirement
-        List<TechnologyPlan> technologyPlans = technologyPlanMapper.findTechnologyPlan();
-        PageInfo<TechnologyPlan> pageInfo = new PageInfo<>(technologyPlans);
-        Vo<TechnologyPlan> technologyPlanVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
-        return technologyPlanVo;
-    }
 
-    //---------------工序管理---------------
-    @Override
-    public Vo<Process> findProcess(int page, int rows) {
-        //开启分页
-        PageHelper.startPage(page, rows);
-        //查询technologyRequirement
-        List<Process> processes = processMapper.findProcess();
-        PageInfo<Process> pageInfo = new PageInfo<>(processes);
-        Vo<Process> processVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
-        return processVo;
-    }
 
-    @Override
-    public TechnologyPlan getTechnologyPlan(int planid) {
-        return technologyPlanMapper.getTechnologyPlan(planid);
-    }
+
 
 
 

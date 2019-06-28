@@ -23,22 +23,6 @@ public interface TechnologyService {
     Vo<Technology> searchTechnologyById(String searchValue, int page, int rows);
     Vo<Technology> searchTechnologyByName(String searchValue, int page, int rows);
 
-    //---------------工艺要求---------------
-
-    Vo<TechnologyRequirement> findTechnologyRequirement(int page, int rows);
-    List<TechnologyRequirement> findAllTechnologyRequirement();
-    int insertTechnologyRequirement(TechnologyRequirement technologyRequirement);
-
-    //---------------工艺计划---------------
-    Vo<TechnologyPlan> findTechnologyPlan(int page, int rows);
-
-    //查询工艺计划
-
-    TechnologyPlan getTechnologyPlan(int planid);
-
-    //---------------工序管理---------------
-
-    Vo<Process> findProcess(int page, int rows);
 
 }
 
