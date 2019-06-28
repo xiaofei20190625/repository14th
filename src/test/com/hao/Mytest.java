@@ -2,7 +2,6 @@ package com.hao;
 
 import com.cskaoyan.bean.COrder;
 import com.cskaoyan.bean.COrderExample;
-import com.cskaoyan.controller.COrderList;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

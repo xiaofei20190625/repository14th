@@ -1,8 +1,12 @@
 package com.cskaoyan.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
 import com.cskaoyan.bean.Device;
+import com.cskaoyan.converter.StringToDateConverter;
 import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.service.DeviceService;
 import com.cskaoyan.vo.Vo;
@@ -10,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/deviceList")
@@ -91,56 +92,7 @@ public class DeviceListController {
         return deviceService.update(device);
     }
 
-    @RequestMapping("/get/{deviceId}")
-    @ResponseBody
-    public Device getItemById(@PathVariable String deviceId)  {
-        Device device = deviceService.get(deviceId);
-        return device;
-    }
-
-
-
-
-
-
-
-
-
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    @ResponseBody
-    private DeviceResult insert(@Valid Device device, BindingResult bindingResult)  {
-        DeviceResult result;
-        if (bindingResult.hasErrors()) {
-            FieldError fieldError = bindingResult.getFieldError();
-            return DeviceResult.build(100, fieldError.getDefaultMessage());
-        }
-        if (deviceService.get(device.getDeviceId()) != null) {
-            result = new DeviceResult(0, "该设备编号已经存在，请更换设备编号！", null);
-        } else {
-            result = deviceService.insert(device);
-        }
-        return result;
-    }
-
-
-
-    @RequestMapping(value = "/delete_batch")
-    @ResponseBody
-    private DeviceResult deleteBatch(String[] ids)  {
-        DeviceResult result = deviceService.deleteBatch(ids);
-        return result;
-    }
-
-    @RequestMapping(value = "/update_note")
-    @ResponseBody
-    private DeviceResult updateNote(@Valid Device device, BindingResult bindingResult)  {
-        if (bindingResult.hasErrors()) {
-            FieldError fieldError = bindingResult.getFieldError();
-            return DeviceResult.build(100, fieldError.getDefaultMessage());
-        }
-        return deviceService.updateNote(device);
-    }
-
+    //更新所有
     @RequestMapping(value = "/update_all")
     @ResponseBody
     private DeviceResult updateAll(@Valid Device device, BindingResult bindingResult)  {
@@ -151,4 +103,47 @@ public class DeviceListController {
         return deviceService.updateAll(device);
     }
 
+    //更新简介
+    @RequestMapping(value = "/update_note")
+    @ResponseBody
+    private DeviceResult updateNote(@Valid Device device, BindingResult bindingResult)  {
+        if (bindingResult.hasErrors()) {
+            FieldError fieldError = bindingResult.getFieldError();
+            return DeviceResult.build(100, fieldError.getDefaultMessage());
+        }
+        return deviceService.updateNote(device);
+    }
+
+    //
+    @RequestMapping("/get/{deviceId}")
+    @ResponseBody
+    public Device getItemById(@PathVariable String deviceId)  {
+        Device device = deviceService.getDeviceId(deviceId);
+        return device;
+    }
+
+    //新增
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @ResponseBody
+    private DeviceResult insert(@Valid Device device, BindingResult bindingResult)  {
+        DeviceResult result;
+        if (bindingResult.hasErrors()) {
+            FieldError fieldError = bindingResult.getFieldError();
+            return DeviceResult.build(100, fieldError.getDefaultMessage());
+        }
+        if (deviceService.getDeviceId(device.getDeviceId()) != null) {
+            result = new DeviceResult(0, "该设备编号已经存在，请更换设备编号！", null);
+        } else {
+            result = deviceService.insert(device);
+        }
+        return result;
+    }
+
+    //批量刪除
+    @RequestMapping(value = "/delete_batch")
+    @ResponseBody
+    private DeviceResult deleteBatch(String[] ids)  {
+        DeviceResult result = deviceService.deleteBatch(ids);
+        return result;
+    }
 }

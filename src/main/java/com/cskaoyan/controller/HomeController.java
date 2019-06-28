@@ -17,9 +17,16 @@ public class HomeController {
     @RequestMapping("home")
     public String goToHome(HttpSession session) {
         List<String> sysPermissionList = new ArrayList<>();
+        //部门
         sysPermissionList.add("department:add");
         sysPermissionList.add("department:edit");
         sysPermissionList.add("department:delete");
+
+        //质量监控
+        sysPermissionList.add("unqualify:add");
+        sysPermissionList.add("unqualify:edit");
+        sysPermissionList.add("unqualify:delete");
+
 
         //工艺模块：
         sysPermissionList.add("technology:add");

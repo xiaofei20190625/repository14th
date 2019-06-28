@@ -16,7 +16,7 @@ public interface DeviceService {
 	
 	List<Device> getData() ;
 	
-	Device get(String string) ;
+	Device getDeviceId(String string) ;
 
 	DeviceResult insert(Device device) ;
 	
