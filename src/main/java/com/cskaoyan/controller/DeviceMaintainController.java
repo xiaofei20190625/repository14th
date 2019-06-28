@@ -1,10 +1,9 @@
-
 package com.cskaoyan.controller;
 
 
 import javax.validation.Valid;
 import com.cskaoyan.bean.DeviceMaintain;
-import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.service.DeviceMaintainService;
 import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,14 +55,14 @@ public class DeviceMaintainController {
 
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	@ResponseBody
-	private CustomResult insert(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)  {
-		CustomResult result;
+	private DeviceResult insert(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)  {
+		DeviceResult result;
 		if(bindingResult.hasErrors()){
 			FieldError fieldError = bindingResult.getFieldError();
-			return CustomResult.build(100, fieldError.getDefaultMessage());
+			return DeviceResult.build(100, fieldError.getDefaultMessage());
 		}
 		if(deviceMaintainService.get(deviceMaintain.getDeviceMaintainId()) != null){
-			result = new CustomResult(0, "该设备维修编号已经存在，请更换设备维修编号！", null);
+			result = new DeviceResult(0, "该设备维修编号已经存在，请更换设备维修编号！", null);
 		}else{
 			result = deviceMaintainService.insert(deviceMaintain);
 		}
@@ -72,28 +71,28 @@ public class DeviceMaintainController {
 
 	@RequestMapping(value="/update")
 	@ResponseBody
-	private CustomResult update(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)  {
+	private DeviceResult update(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)  {
 		if(bindingResult.hasErrors()){
 			FieldError fieldError = bindingResult.getFieldError();
-			return CustomResult.build(100, fieldError.getDefaultMessage());
+			return DeviceResult.build(100, fieldError.getDefaultMessage());
 		}
 		return  deviceMaintainService.update(deviceMaintain);
 	}
 
 	@RequestMapping(value="/delete_batch")
 	@ResponseBody
-	private CustomResult deleteBatch(String[] ids)  {
-		CustomResult result = deviceMaintainService.deleteBatch(ids);
+	private DeviceResult deleteBatch(String[] ids)  {
+		DeviceResult result = deviceMaintainService.deleteBatch(ids);
 		return result;
 	}
 
 	@RequestMapping(value="/update_note")
 	@ResponseBody
-	private CustomResult updateNote(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)
+	private DeviceResult updateNote(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)
 			 {
 		if(bindingResult.hasErrors()){
 			FieldError fieldError = bindingResult.getFieldError();
-			return CustomResult.build(100, fieldError.getDefaultMessage());
+			return DeviceResult.build(100, fieldError.getDefaultMessage());
 		}
 		return deviceMaintainService.updateNote(deviceMaintain);
 	}

@@ -23,6 +23,27 @@ public class HomeController {
         sysPermissionList.add("employee:add");
         sysPermissionList.add("employee:edit");
         sysPermissionList.add("employee:delete");
+        /*设备台账*/
+        sysPermissionList.add("device:add");
+        sysPermissionList.add("device:edit");
+        sysPermissionList.add("device:delete");
+        /*设备种类*/
+        sysPermissionList.add("deviceType:add");
+        sysPermissionList.add("deviceType:edit");
+        sysPermissionList.add("deviceType:delete");
+        /*设备例检*/
+        sysPermissionList.add("deviceCheck:add");
+        sysPermissionList.add("deviceCheck:edit");
+        sysPermissionList.add("deviceCheck:delete");
+        /*设备故障*/
+        sysPermissionList.add("deviceFault:add");
+        sysPermissionList.add("deviceFault:edit");
+        sysPermissionList.add("deviceFault:delete");
+        /*设备维修*/
+        sysPermissionList.add("deviceMaintain:add");
+        sysPermissionList.add("deviceMaintain:edit");
+        sysPermissionList.add("deviceMaintain:delete");
+
         session.setAttribute("sysPermissionList", sysPermissionList);
         return "home";
     }

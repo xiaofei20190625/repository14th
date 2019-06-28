@@ -1,13 +1,9 @@
-
 package com.cskaoyan.controller;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
-
 import com.cskaoyan.bean.Device;
-import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.service.DeviceService;
 import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +21,14 @@ public class DeviceListController {
     @Autowired
     private DeviceService deviceService;
 
-    //查找所有设备
+    //回显设备数据
     @RequestMapping("/get_data")
     @ResponseBody
     public List<Device> getData()  {
-        return deviceService.find();
+        return deviceService.getData();
     }
 
-    //刷新页面
+    //查找所有设备即刷新页面
     @RequestMapping("/list")
     @ResponseBody
     public Vo getList(Integer page, Integer rows, Device device)  {
@@ -70,6 +66,30 @@ public class DeviceListController {
     public String add()  {
         return "deviceList_add";
     }
+    //返回json数据为空
+    @RequestMapping("/add_judge")
+    @ResponseBody
+    public void addJudge(){}
+
+    //编辑
+    @RequestMapping("edit_judge")
+    @ResponseBody
+    public void editJudge(){}
+    @RequestMapping("/edit")
+    public String edit()  {
+        return "deviceList_edit";
+    }
+
+    //编辑后更新
+    @RequestMapping(value = "/update")
+    @ResponseBody
+    private DeviceResult update(@Valid Device device, BindingResult bindingResult)  {
+        if (bindingResult.hasErrors()) {
+            FieldError fieldError = bindingResult.getFieldError();
+            return DeviceResult.build(100, fieldError.getDefaultMessage());
+        }
+        return deviceService.update(device);
+    }
 
     @RequestMapping("/get/{deviceId}")
     @ResponseBody
@@ -82,60 +102,51 @@ public class DeviceListController {
 
 
 
-    @RequestMapping("/edit")
-    public String edit()  {
-        return "deviceList_edit";
-    }
+
+
+
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    private CustomResult insert(@Valid Device device, BindingResult bindingResult)  {
-        CustomResult result;
+    private DeviceResult insert(@Valid Device device, BindingResult bindingResult)  {
+        DeviceResult result;
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
-            return CustomResult.build(100, fieldError.getDefaultMessage());
+            return DeviceResult.build(100, fieldError.getDefaultMessage());
         }
         if (deviceService.get(device.getDeviceId()) != null) {
-            result = new CustomResult(0, "该设备编号已经存在，请更换设备编号！", null);
+            result = new DeviceResult(0, "该设备编号已经存在，请更换设备编号！", null);
         } else {
             result = deviceService.insert(device);
         }
         return result;
     }
 
-    @RequestMapping(value = "/update")
-    @ResponseBody
-    private CustomResult update(@Valid Device device, BindingResult bindingResult)  {
-        if (bindingResult.hasErrors()) {
-            FieldError fieldError = bindingResult.getFieldError();
-            return CustomResult.build(100, fieldError.getDefaultMessage());
-        }
-        return deviceService.update(device);
-    }
+
 
     @RequestMapping(value = "/delete_batch")
     @ResponseBody
-    private CustomResult deleteBatch(String[] ids)  {
-        CustomResult result = deviceService.deleteBatch(ids);
+    private DeviceResult deleteBatch(String[] ids)  {
+        DeviceResult result = deviceService.deleteBatch(ids);
         return result;
     }
 
     @RequestMapping(value = "/update_note")
     @ResponseBody
-    private CustomResult updateNote(@Valid Device device, BindingResult bindingResult)  {
+    private DeviceResult updateNote(@Valid Device device, BindingResult bindingResult)  {
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
-            return CustomResult.build(100, fieldError.getDefaultMessage());
+            return DeviceResult.build(100, fieldError.getDefaultMessage());
         }
         return deviceService.updateNote(device);
     }
 
     @RequestMapping(value = "/update_all")
     @ResponseBody
-    private CustomResult updateAll(@Valid Device device, BindingResult bindingResult)  {
+    private DeviceResult updateAll(@Valid Device device, BindingResult bindingResult)  {
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
-            return CustomResult.build(100, fieldError.getDefaultMessage());
+            return DeviceResult.build(100, fieldError.getDefaultMessage());
         }
         return deviceService.updateAll(device);
     }

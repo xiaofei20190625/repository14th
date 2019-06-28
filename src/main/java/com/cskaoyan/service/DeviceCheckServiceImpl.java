@@ -3,7 +3,7 @@ package com.cskaoyan.service;
 import java.util.List;
 
 import com.cskaoyan.bean.DeviceCheck;
-import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.mapper.DeviceCheckMapper;
 import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,42 +38,42 @@ public class DeviceCheckServiceImpl implements DeviceCheckService{
 	}
 	
 	@Override
-	public CustomResult insert(DeviceCheck deviceCheck) throws Exception {
+	public DeviceResult insert(DeviceCheck deviceCheck) throws Exception {
 		int i = deviceCheckMapper.insert(deviceCheck);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "新增设备例检失败");
+			return DeviceResult.build(101, "新增设备例检失败");
 		}
 	}
 
 	@Override
-	public CustomResult delete(String deviceCheckId) throws Exception {
+	public DeviceResult delete(String deviceCheckId) throws Exception {
 		int i = deviceCheckMapper.deleteByPrimaryKey(deviceCheckId);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
 			return null;
 		}
 	}
 
 	@Override
-	public CustomResult deleteBatch(String[] deviceCheckIds) throws Exception {
+	public DeviceResult deleteBatch(String[] deviceCheckIds) throws Exception {
 		int i = deviceCheckMapper.deleteBatch(deviceCheckIds);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
 			return null;
 		}
 	}
 
 	@Override
-	public CustomResult update(DeviceCheck deviceCheck) throws Exception {
+	public DeviceResult update(DeviceCheck deviceCheck) throws Exception {
 		int i = deviceCheckMapper.updateByPrimaryKeySelective(deviceCheck);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "修改设备例检失败");
+			return DeviceResult.build(101, "修改设备例检失败");
 		}
 	}
 
@@ -108,12 +108,12 @@ public class DeviceCheckServiceImpl implements DeviceCheckService{
 	}
 
 	@Override
-	public CustomResult updateNote(DeviceCheck deviceCheck) throws Exception {
+	public DeviceResult updateNote(DeviceCheck deviceCheck) throws Exception {
 		int i = deviceCheckMapper.updateNote(deviceCheck);
 		if(i>0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "修改例检结果失败");
+			return DeviceResult.build(101, "修改例检结果失败");
 		}
 	}
 }

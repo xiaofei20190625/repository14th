@@ -5,7 +5,7 @@ import java.util.List;
 
 
 import com.cskaoyan.bean.DeviceMaintain;
-import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.mapper.DeviceMaintainMapper;
 import com.cskaoyan.service.DeviceMaintainService;
 import com.cskaoyan.vo.Vo;
@@ -40,52 +40,52 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 	}
 
 	@Override
-	public CustomResult insert(DeviceMaintain deviceMaintain)  {
+	public DeviceResult insert(DeviceMaintain deviceMaintain)  {
 		int i = deviceMaintainMapper.insert(deviceMaintain);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "新增设备维修信息失败");
+			return DeviceResult.build(101, "新增设备维修信息失败");
 		}
 	}
 
 	@Override
-	public CustomResult delete(String deviceMaintainId)  {
+	public DeviceResult delete(String deviceMaintainId)  {
 		int i = deviceMaintainMapper.deleteByPrimaryKey(deviceMaintainId);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
 			return null;
 		}
 	}
 
 	@Override
-	public CustomResult deleteBatch(String[] deviceMaintainIds)  {
+	public DeviceResult deleteBatch(String[] deviceMaintainIds)  {
 		int i = deviceMaintainMapper.deleteBatch(deviceMaintainIds);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
 			return null;
 		}
 	}
 
 	@Override
-	public CustomResult update(DeviceMaintain deviceMaintain)  {
+	public DeviceResult update(DeviceMaintain deviceMaintain)  {
 		int i = deviceMaintainMapper.updateByPrimaryKeySelective(deviceMaintain);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "修改设备维修信息失败");
+			return DeviceResult.build(101, "修改设备维修信息失败");
 		}
 	}
 
 	@Override
-	public CustomResult updateNote(DeviceMaintain deviceMaintain)  {
+	public DeviceResult updateNote(DeviceMaintain deviceMaintain)  {
 		int i = deviceMaintainMapper.updateNote(deviceMaintain);
 		if(i>0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "新增设备维修备注失败");
+			return DeviceResult.build(101, "新增设备维修备注失败");
 		}
 	}
 

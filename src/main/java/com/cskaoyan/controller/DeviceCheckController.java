@@ -1,12 +1,8 @@
 package com.cskaoyan.controller;
 
-
 import javax.validation.Valid;
-
-
 import com.cskaoyan.bean.DeviceCheck;
-import com.cskaoyan.customiz.CustomResult;
-
+import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.service.DeviceCheckService;
 import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,14 +45,14 @@ public class DeviceCheckController {
      
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    private CustomResult insert(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
-        CustomResult result;
+    private DeviceResult insert(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
+        DeviceResult result;
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
-            return CustomResult.build(100, fieldError.getDefaultMessage());
+            return DeviceResult.build(100, fieldError.getDefaultMessage());
         }
         if (deviceCheckService.get(deviceCheck.getDeviceCheckId()) != null) {
-            result = new CustomResult(0, "该设备例检编号已经存在，请更换设备例检编号！", null);
+            result = new DeviceResult(0, "该设备例检编号已经存在，请更换设备例检编号！", null);
         } else {
             result = deviceCheckService.insert(deviceCheck);
         }
@@ -65,28 +61,28 @@ public class DeviceCheckController {
 
     @RequestMapping(value = "/update")
     @ResponseBody
-    private CustomResult update(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
+    private DeviceResult update(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
-            return CustomResult.build(100, fieldError.getDefaultMessage());
+            return DeviceResult.build(100, fieldError.getDefaultMessage());
         }
         return deviceCheckService.update(deviceCheck);
     }
 
     @RequestMapping(value = "/update_note")
     @ResponseBody
-    private CustomResult updateNote(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
+    private DeviceResult updateNote(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
-            return CustomResult.build(100, fieldError.getDefaultMessage());
+            return DeviceResult.build(100, fieldError.getDefaultMessage());
         }
         return deviceCheckService.updateNote(deviceCheck);
     }
 
     @RequestMapping(value = "/delete_batch")
     @ResponseBody
-    private CustomResult deleteBatch(String[] ids) throws Exception {
-        CustomResult result = deviceCheckService.deleteBatch(ids);
+    private DeviceResult deleteBatch(String[] ids) throws Exception {
+        DeviceResult result = deviceCheckService.deleteBatch(ids);
         return result;
     }
 

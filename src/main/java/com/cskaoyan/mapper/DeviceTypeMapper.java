@@ -1,6 +1,9 @@
 package com.cskaoyan.mapper;
 
+import com.cskaoyan.bean.Device;
 import com.cskaoyan.bean.DeviceType;
+
+import java.util.List;
 
 public interface DeviceTypeMapper {
     int deleteByPrimaryKey(String deviceTypeId);
@@ -14,4 +17,8 @@ public interface DeviceTypeMapper {
     int updateByPrimaryKeySelective(DeviceType record);
 
     int updateByPrimaryKey(DeviceType record);
+
+    List<DeviceType> getData();
+
+    List<Device> getList(DeviceType deviceType);
 }
