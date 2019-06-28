@@ -21,7 +21,7 @@ public interface DeviceMapper {
 
     int updateByPrimaryKey(Device device);
 
-    List<Device> find(Device device);
+    List<Device> getList(Device device);
 
     List<Device> getData();
 

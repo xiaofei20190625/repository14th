@@ -140,6 +140,9 @@ public class DeviceListController {
     }
 
     //批量刪除
+    @RequestMapping("delete_judge")
+    @ResponseBody
+    public  void deleteJudge(){}
     @RequestMapping(value = "/delete_batch")
     @ResponseBody
     private DeviceResult deleteBatch(String[] ids)  {
