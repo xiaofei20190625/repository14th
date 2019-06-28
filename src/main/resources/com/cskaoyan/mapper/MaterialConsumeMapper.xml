@@ -29,7 +29,7 @@
     insert into material_consume (consume_id, work_id, material_id, 
       consume_amount, consume_date, sender, 
       receiver, note)
-    values (#{consumeId,jdbcType=VARCHAR}, #{workId,jdbcType=VARCHAR}, #{materialId,jdbcType=VARCHAR}, 
+    values (#{consumeId,jdbcType=VARCHAR}, #{work.workId,jdbcType=VARCHAR}, #{material.materialId,jdbcType=VARCHAR},
       #{consumeAmount,jdbcType=INTEGER}, #{consumeDate,jdbcType=TIMESTAMP}, #{sender,jdbcType=VARCHAR}, 
       #{receiver,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
   </insert>
@@ -126,4 +126,136 @@
       note = #{note,jdbcType=VARCHAR}
     where consume_id = #{consumeId,jdbcType=VARCHAR}
   </update>
+
+
+  <resultMap id="materialConsumeMap" type="com.cskaoyan.bean.MaterialConsume">
+    <id column="consume_id" jdbcType="VARCHAR" property="consumeId" />
+    <result column="consume_amount" jdbcType="INTEGER" property="consumeAmount" />
+    <result column="consume_date" jdbcType="TIMESTAMP" property="consumeDate" />
+    <result column="sender" jdbcType="VARCHAR" property="sender" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="mc_note" jdbcType="VARCHAR" property="note" />
+    <!--material-->
+    <association property="material" javaType="com.cskaoyan.bean.Material">
+      <id column="material_id" jdbcType="VARCHAR" property="materialId" />
+      <result column="material_type" jdbcType="VARCHAR" property="materialType" />
+      <result column="status" jdbcType="VARCHAR" property="status" />
+      <result column="remaining" jdbcType="INTEGER" property="remaining" />
+      <result column="m_note" jdbcType="VARCHAR" property="note" />
+    </association>
+    <!--work-->
+    <association property="work" javaType="com.cskaoyan.bean.Work">
+      <id column="work_id" jdbcType="VARCHAR" property="workId" />
+      <result column="process_number" jdbcType="VARCHAR" property="processNumber" />
+      <result column="product_id" jdbcType="VARCHAR" property="productId" />
+      <result column="process_id" jdbcType="VARCHAR" property="processId" />
+      <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+      <result column="rating" jdbcType="INTEGER" property="rating" />
+    </association>
+  </resultMap>
+  <select id="findMaterialConsume" resultMap="materialConsumeMap">
+    SELECT
+      mc.consume_amount,
+      mc.consume_date,
+      mc.consume_id,
+      mc.note AS mc_note,
+      mc.receiver,
+      mc.sender,
+      m.material_id,
+      m.material_type,
+      m.note AS m_note,
+      m.remaining,
+      m.`status`,
+      w.device_id,
+      w.process_id,
+      w.process_number,
+      w.product_id,
+      w.rating,
+      w.work_id
+    from material_consume mc
+    LEFT JOIN material m ON mc.material_id = m.material_id
+    LEFT JOIN `work` w ON mc.work_id = w.work_id
+  </select>
+
+  <delete id="deleteMaterialConsumeList">
+    delete from material_consume where consume_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="materialConsumeSearchByConsumeId" resultMap="materialConsumeMap">
+        SELECT
+      mc.consume_amount,
+      mc.consume_date,
+      mc.consume_id,
+      mc.note AS mc_note,
+      mc.receiver,
+      mc.sender,
+      m.material_id,
+      m.material_type,
+      m.note AS m_note,
+      m.remaining,
+      m.`status`,
+      w.device_id,
+      w.process_id,
+      w.process_number,
+      w.product_id,
+      w.rating,
+      w.work_id
+    from material_consume mc
+    LEFT JOIN material m ON mc.material_id = m.material_id
+    LEFT JOIN `work` w ON mc.work_id = w.work_id
+    where mc.consume_id like "%"#{searchValue}"%"
+  </select>
+
+  <select id="materialConsumeSearchByWorkId" resultMap="materialConsumeMap">
+        SELECT
+      mc.consume_amount,
+      mc.consume_date,
+      mc.consume_id,
+      mc.note AS mc_note,
+      mc.receiver,
+      mc.sender,
+      m.material_id,
+      m.material_type,
+      m.note AS m_note,
+      m.remaining,
+      m.`status`,
+      w.device_id,
+      w.process_id,
+      w.process_number,
+      w.product_id,
+      w.rating,
+      w.work_id
+    from material_consume mc
+    LEFT JOIN material m ON mc.material_id = m.material_id
+    LEFT JOIN `work` w ON mc.work_id = w.work_id
+    where mc.work_id like "%"#{searchValue}"%"
+  </select>
+
+  <select id="materialConsumeSearchByMaterialId" resultMap="materialConsumeMap">
+        SELECT
+      mc.consume_amount,
+      mc.consume_date,
+      mc.consume_id,
+      mc.note AS mc_note,
+      mc.receiver,
+      mc.sender,
+      m.material_id,
+      m.material_type,
+      m.note AS m_note,
+      m.remaining,
+      m.`status`,
+      w.device_id,
+      w.process_id,
+      w.process_number,
+      w.product_id,
+      w.rating,
+      w.work_id
+    from material_consume mc
+    LEFT JOIN material m ON mc.material_id = m.material_id
+    LEFT JOIN `work` w ON mc.work_id = w.work_id
+    where mc.material_id like "%"#{searchValue}"%"
+  </select>
 </mapper>

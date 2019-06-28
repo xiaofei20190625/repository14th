@@ -42,12 +42,72 @@ public class COrderServiceImpl implements COrderService {
     }
 
     @Override
-    public Vo<COrder> selectByPrimaryKey(int pag, int rows,String orderId) {
+    public COrder selectByPrimaryKey(String orderId) {
+
+        COrder cOrder = cOrderMapper.selectByPrimaryKey(orderId);
+
+        return cOrder;
+    }
+
+    @Override
+    public Vo<COrder> searchCOderById(int pag, int rows, String orderId) {
+
         PageHelper.startPage(pag,rows);
-        List<COrder> cOrders = cOrderMapper.selectByPrimaryKey(orderId);
+        List<COrder> cOrders = cOrderMapper.searchCOderById(orderId);
         PageInfo<COrder> cOrderPageInfo = new PageInfo<>(cOrders);
         Vo<COrder> cOrder = new Vo<>(cOrderPageInfo.getTotal(), cOrderPageInfo.getList());
+
         return cOrder;
+    }
+
+    @Override
+    public Vo<COrder> searchCOderByOrderCustom(int pag, int rows, String searchValue) {
+        PageHelper.startPage(pag,rows);
+        List<COrder> cOrders = cOrderMapper.searchCOderByOrderCustom(searchValue);
+        PageInfo<COrder> cOrderPageInfo = new PageInfo<>(cOrders);
+        Vo<COrder> cOrder = new Vo<>(cOrderPageInfo.getTotal(), cOrderPageInfo.getList());
+
+        return cOrder;
+    }
+
+    @Override
+    public Vo<COrder> searchCOderByOrderProduct(int pag, int rows, String searchValue) {
+        PageHelper.startPage(pag,rows);
+        List<COrder> cOrders = cOrderMapper.searchCOderByOrderProduct(searchValue);
+        PageInfo<COrder> cOrderPageInfo = new PageInfo<>(cOrders);
+        Vo<COrder> cOrder = new Vo<>(cOrderPageInfo.getTotal(), cOrderPageInfo.getList());
+
+        return cOrder;
+    }
+
+    @Override
+    public int deleteByPrimaryKeys(String[] ids) {
+        return cOrderMapper.deleteByPrimaryKeys(ids);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(String orderId) {
+        return cOrderMapper.deleteByPrimaryKey(orderId);
+    }
+
+    @Override
+    public int insert(COrder record) {
+        return cOrderMapper.insert(record);
+    }
+
+    @Override
+    public int insertSelective(COrder record) {
+        return cOrderMapper.insertSelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(COrder record) {
+        return cOrderMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKey(COrder record) {
+        return cOrderMapper.updateByPrimaryKey(record);
     }
 
 

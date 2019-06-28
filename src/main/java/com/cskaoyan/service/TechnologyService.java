@@ -13,7 +13,6 @@ import java.util.List;
  * Date 2019/6/26 Time 17:42
  */
 public interface TechnologyService {
-    //---------------工艺管理---------------
     Vo<Technology> findTechnology(int page, int rows);
     List<Technology> findAllTechnology();
     Technology getTechnology(int tid);

@@ -39,4 +39,22 @@ public class UnqualifyApplyServiceImpl implements UnqualifyApplyService {
     public int deleteByIds(String[] ids) {
         return unqualifyApplyMapper.deleteByIds(ids);
     }
+
+    @Override
+    public Vo<UnqualifyApply> fuzzyQueryUnqualifyById(String searchValue, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<UnqualifyApply> unqualifyApplies = unqualifyApplyMapper.fuzzyQueryUnqualifyById("%" + searchValue + "%");
+        PageInfo<UnqualifyApply> pageInfo = new PageInfo<>(unqualifyApplies);
+        Vo<UnqualifyApply> unqualifyApplyVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
+        return unqualifyApplyVo;
+    }
+
+    @Override
+    public Vo<UnqualifyApply> fuzzyQueryUnqualifyByProductName(String searchValue, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<UnqualifyApply> unqualifyApplies = unqualifyApplyMapper.fuzzyQueryUnqualifyByProductName("%" + searchValue + "%");
+        PageInfo<UnqualifyApply> pageInfo = new PageInfo<>(unqualifyApplies);
+        Vo<UnqualifyApply> unqualifyApplyVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
+        return unqualifyApplyVo;
+    }
 }

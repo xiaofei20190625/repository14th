@@ -126,7 +126,7 @@ public class UnqualifyController {
         return null;
     }
 
-
+    /*-------------删除-------------*/
     //删除不合格项,执行删除并返回删除结果的状态码
     @RequestMapping("unqualify/delete_batch")
     @ResponseBody
@@ -149,4 +149,23 @@ public class UnqualifyController {
     public String goToDeleteUnqualifyApply() {
         return null;
     }
+
+    /*-------------模糊查询----------------*/
+
+    //根据id模糊查询
+    @RequestMapping("unqualify/search_unqualify_by_unqualifyId")
+    @ResponseBody
+    public Vo<UnqualifyApply> fuzzyQueryUnqualifyById(String searchValue, int page, int rows) {
+        Vo<UnqualifyApply> unqualifyApplyVo = unqualifyApplyService.fuzzyQueryUnqualifyById(searchValue, page, rows);
+        return unqualifyApplyVo;
+    }
+    //根据产品名称模糊查询
+    @RequestMapping("unqualify/search_unqualify_by_productName")
+    @ResponseBody
+    public Vo<UnqualifyApply> fuzzyQueryUnqualifyBypName(String searchValue, int page, int rows) {
+        Vo<UnqualifyApply> unqualifyApplyVo = unqualifyApplyService.fuzzyQueryUnqualifyByProductName(searchValue, page, rows);
+        return unqualifyApplyVo;
+    }
+
+
 }

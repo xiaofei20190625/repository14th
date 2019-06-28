@@ -3,21 +3,35 @@ package com.cskaoyan.bean;
 import java.util.Date;
 
 public class MaterialConsume {
-    private String consumeId;
-
-    private String workId;
-
-    private String materialId;
-
     private Integer consumeAmount;
 
     private Date consumeDate;
 
-    private String sender;
+    private String consumeId;
+
+    private Material material = new Material();
+
+    private String note;
 
     private String receiver;
 
-    private String note;
+    private String sender;
+
+    private Work work = new Work();
+
+    public MaterialConsume() {
+    }
+
+    public MaterialConsume(Integer consumeAmount, Date consumeDate, String consumeId, Material material, String note, String receiver, String sender, Work work) {
+        this.consumeAmount = consumeAmount;
+        this.consumeDate = consumeDate;
+        this.consumeId = consumeId;
+        this.material = material;
+        this.note = note;
+        this.receiver = receiver;
+        this.sender = sender;
+        this.work = work;
+    }
 
     public String getConsumeId() {
         return consumeId;
@@ -27,20 +41,36 @@ public class MaterialConsume {
         this.consumeId = consumeId == null ? null : consumeId.trim();
     }
 
-    public String getWorkId() {
-        return workId;
+    public Work getWork() {
+        return work;
     }
 
-    public void setWorkId(String workId) {
-        this.workId = workId == null ? null : workId.trim();
+    public void setWork(Work work) {
+        this.work = work;
     }
 
-    public String getMaterialId() {
-        return materialId;
+    public String getWorkId(){
+        return work.getWorkId();
     }
 
-    public void setMaterialId(String materialId) {
-        this.materialId = materialId == null ? null : materialId.trim();
+    public void setWorkId(String workId){
+        work.setWorkId(workId);
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public void setMaterialId(String materialId){
+        material.setMaterialId(materialId);
+    }
+
+    public String getMaterialId(){
+        return material.getMaterialId();
     }
 
     public Integer getConsumeAmount() {
@@ -82,4 +112,5 @@ public class MaterialConsume {
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
     }
+
 }
