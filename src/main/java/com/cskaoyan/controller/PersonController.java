@@ -10,8 +10,11 @@ import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class PersonController {
@@ -164,5 +167,56 @@ public class PersonController {
         return department;
     }
 
+    //增加员工，返回null的json数据
+    @RequestMapping("employee/add_judge")
+    @ResponseBody
+    public String returnToAddEmployee() {
+        return null;
+    }
+
+    //增加员工，返回增加员工页面的jsp
+    @RequestMapping("employee/add")
+    public String goToAddEmployeePage() {
+        return "employee_add";
+    }
+
+    //增加员工的部门回显
+    @RequestMapping("department/get_data")
+    @ResponseBody
+    public List<Department> showAllDepartment() {
+        List<Department> departments = departmentService.showAllDepartment();
+        return departments;
+    }
+
+    //增加员工的提交处理，返回json的增加结果(ResultVo)
+    @RequestMapping("employee/insert")
+    @ResponseBody
+    public ResponseVo insertEmployee(Employee employee) {
+        int insert = employeeService.insertSelective(employee);
+        if (insert == 1) {
+            ResponseVo responseVo = new ResponseVo();
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+            responseVo.setData(null);
+            return responseVo;
+        } else {
+            return null;
+        }
+    }
+
+    /*------------------------编辑员工--------------------------*/
+
+    //编辑员工，返回null的json数据
+    @RequestMapping("employee/edit_judge")
+    @ResponseBody
+    public String returnToEditEmployee() {
+        return null;
+    }
+
+    //增加员工，返回增加员工页面的jsp
+    @RequestMapping("employee/edit")
+    public String goToEditEmployeePage() {
+        return "employee_edit";
+    }
 
 }

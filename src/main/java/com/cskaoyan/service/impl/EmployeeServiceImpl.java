@@ -27,4 +27,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         Vo<EmployeeResponse> employeeResponseVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
         return employeeResponseVo;
     }
+
+    @Override
+    public int insertSelective(Employee record) {
+        return employeeMapper.insertSelective(record);
+    }
 }

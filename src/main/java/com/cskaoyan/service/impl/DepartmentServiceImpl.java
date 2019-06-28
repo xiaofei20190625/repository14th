@@ -67,4 +67,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department selectByPrimaryKey(String departmentId) {
         return departmentMapper.selectByPrimaryKey(departmentId);
     }
+
+    @Override
+    public List<Department> showAllDepartment() {
+        return departmentMapper.showAllDepartment();
+    }
 }

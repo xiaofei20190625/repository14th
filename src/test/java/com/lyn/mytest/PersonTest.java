@@ -49,4 +49,12 @@ public class PersonTest {
         Vo<EmployeeResponse> employeeResponseVo = employeeService.queryAllEmployee(1, 10);
         System.out.println(employeeResponseVo);
     }
+
+    @Test
+    public void mytest5() {
+        List<Department> departments = departmentService.showAllDepartment();
+        System.out.println(departments);
+    }
+
+
 }
