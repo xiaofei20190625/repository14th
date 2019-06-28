@@ -114,4 +114,12 @@
     from technology_requirement req LEFT JOIN technology tech
     ON req.technology_id = tech.technology_id
   </select>
+
+
+  <delete id="deleteTechnologyRequirementList">
+    delete from technology_requirement where technology_requirement_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>
