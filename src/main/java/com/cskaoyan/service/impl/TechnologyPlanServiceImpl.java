@@ -64,4 +64,9 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
         Vo<TechnologyPlan> technologyPlanVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
         return technologyPlanVo;
     }
+
+    @Override
+    public List<TechnologyPlan> findAllTechnologyPlan() {
+        return technologyPlanMapper.findTechnologyPlan();
+    }
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Created by IceFloe_Rot
  * Date 2019/6/28 Time 11:46
@@ -115,5 +117,12 @@ public class TechnologyPlanController {
     public Vo<TechnologyPlan> technologyPlanSearchByName(String searchValue, int page, int rows){
         Vo<TechnologyPlan> technologyPlanVo = technologyPlanService.searchTechnologyPlanByTechnologyName(searchValue, page, rows);
         return technologyPlanVo;
+    }
+
+    @RequestMapping("technologyPlan/get_data")
+    @ResponseBody
+    public List<TechnologyPlan> getAllTechnologyPlan(){
+        List<TechnologyPlan> technologyPlans = technologyPlanService.findAllTechnologyPlan();
+        return technologyPlans;
     }
 }
