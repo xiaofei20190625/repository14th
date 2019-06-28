@@ -1,3 +1,4 @@
+
 package com.cskaoyan.bean;
 
 import java.math.BigDecimal;
@@ -143,4 +144,5 @@ public class COrder {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
 }

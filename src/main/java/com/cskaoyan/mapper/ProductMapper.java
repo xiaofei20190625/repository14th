@@ -1,3 +1,4 @@
+
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Product;
@@ -18,4 +19,5 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+
 }

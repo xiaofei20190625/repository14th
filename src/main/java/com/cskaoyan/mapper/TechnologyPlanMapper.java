@@ -1,8 +1,12 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.TechnologyPlan;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TechnologyPlanMapper {
+
     int deleteByPrimaryKey(String technologyPlanId);
 
     int insert(TechnologyPlan record);
@@ -14,4 +18,8 @@ public interface TechnologyPlanMapper {
     int updateByPrimaryKeySelective(TechnologyPlan record);
 
     int updateByPrimaryKey(TechnologyPlan record);
+
+    List<TechnologyPlan> findTechnologyPlan();
+
+    TechnologyPlan getTechnologyPlan(@Param("planid")int planid);
 }

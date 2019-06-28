@@ -3,11 +3,12 @@ package com.cskaoyan.service;
 
 import com.cskaoyan.bean.DeviceCheck;
 import com.cskaoyan.customiz.CustomResult;
-import com.cskaoyan.customiz.EUDataGridResult;
+
+import com.cskaoyan.vo.Vo;
 
 public interface DeviceCheckService {
 	
-	EUDataGridResult getList(int page, int rows, DeviceCheck deviceCheck) throws Exception;
+	Vo getList(int page, int rows, DeviceCheck deviceCheck) throws Exception;
 	
 	DeviceCheck get(String string) throws Exception;
 
@@ -21,9 +22,9 @@ public interface DeviceCheckService {
 
     CustomResult updateNote(DeviceCheck deviceCheck) throws Exception;
     
-	EUDataGridResult searchDeviceCheckByDeviceCheckId(Integer page,
+	Vo searchDeviceCheckByDeviceCheckId(Integer page,
 			Integer rows, String deviceCheckId) throws Exception;
 
-	EUDataGridResult searchDeviceCheckByDeviceName(Integer page, Integer rows,
-			String deviceName) throws Exception;
+	Vo searchDeviceCheckByDeviceName(Integer page, Integer rows,
+									 String deviceName) throws Exception;
 }

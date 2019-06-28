@@ -161,4 +161,5 @@
       note = #{note,jdbcType=VARCHAR}
     where custom_id = #{customId,jdbcType=VARCHAR}
   </update>
+
 </mapper>

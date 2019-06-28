@@ -10,6 +10,7 @@
     <result column="commit_plan" jdbcType="TIMESTAMP" property="commitPlan" />
     <result column="technology_plan_start" jdbcType="TIMESTAMP" property="technologyPlanStart" />
     <result column="technology_plan_end" jdbcType="TIMESTAMP" property="technologyPlanEnd" />
+    <result column="technology_name" jdbcType="VARCHAR" property="technologyName"/>
   </resultMap>
   <sql id="Base_Column_List">
     technology_plan_id, technology_id, batch_amount, start_plan, end_plan, commit_plan, 
@@ -128,4 +129,36 @@
       technology_plan_end = #{technologyPlanEnd,jdbcType=TIMESTAMP}
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
   </update>
+
+  <select id="findTechnologyPlan" resultMap="BaseResultMap">
+    SELECT
+      plan.technology_plan_id,
+      plan.technology_id,
+      plan.batch_amount,
+      plan.start_plan,
+      plan.end_plan,
+      plan.commit_plan,
+      plan.technology_plan_start,
+      plan.technology_plan_end,
+      tech.technology_name
+    from technology_plan plan LEFT JOIN technology tech
+    ON plan.technology_id = tech.technology_id
+  </select>
+
+
+  <select id="getTechnologyPlan" resultMap="BaseResultMap">
+    SELECT
+      plan.technology_plan_id,
+      plan.technology_id,
+      plan.batch_amount,
+      plan.start_plan,
+      plan.end_plan,
+      plan.commit_plan,
+      plan.technology_plan_start,
+      plan.technology_plan_end,
+      tech.technology_name
+    from technology_plan plan LEFT JOIN technology tech
+    ON plan.technology_id = tech.technology_id
+    where plan.technology_plan_id = #{planid}
+  </select>
 </mapper>
