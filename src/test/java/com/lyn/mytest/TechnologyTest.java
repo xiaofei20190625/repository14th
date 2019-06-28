@@ -17,10 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-/**
- * Created by IceFloe_Rot
- * Date 2019/6/26 Time 21:17
- */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext-spring.xml")
 public class TechnologyTest {

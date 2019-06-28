@@ -1,17 +1,26 @@
 package com.cskaoyan.mapper;
 
-import com.cskaoyan.bean.Corder;
+import com.cskaoyan.bean.COrder;
 
-public interface CorderMapper {
+import java.util.List;
+
+
+public interface COrderMapper {
     int deleteByPrimaryKey(String orderId);
 
-    int insert(Corder record);
+    int insert(COrder record);
 
-    int insertSelective(Corder record);
+    int insertSelective(COrder record);
 
-    Corder selectByPrimaryKey(String orderId);
+    List<COrder> selectByPrimaryKey(String orderId);
 
-    int updateByPrimaryKeySelective(Corder record);
+    int updateByPrimaryKeySelective(COrder record);
 
-    int updateByPrimaryKey(Corder record);
+    int updateByPrimaryKey(COrder record);
+
+    List<COrder> selectCOrderlist();
+
+    Long countCOrder();
+
+
 }

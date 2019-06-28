@@ -16,6 +16,8 @@ public class DeviceServiceImpl  {
 
 	@Autowired
 	DeviceMapper deviceMapper;
+
+
 /*
 	@Override
 	public EUDataGridResult getList(int page, int rows, Device device) throws Exception {

@@ -9,7 +9,7 @@ import com.cskaoyan.customiz.EUDataGridResult;
 
 public interface DeviceService {
 
-	EUDataGridResult getList(int page, int rows, Device device) throws Exception;
+	/*EUDataGridResult getList(int page, int rows, Device device) throws Exception;
 	
 	List<Device> find() throws Exception;
 	
@@ -33,5 +33,5 @@ public interface DeviceService {
 			String deviceName) throws Exception;
 
 	EUDataGridResult searchDeviceByDeviceTypeName(Integer page, Integer rows,
-			String deviceTypeName) throws Exception;
+			String deviceTypeName) throws Exception;*/
 }

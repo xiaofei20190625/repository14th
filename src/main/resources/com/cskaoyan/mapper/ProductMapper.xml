@@ -18,6 +18,15 @@
     from product
     where product_id = #{productId,jdbcType=VARCHAR}
   </select>
+
+
+  <select id="selectProductList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from product
     where product_id = #{productId,jdbcType=VARCHAR}

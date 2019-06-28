@@ -80,7 +80,7 @@
 	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
-		<version>5.1.46</version>
+		<version>8.0.15</version>
 	</dependency>
 	<!-- 连接池 -->
 	<dependency>
@@ -108,7 +108,11 @@
           <artifactId>jstl</artifactId>
           <version>1.2</version>
       </dependency>
-
+	  <dependency>
+		  <groupId>com.github.pagehelper</groupId>
+		  <artifactId>pagehelper</artifactId>
+		  <version>5.1.8</version>
+	  </dependency>
 	<!-- 文件上传组件 -->
 	  <dependency>
 		  <groupId>commons-io</groupId>

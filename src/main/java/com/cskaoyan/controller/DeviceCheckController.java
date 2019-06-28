@@ -1,20 +1,8 @@
 package com.cskaoyan.controller;
 
 
-import javax.validation.Valid;
-
-
-import com.cskaoyan.bean.DeviceCheck;
-import com.cskaoyan.customiz.CustomResult;
-import com.cskaoyan.customiz.EUDataGridResult;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/deviceCheck")

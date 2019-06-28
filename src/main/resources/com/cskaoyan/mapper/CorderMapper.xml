@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.CorderMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Corder">
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.COrderMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.COrder">
     <id column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="custom_id" jdbcType="VARCHAR" property="customId" />
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
@@ -15,33 +15,107 @@
     <result column="file" jdbcType="VARCHAR" property="file" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
-    order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price, 
+    order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price,
     unit, image, file, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+  <select id="selectByExample" parameterType="com.cskaoyan.bean.COrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
     <include refid="Base_Column_List" />
     from c_order
-    where order_id = #{orderId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
   </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from c_order
     where order_id = #{orderId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.Corder">
-    insert into c_order (order_id, custom_id, product_id, 
-      order_date, request_date, note, 
-      quantity, unit_price, unit, 
-      image, file, status
-      )
-    values (#{orderId,jdbcType=VARCHAR}, #{customId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
-      #{orderDate,jdbcType=TIMESTAMP}, #{requestDate,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR}, 
-      #{quantity,jdbcType=INTEGER}, #{unitPrice,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{file,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
-      )
+  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.COrderExample">
+    delete from c_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cskaoyan.bean.COrder">
+    insert into c_order (order_id, custom_id, product_id,
+    order_date, request_date, note,
+    quantity, unit_price, unit,
+    image, file, status
+    )
+    values (#{orderId,jdbcType=VARCHAR}, #{customId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR},
+    #{orderDate,jdbcType=TIMESTAMP}, #{requestDate,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR},
+    #{quantity,jdbcType=INTEGER}, #{unitPrice,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR},
+    #{image,jdbcType=VARCHAR}, #{file,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+    )
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.Corder">
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.COrder">
     insert into c_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
@@ -120,7 +194,164 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Corder">
+  <select id="countByExample" parameterType="com.cskaoyan.bean.COrderExample" resultType="java.lang.Long">
+    select count(*) from c_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+
+  <select id="countCOrder"  resultType="long">
+    select count(*) from c_order
+  </select>
+
+
+  <!--一对多左连接查找-->
+  <resultMap id="cOrderMap1" type="com.cskaoyan.bean.COrder">
+
+    <result column="order_id" jdbcType="VARCHAR" property="orderId"/>
+    <result column="order_date" jdbcType="VARCHAR" property="orderDate"/>
+    <result column="request_date" jdbcType="VARCHAR" property="requestDate"/>
+    <result column="note" jdbcType="VARCHAR" property="note"/>
+    <result column="quantity" jdbcType="VARCHAR" property="quantity"/>
+    <result column="unit_price" jdbcType="VARCHAR" property="unitPrice"/>
+    <result column="unit" jdbcType="VARCHAR" property="unit"/>
+    <result column="image" jdbcType="VARCHAR" property="image"/>
+    <result column="file" jdbcType="VARCHAR" property="file"/>
+    <result column="status" jdbcType="VARCHAR" property="status"/>
+
+    <association property="custom" javaType="com.cskaoyan.bean.Custom">
+      <result column="custom_id" jdbcType="VARCHAR" property="customId"/>
+      <result column="custom_name" jdbcType="VARCHAR" property="customName"/>
+      <result column="full_name" jdbcType="VARCHAR" property="fullName"/>
+      <result column="address" jdbcType="VARCHAR" property="address"/>
+      <result column="fax" jdbcType="VARCHAR" property="fax"/>
+      <result column="email" jdbcType="VARCHAR" property="email"/>
+      <result column="owner_name" jdbcType="VARCHAR" property="ownerName"/>
+      <result column="owner_tel" jdbcType="VARCHAR" property="ownerTel"/>
+      <result column="status" jdbcType="VARCHAR" property="status"/>
+    </association>
+
+    <association property="product" javaType="com.cskaoyan.bean.Product">
+      <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+      <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+      <result column="product_type" jdbcType="VARCHAR" property="productType"/>
+      <result column="image" jdbcType="VARCHAR" property="image"/>
+      <result column="note" jdbcType="VARCHAR" property="note"/>
+      <result column="status" jdbcType="VARCHAR" property="status"/>
+
+    </association>
+  </resultMap>
+
+
+    <sql id="base" >
+        select
+    co.order_id,
+    co.order_date,
+    co.request_date,
+    co.note,
+    co.quantity,
+    co.unit_price,
+    co.unit,
+    co.image,
+    co.file,
+    co.status,
+    c.custom_id,
+    c.custom_name,
+    c.full_name,
+    c.address,
+    c.fax,
+    c.email,
+    c.owner_name,
+    c.owner_tel,
+    c.status,
+    p.product_id,
+    p.product_name,
+    p.product_type,
+    p.image,
+    p.note,
+    p.status
+    </sql>
+
+  <select id="selectCOrderlist" resultMap="cOrderMap1">
+    <include refid="base"/>
+    from c_order co
+    LEFT JOIN custom c on c.custom_id = co.custom_id
+    LEFT JOIN product p on p.product_id =co.product_id  order by co.order_id
+  </select>
+
+
+    <select id="selectByPrimaryKey" resultMap="cOrderMap1">
+        <include refid="base"/>
+        from c_order co
+        LEFT JOIN custom c on c.custom_id = co.custom_id
+        LEFT JOIN product p on p.product_id =co.product_id  order by co.order_id
+        where order_id like '%${orderId,jdbcType=VARCHAR}%'
+    </select>
+
+  <update id="updateByExampleSelective" parameterType="map">
+    update c_order
+    <set>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customId != null">
+        custom_id = #{record.customId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderDate != null">
+        order_date = #{record.orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.requestDate != null">
+        request_date = #{record.requestDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.note != null">
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quantity != null">
+        quantity = #{record.quantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.unitPrice != null">
+        unit_price = #{record.unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unit != null">
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null">
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.file != null">
+        file = #{record.file,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update c_order
+    set order_id = #{record.orderId,jdbcType=VARCHAR},
+    custom_id = #{record.customId,jdbcType=VARCHAR},
+    product_id = #{record.productId,jdbcType=VARCHAR},
+    order_date = #{record.orderDate,jdbcType=TIMESTAMP},
+    request_date = #{record.requestDate,jdbcType=TIMESTAMP},
+    note = #{record.note,jdbcType=VARCHAR},
+    quantity = #{record.quantity,jdbcType=INTEGER},
+    unit_price = #{record.unitPrice,jdbcType=DECIMAL},
+    unit = #{record.unit,jdbcType=VARCHAR},
+    image = #{record.image,jdbcType=VARCHAR},
+    file = #{record.file,jdbcType=VARCHAR},
+    status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.COrder">
     update c_order
     <set>
       <if test="customId != null">
@@ -159,19 +390,19 @@
     </set>
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Corder">
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.COrder">
     update c_order
     set custom_id = #{customId,jdbcType=VARCHAR},
-      product_id = #{productId,jdbcType=VARCHAR},
-      order_date = #{orderDate,jdbcType=TIMESTAMP},
-      request_date = #{requestDate,jdbcType=TIMESTAMP},
-      note = #{note,jdbcType=VARCHAR},
-      quantity = #{quantity,jdbcType=INTEGER},
-      unit_price = #{unitPrice,jdbcType=DECIMAL},
-      unit = #{unit,jdbcType=VARCHAR},
-      image = #{image,jdbcType=VARCHAR},
-      file = #{file,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER}
+    product_id = #{productId,jdbcType=VARCHAR},
+    order_date = #{orderDate,jdbcType=TIMESTAMP},
+    request_date = #{requestDate,jdbcType=TIMESTAMP},
+    note = #{note,jdbcType=VARCHAR},
+    quantity = #{quantity,jdbcType=INTEGER},
+    unit_price = #{unitPrice,jdbcType=DECIMAL},
+    unit = #{unit,jdbcType=VARCHAR},
+    image = #{image,jdbcType=VARCHAR},
+    file = #{file,jdbcType=VARCHAR},
+    status = #{status,jdbcType=INTEGER}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
 </mapper>

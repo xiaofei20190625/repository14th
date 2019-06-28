@@ -23,6 +23,17 @@
     from custom
     where custom_id = #{customId,jdbcType=VARCHAR}
   </select>
+
+
+  <select id="selectCustomList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from custom
+  </select>
+
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from custom
     where custom_id = #{customId,jdbcType=VARCHAR}

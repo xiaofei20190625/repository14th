@@ -3,7 +3,7 @@ package com.cskaoyan.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Corder {
+public class COrder {
     private String orderId;
 
     private String customId;
@@ -27,6 +27,26 @@ public class Corder {
     private String file;
 
     private Integer status;
+
+    private Custom custom;
+
+    private Product product;
+
+    public Custom getCustom() {
+        return custom;
+    }
+
+    public void setCustom(Custom custom) {
+        this.custom = custom;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public String getOrderId() {
         return orderId;
