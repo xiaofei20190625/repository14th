@@ -55,6 +55,40 @@
 
   </select>
 
+  <!--根据员工id模糊查询-->
+  <select id="fuzzyQueryByEmployeeId" parameterType="java.lang.String" resultMap="ResponseResultMap">
+    select
+    emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
+    graduate_school, education_form, /*emploee的数据*/
+    dep.department_id as department_id,department_name, note
+    from employee emp
+    left join department dep on emp.department_id=dep.department_id
+    where emp_id like #{empId}
+
+  </select>
+
+  <!--根据员工name模糊查询-->
+  <select id="fuzzyQueryByEmployeeName" parameterType="java.lang.String" resultMap="ResponseResultMap">
+    select
+    emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
+    graduate_school, education_form, /*emploee的数据*/
+    dep.department_id as department_id,department_name, note
+    from employee emp
+    left join department dep on emp.department_id=dep.department_id
+    where emp_name like #{empName}
+  </select>
+
+  <!--根据部门name模糊查询-->
+  <select id="fuzzyQueryByDepartmentName" parameterType="java.lang.String" resultMap="ResponseResultMap">
+    select
+    emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
+    graduate_school, education_form, /*emploee的数据*/
+    dep.department_id as department_id,department_name, note
+    from employee emp
+    left join department dep on emp.department_id=dep.department_id
+    where department_name like #{departmentName}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from employee
     where emp_id = #{empId,jdbcType=VARCHAR}

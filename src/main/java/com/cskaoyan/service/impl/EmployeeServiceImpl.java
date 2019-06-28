@@ -42,4 +42,31 @@ public class EmployeeServiceImpl implements EmployeeService {
     public int deleteEmployeeByIds(String[] ids) {
         return employeeMapper.deleteEmployeeByIds(ids);
     }
+
+    @Override
+    public Vo<EmployeeResponse> fuzzyQueryByEmployeeId(String empId, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<EmployeeResponse> employeeResponses = employeeMapper.fuzzyQueryByEmployeeId(empId);
+        PageInfo<EmployeeResponse> pageInfo = new PageInfo<>(employeeResponses);
+        Vo<EmployeeResponse> employeeResponseVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
+        return employeeResponseVo;
+    }
+
+    @Override
+    public Vo<EmployeeResponse> fuzzyQueryByEmployeeName(String empName, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<EmployeeResponse> employeeResponses = employeeMapper.fuzzyQueryByEmployeeName(empName);
+        PageInfo<EmployeeResponse> pageInfo = new PageInfo<>(employeeResponses);
+        Vo<EmployeeResponse> employeeResponseVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
+        return employeeResponseVo;
+    }
+
+    @Override
+    public Vo<EmployeeResponse> fuzzyQueryByDepartmentName(String departmentName, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<EmployeeResponse> employeeResponses = employeeMapper.fuzzyQueryByDepartmentName(departmentName);
+        PageInfo<EmployeeResponse> pageInfo = new PageInfo<>(employeeResponses);
+        Vo<EmployeeResponse> employeeResponseVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
+        return employeeResponseVo;
+    }
 }

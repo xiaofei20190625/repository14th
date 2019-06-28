@@ -4,6 +4,8 @@ import com.cskaoyan.bean.Employee;
 import com.cskaoyan.bean.EmployeeResponse;
 import com.cskaoyan.vo.Vo;
 
+import java.util.List;
+
 public interface EmployeeService {
 
     Vo<EmployeeResponse> queryAllEmployee(int page, int rows);
@@ -13,4 +15,11 @@ public interface EmployeeService {
     int updateByPrimaryKeySelective(Employee employee);
 
     int deleteEmployeeByIds(String[] ids);
+
+    Vo<EmployeeResponse> fuzzyQueryByEmployeeId(String empId, int page, int rows);
+
+    Vo<EmployeeResponse> fuzzyQueryByEmployeeName(String empName, int page, int rows);
+
+    Vo<EmployeeResponse> fuzzyQueryByDepartmentName(String departmentName, int page, int rows);
+
 }

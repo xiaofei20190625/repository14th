@@ -16,6 +16,12 @@ public interface EmployeeMapper {
 
     List<EmployeeResponse> queryAllEmployee();
 
+    List<EmployeeResponse> fuzzyQueryByEmployeeId(String empId);
+
+    List<EmployeeResponse> fuzzyQueryByEmployeeName(String empName);
+
+    List<EmployeeResponse> fuzzyQueryByDepartmentName(String departmentName);
+
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
