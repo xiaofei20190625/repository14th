@@ -126,7 +126,7 @@ public class UnqualifyController {
         return null;
     }
 
-
+    /*-------------删除-------------*/
     //删除不合格项,执行删除并返回删除结果的状态码
     @RequestMapping("unqualify/delete_batch")
     @ResponseBody

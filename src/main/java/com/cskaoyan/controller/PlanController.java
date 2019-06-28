@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("erp")
+//@RequestMapping("erp")
 public class PlanController {
     @Autowired
     COrderService cOrderService;
@@ -38,10 +38,10 @@ public class PlanController {
     DataSource dataSource;
 
 
-    @RequestMapping("home")
+    /*@RequestMapping("home")
     public String home() {
         return "home";
-    }
+    }*/
 
     @RequestMapping("order/search_order_by_orderId")
     @ResponseBody
@@ -70,13 +70,13 @@ public class PlanController {
         return custom;
     }
 
-    @RequestMapping("product/get/{product_id}")
+    /*@RequestMapping("product/get/{product_id}")
     @ResponseBody
     public Product product(@PathVariable("product_id")String product_id) {
 
         Product product = productService.selectByPrimaryKey(product_id);
         return product;
-    }
+    }*/
 
 
     @RequestMapping("custom/find")
@@ -124,12 +124,12 @@ public class PlanController {
         return workPage;
     }
 
-    @RequestMapping("process/get/{process_id}")
+    /*@RequestMapping("process/get/{process_id}")
     @ResponseBody
     public Process process(@PathVariable("process_id")String process_id) {
         Process process = processService.selectByPrimaryKey(process_id);
         return process;
-    }
+    }*/
 
     /*@RequestMapping("deviceList/get/{device_id}")
     @ResponseBody
