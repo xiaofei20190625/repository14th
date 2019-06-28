@@ -10,7 +10,9 @@ import com.cskaoyan.vo.Vo;
 
 public interface DeviceService {
 
+
 	Vo getList(int page, int rows, Device device) ;
+
 	
 	List<Device> getData() ;
 	
@@ -19,6 +21,7 @@ public interface DeviceService {
 	DeviceResult insert(Device device) ;
 	
 	DeviceResult deleteBatch(String[] deviceIds) ;
+
 
     DeviceResult update(Device device) ;
 
@@ -32,9 +35,9 @@ public interface DeviceService {
 
 	Vo searchDeviceByDeviceName(Integer page, Integer rows, String deviceName) ;
 
+
 	Vo searchDeviceByDeviceTypeName(Integer page, Integer rows,
 			String deviceTypeName) ;
-
 
 }
 

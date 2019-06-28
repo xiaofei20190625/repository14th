@@ -11,12 +11,12 @@
     <!-- bean definitions here -->
     <context:component-scan base-package="com.cskaoyan.controller"/>
 
-
-    <mvc:annotation-driven conversion-service="conversionService"/>
-    <!--静态资源-->
-    <mvc:resources mapping="/image/**" location="/WEB-INF/image/"/>
+    <mvc:annotation-driven />
+    
+    <mvc:resources mapping="image/**" location="/WEB-INF/image/"/>
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
+
 
 
     <!--视图解析器-->
@@ -32,5 +32,7 @@
             </set>
         </property>
     </bean>
+
+
 
 </beans>

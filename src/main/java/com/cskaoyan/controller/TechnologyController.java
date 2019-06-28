@@ -1,12 +1,15 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.Technology;
+import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.service.TechnologyService;
 import com.cskaoyan.vo.ResponseVo;
 import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -29,12 +32,14 @@ public class TechnologyController {
         Vo<Technology> technologyVo = technologyService.findTechnology(page, rows);
         return technologyVo;
     }
+
     //查找指定工艺
     @RequestMapping("technology/get/{tid}")
     @ResponseBody
     public Technology getTechnology(@PathVariable("tid")int tid){
         return technologyService.getTechnology(tid);
     }
+
     //新增工艺-页面跳转
     @RequestMapping("technology/add_judge")
     @ResponseBody
@@ -57,6 +62,7 @@ public class TechnologyController {
         }
         return responseVo;
     }
+
     //编辑工艺-跳转
     @RequestMapping("technology/edit_judge")
     @ResponseBody
@@ -79,6 +85,7 @@ public class TechnologyController {
         }
         return responseVo;
     }
+
     //删除工艺-判断
     @RequestMapping("technology/delete_judge")
     @ResponseBody
@@ -91,12 +98,13 @@ public class TechnologyController {
     public ResponseVo technologyDelete(String[] ids){
         ResponseVo responseVo = new ResponseVo();
         int delete = technologyService.deleteTechnologyList(ids);
-        if (delete > 1){
+        if (delete > 0){
             responseVo.setMsg("OK");
             responseVo.setStatus(200);
         }
         return responseVo;
     }
+
     //按工艺编号搜索
     @RequestMapping("technology/search_technology_by_technologyId")
     @ResponseBody
@@ -104,6 +112,7 @@ public class TechnologyController {
         Vo<Technology> technologyVo = technologyService.searchTechnologyById(searchValue, page, rows);
         return technologyVo;
     }
+
     //按工艺名称搜索
     @RequestMapping("technology/search_technology_by_technologyName")
     @ResponseBody
@@ -112,4 +121,10 @@ public class TechnologyController {
         return technologyVo;
     }
 
+    @RequestMapping("technology/get_data")
+    @ResponseBody
+    public List<Technology> getTechnologyRequirement(){
+        List<Technology> technologyList = technologyService.findAllTechnology();
+        return technologyList;
+    }
 }

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.WorkMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Work">
+    <id column="work_id" jdbcType="VARCHAR" property="workId" />
+    <result column="process_number" jdbcType="VARCHAR" property="processNumber" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="process_id" jdbcType="VARCHAR" property="processId" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="rating" jdbcType="INTEGER" property="rating" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    work_id, process_number, product_id, process_id, device_id, rating
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from work
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </select>
+
+
+
+  <!--一对多左连接查找-->
+  <resultMap id="BaseResultMap1" type="com.cskaoyan.bean.Work">
+
+    <result column="work_id" jdbcType="VARCHAR" property="workId"/>
+    <result column="process_number" jdbcType="VARCHAR" property="processNumber"/>
+    <result column="rating" jdbcType="VARCHAR" property="rating"/>
+    <association property="product" javaType="com.cskaoyan.bean.Product">
+      <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+      <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+      <result column="product_type" jdbcType="VARCHAR" property="productType"/>
+      <result column="image" jdbcType="VARCHAR" property="image"/>
+      <result column="note" jdbcType="VARCHAR" property="note"/>
+      <result column="status" jdbcType="VARCHAR" property="status"/>
+    </association>
+
+    <association property="process" javaType="com.cskaoyan.bean.Process">
+      <result column="process_id" jdbcType="VARCHAR" property="processId"/>
+      <result column="technology_plan_id" jdbcType="VARCHAR" property="technologyPlanId"/>
+      <result column="sequence" jdbcType="VARCHAR" property="sequence"/>
+      <result column="quota" jdbcType="VARCHAR" property="quota"/>
+    </association>
+
+    <association property="device" javaType="com.cskaoyan.bean.Device">
+      <result column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+      <result column="device_name" jdbcType="VARCHAR" property="deviceName"/>
+      <result column="device_type_id" jdbcType="VARCHAR" property="deviceTypeId"/>
+      <result column="device_status_id" jdbcType="VARCHAR" property="deviceStatusId"/>
+      <result column="device_status" jdbcType="VARCHAR" property="deviceStatus"/>
+      <result column="device_purchase_date" jdbcType="VARCHAR" property="devicePurchaseDate"/>
+      <result column="device_purchase_price" jdbcType="VARCHAR" property="devicePurchasePrice"/>
+      <result column="device_manufacture_date" jdbcType="VARCHAR" property="deviceManufactureDate"/>
+      <result column="device_service_life" jdbcType="VARCHAR" property="deviceServiceLife"/>
+      <result column="device_keeper_id" jdbcType="VARCHAR" property="deviceKeeperId"/>
+      <result column="note" jdbcType="VARCHAR" property="note"/>
+    </association>
+
+  </resultMap>
+
+  <select id="selectWorkList" resultMap="BaseResultMap1">
+    select
+    *
+    from work w
+    LEFT JOIN product p on p.product_id =w.product_id
+    LEFT JOIN process  on process.process_id = w.process_id
+    LEFT JOIN device d on d.device_id =w.device_id  order by w.work_id
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from work
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cskaoyan.bean.Work">
+    insert into work (work_id, process_number, product_id, 
+      process_id, device_id, rating
+      )
+    values (#{workId,jdbcType=VARCHAR}, #{processNumber,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{processId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{rating,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.Work">
+    insert into work
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        work_id,
+      </if>
+      <if test="processNumber != null">
+        process_number,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="processId != null">
+        process_id,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="rating != null">
+        rating,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        #{workId,jdbcType=VARCHAR},
+      </if>
+      <if test="processNumber != null">
+        #{processNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="processId != null">
+        #{processId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="rating != null">
+        #{rating,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Work">
+    update work
+    <set>
+      <if test="processNumber != null">
+        process_number = #{processNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="processId != null">
+        process_id = #{processId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="rating != null">
+        rating = #{rating,jdbcType=INTEGER},
+      </if>
+    </set>
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Work">
+    update work
+    set process_number = #{processNumber,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      process_id = #{processId,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      rating = #{rating,jdbcType=INTEGER}
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,3 +1,4 @@
+
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Process;
@@ -19,7 +20,6 @@ import java.util.List;
 public class ProcessServiceImpl implements ProcessService {
     @Autowired
     ProcessMapper processMapper;
-
     @Override
     public Vo<Process> findProcess(int page, int rows) {
         //开启分页
@@ -31,4 +31,12 @@ public class ProcessServiceImpl implements ProcessService {
         return processVo;
     }
 
+
+    @Override
+    public Process selectByPrimaryKey(String processId) {
+        Process process = processMapper.selectByPrimaryKey(processId);
+        return process;
+    }
+
 }
+

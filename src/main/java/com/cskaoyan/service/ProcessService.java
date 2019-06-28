@@ -1,3 +1,4 @@
+
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Process;
@@ -9,4 +10,6 @@ import com.cskaoyan.vo.Vo;
  */
 public interface ProcessService {
     Vo<Process> findProcess(int page, int rows);
+    Process selectByPrimaryKey(String processId);
 }
+

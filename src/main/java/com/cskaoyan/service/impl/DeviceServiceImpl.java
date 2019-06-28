@@ -19,6 +19,8 @@ public class DeviceServiceImpl implements  DeviceService  {
 
 	@Autowired
 	DeviceMapper deviceMapper;
+
+
 	@Override
 	public Vo getList(int page, int rows, Device device)  {
 		//分页处理
