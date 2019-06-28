@@ -19,6 +19,27 @@ public class UnqualifyApply {
 
     private String note;
 
+    //新增的成员变量
+    private String empName;
+
+    private String productName;
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public String getUnqualifyApplyId() {
         return unqualifyApplyId;
     }
