@@ -32,6 +32,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     @Autowired
     ProcessMapper processMapper;
 
+    //==================================================================================================
     //---------------工艺管理---------------
     @Override
     public Vo<Technology> findTechnology(int page, int rows) {
@@ -87,6 +88,7 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technologyList;
     }
 
+    //==================================================================================================
     //---------------工艺要求---------------
     @Override
     public Vo<TechnologyRequirement> findTechnologyRequirement(int page, int rows) {
@@ -111,7 +113,18 @@ public class TechnologyServiceImpl implements TechnologyService {
         return insert;
     }
 
+    @Override
+    public int updateTechnologyRequirement(TechnologyRequirement technologyRequirement) {
+        int update = technologyRequirementMapper.updateByPrimaryKeySelective(technologyRequirement);
+        return update;
+    }
 
+    @Override
+    public int deleteTechnologyRequirementList(String[] ids) {
+        return technologyRequirementMapper.deleteTechnologyRequirementList(ids);
+    }
+
+    //==================================================================================================
     //---------------工艺计划---------------
     @Override
     public Vo<TechnologyPlan> findTechnologyPlan(int page, int rows) {
@@ -124,6 +137,7 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technologyPlanVo;
     }
 
+    //==================================================================================================
     //---------------工序管理---------------
     @Override
     public Vo<Process> findProcess(int page, int rows) {

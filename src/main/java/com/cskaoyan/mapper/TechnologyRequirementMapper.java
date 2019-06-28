@@ -20,4 +20,6 @@ public interface TechnologyRequirementMapper {
     int updateByPrimaryKey(TechnologyRequirement record);
 
     List<TechnologyRequirement> findTechnologyRequirement();
+
+    int deleteTechnologyRequirementList(@Param("ids") String[] ids);
 }

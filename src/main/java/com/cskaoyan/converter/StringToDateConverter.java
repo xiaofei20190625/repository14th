@@ -7,14 +7,13 @@ import java.util.Date;
 public class StringToDateConverter implements Converter<String, Date> {
     @Override
     public Date convert(String s) {
+        Date parse = null;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = null;
         try {
-            date = simpleDateFormat.parse(s);
-            return date;
+            parse = simpleDateFormat.parse(s);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return null;
+        return parse;
     }
 }

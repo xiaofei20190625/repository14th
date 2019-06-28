@@ -11,9 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -27,6 +25,7 @@ public class TechnologyController {
     @Autowired
     TechnologyService technologyService;
 
+    //==================================================================================================
     //-------------工艺管理-------------
     //获取工艺列表
     @RequestMapping("technology/find")
@@ -45,7 +44,6 @@ public class TechnologyController {
     public Technology getTechnology(@PathVariable("tid")int tid){
         return technologyService.getTechnology(tid);
     }
-
     //新增工艺-页面跳转
     @RequestMapping("technology/add_judge")
     @ResponseBody
@@ -115,7 +113,6 @@ public class TechnologyController {
         Vo<Technology> technologyVo = technologyService.searchTechnologyById(searchValue, page, rows);
         return technologyVo;
     }
-
     //按工艺名称搜索
     @RequestMapping("technology/search_technology_by_technologyName")
     @ResponseBody
@@ -124,6 +121,7 @@ public class TechnologyController {
         return technologyVo;
     }
 
+    //==================================================================================================
     //-------------工艺要求-------------
     //获取工艺要求列表
     @RequestMapping("technologyRequirement/find")
@@ -164,10 +162,60 @@ public class TechnologyController {
         }
         return responseVo;
     }
+    //编辑工艺要求-跳转
+    @RequestMapping("technologyRequirement/edit_judge")
+    @ResponseBody
+    public String technologyRequirementEditJudge(){
+        return "";
+    }
+    @RequestMapping("technologyRequirement/edit")
+    public String technologyRequirementEdit(){
+        return "technologyRequirement_edit";
+    }
+    //编辑工艺要求-处理表单
+    @RequestMapping("technologyRequirement/update_all")
+    @ResponseBody
+    public ResponseVo technologyRequirementUpdateAll(TechnologyRequirement technologyRequirement){
+        ResponseVo responseVo = new ResponseVo();
+        int update = technologyService.updateTechnologyRequirement(technologyRequirement);
+        if (update == 1){
+            responseVo.setMsg("OK");
+            responseVo.setStatus(200);
+        }
+        return responseVo;
+    }
+    @RequestMapping("technologyRequirement/update_requirement")
+    @ResponseBody
+    public ResponseVo technologyRequirementUpdate(TechnologyRequirement technologyRequirement){
+        ResponseVo responseVo = new ResponseVo();
+        int update = technologyService.updateTechnologyRequirement(technologyRequirement);
+        if (update == 1){
+            responseVo.setMsg("OK");
+            responseVo.setStatus(200);
+        }
+        return responseVo;
+    }
+    //删除工艺要求-判断
+    @RequestMapping("technologyRequirement/delete_judge")
+    @ResponseBody
+    public String technologyRequirementDeleteJudge(){
+        return "";
+    }
+    //删除工艺要求-删除
+    @RequestMapping("technologyRequirement/delete_batch")
+    @ResponseBody
+    public ResponseVo technologyRequirementDelete(String[] ids){
+        ResponseVo responseVo = new ResponseVo();
+        int delete = technologyService.deleteTechnologyRequirementList(ids);
+        if (delete > 1){
+            responseVo.setMsg("OK");
+            responseVo.setStatus(200);
+        }
+        return responseVo;
+    }
 
 
-
-
+    //==================================================================================================
     //-------------工艺计划-------------
     //获取工艺计划列表
     @RequestMapping("technologyPlan/find")
@@ -186,6 +234,7 @@ public class TechnologyController {
         return technologyService.getTechnologyPlan(planid);
     }
 
+    //==================================================================================================
     //-------------工序管理-------------
     //获取工序列表
     @RequestMapping("process/find")

@@ -28,8 +28,11 @@ public interface TechnologyService {
     Vo<TechnologyRequirement> findTechnologyRequirement(int page, int rows);
     List<TechnologyRequirement> findAllTechnologyRequirement();
     int insertTechnologyRequirement(TechnologyRequirement technologyRequirement);
+    int updateTechnologyRequirement(TechnologyRequirement technologyRequirement);
+    int deleteTechnologyRequirementList(String[] ids);
 
     //---------------工艺计划---------------
+
     Vo<TechnologyPlan> findTechnologyPlan(int page, int rows);
 
     //查询工艺计划
