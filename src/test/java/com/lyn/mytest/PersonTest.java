@@ -56,5 +56,11 @@ public class PersonTest {
         System.out.println(departments);
     }
 
+    @Test
+    public void mytest6() {
+        int delete = employeeService.deleteEmployeeByIds(new String[]{"006", "007"});
+        System.out.println(delete);
+    }
+
 
 }
