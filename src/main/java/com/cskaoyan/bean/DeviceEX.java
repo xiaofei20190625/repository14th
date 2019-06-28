@@ -3,7 +3,7 @@ package com.cskaoyan.bean;
 /**
  * @author Alex_Cheng
  * @date 2019/6/27 20:53
- * @Description TODO
+ * @Description  extend device and deviceType and employe
  */
 public class DeviceEX extends Device {
 
