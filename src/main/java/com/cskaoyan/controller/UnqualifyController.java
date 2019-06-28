@@ -39,12 +39,12 @@ public class UnqualifyController {
     }
 
     //产品回显
-/*    @RequestMapping("product/get/{pid}")
+    @RequestMapping("product/get/{pid}")
     @ResponseBody
     public Product showProduct(@PathVariable("pid") String pid) {
         Product product = productService.selectByPrimaryKey(pid);
         return product;
-    }*/
+    }
     //不合格品申请人的回显
     @RequestMapping("employee/get/{empId}")
     @ResponseBody
@@ -53,12 +53,12 @@ public class UnqualifyController {
     }
 
     //增加不合格项时product的回显
-/*    @RequestMapping("product/get_data")
+    @RequestMapping("product/get_data")
     @ResponseBody
     public List<Product> showProduct() {
         List<Product> products = productService.selectProductList();
         return products;
-    }*/
+    }
 
     //增加不合格项时所有EmployeeResponse(申请人)的回显
     /*Request URL: http://192.168.2.100:8080/erp/employee/get_data*/
@@ -126,7 +126,7 @@ public class UnqualifyController {
         return null;
     }
 
-
+    /*-------------删除-------------*/
     //删除不合格项,执行删除并返回删除结果的状态码
     @RequestMapping("unqualify/delete_batch")
     @ResponseBody
@@ -149,4 +149,23 @@ public class UnqualifyController {
     public String goToDeleteUnqualifyApply() {
         return null;
     }
+
+    /*-------------模糊查询----------------*/
+
+    //根据id模糊查询
+    @RequestMapping("unqualify/search_unqualify_by_unqualifyId")
+    @ResponseBody
+    public Vo<UnqualifyApply> fuzzyQueryUnqualifyById(String searchValue, int page, int rows) {
+        Vo<UnqualifyApply> unqualifyApplyVo = unqualifyApplyService.fuzzyQueryUnqualifyById(searchValue, page, rows);
+        return unqualifyApplyVo;
+    }
+    //根据产品名称模糊查询
+    @RequestMapping("unqualify/search_unqualify_by_productName")
+    @ResponseBody
+    public Vo<UnqualifyApply> fuzzyQueryUnqualifyBypName(String searchValue, int page, int rows) {
+        Vo<UnqualifyApply> unqualifyApplyVo = unqualifyApplyService.fuzzyQueryUnqualifyByProductName(searchValue, page, rows);
+        return unqualifyApplyVo;
+    }
+
+
 }

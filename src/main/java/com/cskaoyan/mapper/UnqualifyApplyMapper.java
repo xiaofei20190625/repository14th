@@ -20,4 +20,8 @@ public interface UnqualifyApplyMapper {
     int deleteByIds(String[] ids);
 
     List<UnqualifyApply> queryAllUnqualifyApply();
+
+    List<UnqualifyApply> fuzzyQueryUnqualifyById(String unqualifyApplyId);
+
+    List<UnqualifyApply> fuzzyQueryUnqualifyByProductName(String productName);
 }
