@@ -1,6 +1,9 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Material;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface MaterialMapper {
     int deleteByPrimaryKey(String materialId);
@@ -14,4 +17,14 @@ public interface MaterialMapper {
     int updateByPrimaryKeySelective(Material record);
 
     int updateByPrimaryKey(Material record);
+
+    List<Material> findMaterial();
+
+    Material getMaterial(@Param("mid")String mid);
+
+    int deleteMaterialList(@Param("ids") String[] ids);
+
+    List<Material> searchMaterialByMaterialId(@Param("searchValue") String searchValue);
+
+    List<Material> searchMaterialByMaterialType(@Param("searchValue") String searchValue);
 }

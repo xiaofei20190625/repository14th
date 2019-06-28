@@ -5,7 +5,7 @@ import java.util.Date;
 public class MaterialReceive {
     private String receiveId;
 
-    private String materialId;
+    private Material material = new Material();
 
     private Integer amount;
 
@@ -22,15 +22,23 @@ public class MaterialReceive {
     }
 
     public void setReceiveId(String receiveId) {
-        this.receiveId = receiveId == null ? null : receiveId.trim();
+        this.receiveId = receiveId;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     public String getMaterialId() {
-        return materialId;
+        return material.getMaterialId();
     }
 
-    public void setMaterialId(String materialId) {
-        this.materialId = materialId == null ? null : materialId.trim();
+    public void setMaterialId(String materialId){
+        material.setMaterialId(materialId);
     }
 
     public Integer getAmount() {
@@ -54,7 +62,7 @@ public class MaterialReceive {
     }
 
     public void setSender(String sender) {
-        this.sender = sender == null ? null : sender.trim();
+        this.sender = sender;
     }
 
     public String getReceiver() {
@@ -62,7 +70,7 @@ public class MaterialReceive {
     }
 
     public void setReceiver(String receiver) {
-        this.receiver = receiver == null ? null : receiver.trim();
+        this.receiver = receiver;
     }
 
     public String getNote() {
@@ -70,6 +78,19 @@ public class MaterialReceive {
     }
 
     public void setNote(String note) {
-        this.note = note == null ? null : note.trim();
+        this.note = note;
+    }
+
+    @Override
+    public String toString() {
+        return "MaterialReceive{" +
+                "receiveId='" + receiveId + '\'' +
+                ", material=" + material +
+                ", amount=" + amount +
+                ", receiveDate=" + receiveDate +
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", note='" + note + '\'' +
+                '}';
     }
 }

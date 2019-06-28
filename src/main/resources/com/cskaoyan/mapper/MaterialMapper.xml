@@ -90,4 +90,27 @@
       note = #{note,jdbcType=VARCHAR}
     where material_id = #{materialId,jdbcType=VARCHAR}
   </update>
+
+  <select id="findMaterial" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from material
+  </select>
+
+  <select id="getMaterial" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from material where material_id = #{mid}
+  </select>
+
+  <delete id="deleteMaterialList">
+    delete from material where material_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="searchMaterialByMaterialId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from material where material_id like "%"#{searchValue}"%"
+  </select>
+
+  <select id="searchMaterialByMaterialType" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from material where material_type like "%"#{searchValue}"%"
+  </select>
 </mapper>

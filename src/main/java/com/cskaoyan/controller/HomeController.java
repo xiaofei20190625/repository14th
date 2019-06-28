@@ -37,6 +37,18 @@ public class HomeController {
         sysPermissionList.add("process:add");
         sysPermissionList.add("process:edit");
         sysPermissionList.add("process:delete");
+        //物料模块
+        sysPermissionList.add("material:add");
+        sysPermissionList.add("material:edit");
+        sysPermissionList.add("material:delete");
+        //物料收入
+        sysPermissionList.add("materialReceive:add");
+        sysPermissionList.add("materialReceive:edit");
+        sysPermissionList.add("materialReceive:delete");
+        //物料消耗
+        sysPermissionList.add("materialConsume:add");
+        sysPermissionList.add("materialConsume:edit");
+        sysPermissionList.add("materialConsume:delete");
 
         sysPermissionList.add("employee:add");
         sysPermissionList.add("employee:edit");

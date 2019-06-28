@@ -3,7 +3,6 @@
 <mapper namespace="com.cskaoyan.mapper.MaterialReceiveMapper">
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.MaterialReceive">
     <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
-    <result column="material_id" jdbcType="VARCHAR" property="materialId" />
     <result column="amount" jdbcType="INTEGER" property="amount" />
     <result column="receive_date" jdbcType="TIMESTAMP" property="receiveDate" />
     <result column="sender" jdbcType="VARCHAR" property="sender" />
@@ -23,11 +22,11 @@
     delete from material_receive
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.MaterialReceive">
+  <insert id="insert">
     insert into material_receive (receive_id, material_id, amount, 
       receive_date, sender, receiver, 
       note)
-    values (#{receiveId,jdbcType=VARCHAR}, #{materialId,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, 
+    values (#{receiveId,jdbcType=VARCHAR}, #{materialId,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER},
       #{receiveDate,jdbcType=TIMESTAMP}, #{sender,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, 
       #{note,jdbcType=VARCHAR})
   </insert>
@@ -114,4 +113,84 @@
       note = #{note,jdbcType=VARCHAR}
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
+
+
+  <resultMap id="materialReceiveMap" type="com.cskaoyan.bean.MaterialReceive">
+    <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="receive_date" jdbcType="TIMESTAMP" property="receiveDate" />
+    <result column="sender" jdbcType="VARCHAR" property="sender" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="mr_note" jdbcType="VARCHAR" property="note" />
+    <association property="material" javaType="com.cskaoyan.bean.Material">
+      <id column="material_id" jdbcType="VARCHAR" property="materialId" />
+      <result column="material_type" jdbcType="VARCHAR" property="materialType" />
+      <result column="status" jdbcType="VARCHAR" property="status" />
+      <result column="remaining" jdbcType="INTEGER" property="remaining" />
+      <result column="m_note" jdbcType="VARCHAR" property="note" />
+    </association>
+  </resultMap>
+
+  <select id="findMaterialReceive" resultMap="materialReceiveMap">
+    SELECT
+      mr.receive_id,
+      mr.amount,
+      mr.receive_date,
+      mr.sender,
+      mr.receiver,
+      mr.note as mr_note,
+      m.material_id,
+      m.material_type,
+      m.`status`,
+      m.remaining,
+      m.note as m_note
+    from material_receive mr
+    LEFT JOIN material m
+    ON mr.material_id = m.material_id
+  </select>
+
+  <delete id="deleteMaterialReceiveList">
+    delete from material_receive where receive_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="searchMaterialReceiveByReceiveId" resultMap="materialReceiveMap">
+    SELECT
+      mr.receive_id,
+      mr.amount,
+      mr.receive_date,
+      mr.sender,
+      mr.receiver,
+      mr.note as mr_note,
+      m.material_id,
+      m.material_type,
+      m.`status`,
+      m.remaining,
+      m.note as m_note
+    from material_receive mr
+    LEFT JOIN material m
+    ON mr.material_id = m.material_id
+    where mr.receive_id like "%"#{searchValue}"%"
+  </select>
+
+  <select id="searchMaterialReceiveByMaterialId" resultMap="materialReceiveMap">
+    SELECT
+      mr.receive_id,
+      mr.amount,
+      mr.receive_date,
+      mr.sender,
+      mr.receiver,
+      mr.note as mr_note,
+      m.material_id,
+      m.material_type,
+      m.`status`,
+      m.remaining,
+      m.note as m_note
+    from material_receive mr
+    LEFT JOIN material m
+    ON mr.material_id = m.material_id
+    where mr.material_id like "%"#{searchValue}"%"
+  </select>
 </mapper>

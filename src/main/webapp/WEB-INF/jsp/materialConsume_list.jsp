@@ -266,9 +266,9 @@
 		$("#materialConsumeWorkInfo").dialog({
     		onOpen :function(){
     			$.get("work/get/"+row.work.workId,'',function(data){
-    				data.processId = data.process.processId; 
+/*    				data.processId = data.process.processId;
   	        		data.productId = data.product.productId;
-  	        		data.deviceId = data.device.deviceId;
+  	        		data.deviceId = data.device.deviceId;*/
 		    		//回显数据
 		    		$("#materialConsumeWorkForm").form("load", data);
     	    	});
