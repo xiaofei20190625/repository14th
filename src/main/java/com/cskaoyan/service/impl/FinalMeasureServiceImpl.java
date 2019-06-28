@@ -42,18 +42,18 @@ public class FinalMeasureServiceImpl implements FinalMeasureService {
     }
 
     @Override
-    public Vo<FinalMeasuretCheck> fuzzyQueryUnqualifyById(String searchValue, int page, int rows) {
+    public Vo<FinalMeasuretCheck> fuzzyQueryFinalMeasuretCheckById(String searchValue, int page, int rows) {
         PageHelper.startPage(page, rows);
-        List<FinalMeasuretCheck> unqualifyApplies = finalMeasuretCheckMapper.fuzzyQueryUnqualifyById("%" + searchValue + "%");
+        List<FinalMeasuretCheck> unqualifyApplies = finalMeasuretCheckMapper.fuzzyQueryFinalMeasuretCheckById("%" + searchValue + "%");
         PageInfo<FinalMeasuretCheck> pageInfo = new PageInfo<>(unqualifyApplies);
         Vo<FinalMeasuretCheck> FinalMeasuretCheckVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
         return FinalMeasuretCheckVo;
     }
 
     @Override
-    public Vo<FinalMeasuretCheck> fuzzyQueryUnqualifyByProductName(String searchValue, int page, int rows) {
+    public Vo<FinalMeasuretCheck> fuzzyQueryFinalMeasuretCheckByOrderId(String searchValue, int page, int rows) {
         PageHelper.startPage(page, rows);
-        List<FinalMeasuretCheck> unqualifyApplies = finalMeasuretCheckMapper.fuzzyQueryUnqualifyByProductName("%" + searchValue + "%");
+        List<FinalMeasuretCheck> unqualifyApplies = finalMeasuretCheckMapper.fuzzyQueryFinalMeasuretCheckByOrderId("%" + searchValue + "%");
         PageInfo<FinalMeasuretCheck> pageInfo = new PageInfo<>(unqualifyApplies);
         Vo<FinalMeasuretCheck> FinalMeasuretCheckVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
         return FinalMeasuretCheckVo;

@@ -45,6 +45,23 @@ public class FinalCheckController {
     }
 
 
+    /*----------------------新增FinalMeasureCheck--------------------------*/
+    //Request URL: http://192.168.2.100:8080/erp/measure/insert
+    @RequestMapping("measure/insert")
+    @ResponseBody
+    public ResponseVo insertFinalMeasureCheck(FinalMeasuretCheck finalMeasuretCheck) {
+        int insert = finalMeasureService.insertSelective(finalMeasuretCheck);
+        if (insert == 1) {
+            ResponseVo responseVo = new ResponseVo();
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+            responseVo.setData(null);
+            return responseVo;
+        }
+        return null;
+    }
+
+
     /*------------编辑不合格项---------------*/
     //返回json-null
     @RequestMapping("fMeasureCheck/edit_judge")
@@ -101,6 +118,26 @@ public class FinalCheckController {
     @ResponseBody
     public String goToDeleteUnqualifyApply() {
         return null;
+    }
+
+
+    /*-------------模糊查询----------------*/
+    //http://192.168.2.100:8080/erp/measure/search_fMeasureCheck_by_fMeasureCheckId?searchValue=111&page=1&rows=10
+    //http://192.168.2.100:8080/erp/measure/search_fMeasureCheck_by_orderId?searchValue=111&page=1&rows=10
+
+    //根据成品质检编号模糊查询
+    @RequestMapping("measure/search_fMeasureCheck_by_fMeasureCheckId")
+    @ResponseBody
+    public Vo<FinalMeasuretCheck> fuzzyQueryFinalMeasuretCheckById(String searchValue, int page, int rows) {
+        Vo<FinalMeasuretCheck> finalMeasuretCheckVo = finalMeasureService.fuzzyQueryFinalMeasuretCheckById(searchValue, page, rows);
+        return finalMeasuretCheckVo;
+    }
+    //根据产品名称模糊查询
+    @RequestMapping("measure/search_fMeasureCheck_by_orderId")
+    @ResponseBody
+    public Vo<FinalMeasuretCheck> fuzzyQueryFinalMeasuretCheckByOrderId(String searchValue, int page, int rows) {
+        Vo<FinalMeasuretCheck> finalMeasuretCheckVo = finalMeasureService.fuzzyQueryFinalMeasuretCheckByOrderId(searchValue, page, rows);
+        return finalMeasuretCheckVo;
     }
 
 

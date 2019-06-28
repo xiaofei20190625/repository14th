@@ -145,4 +145,23 @@ public class COrder {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "COrder{" +
+                "orderId='" + orderId + '\'' +
+                ", customId='" + customId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", orderDate=" + orderDate +
+                ", requestDate=" + requestDate +
+                ", note='" + note + '\'' +
+                ", quantity=" + quantity +
+                ", unitPrice=" + unitPrice +
+                ", unit='" + unit + '\'' +
+                ", image='" + image + '\'' +
+                ", file='" + file + '\'' +
+                ", status=" + status +
+                ", custom=" + custom +
+                ", product=" + product +
+                '}';
+    }
 }
