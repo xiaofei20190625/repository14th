@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("erp")
 public class PlanController {
     @Autowired
     COrderService cOrderService;
@@ -31,17 +30,12 @@ public class PlanController {
     WorkService workService;
     @Autowired
     ProcessService processService;
-   /* @Autowired
-    DeviceService deviceService;*/
+    @Autowired
+    DeviceService deviceService;
 
     @Autowired
     DataSource dataSource;
 
-
-    @RequestMapping("home")
-    public String home() {
-        return "home";
-    }
 
     @RequestMapping("order/search_order_by_orderId")
     @ResponseBody
@@ -131,11 +125,10 @@ public class PlanController {
         return process;
     }
 
-    /*@RequestMapping("deviceList/get/{device_id}")
+  /*  @RequestMapping("deviceList/get/{device_id}")
     @ResponseBody
     public Device device(@PathVariable("device_id")String device_id) {
         Device device = deviceService.selectByPrimaryKey(device_id);
-
         return device;
     }*/
 }

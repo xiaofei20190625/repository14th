@@ -39,5 +39,6 @@ public interface DeviceService {
 	Vo searchDeviceByDeviceTypeName(Integer page, Integer rows,
 			String deviceTypeName) ;
 
+	Device selectByPrimaryKey(String deviceId);
 }
 

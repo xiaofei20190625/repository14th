@@ -94,16 +94,9 @@ public class DeviceListController {
     @RequestMapping("/get/{deviceId}")
     @ResponseBody
     public Device getItemById(@PathVariable String deviceId)  {
-        Device device = deviceService.get(deviceId);
+        Device device = deviceService.selectByPrimaryKey(deviceId);
         return device;
     }
-
-
-
-
-
-
-
 
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)

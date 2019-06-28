@@ -76,7 +76,7 @@
 
             <!-- 指定所有数据库表 -->
 
-            <table tableName="work"
+            <table tableName="device"
                    enableCountByExample="false"
                    enableUpdateByExample="false"
                    enableDeleteByExample="false"
@@ -85,7 +85,7 @@
                    enableDeleteByPrimaryKey="true"
                    enableSelectByPrimaryKey="true"
                    selectByExampleQueryId="false"
-                   domainObjectName="Work"
+                   domainObjectName="Device"
             ></table>
 
     </context>

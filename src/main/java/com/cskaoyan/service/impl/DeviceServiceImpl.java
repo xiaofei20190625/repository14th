@@ -144,5 +144,12 @@ public class DeviceServiceImpl implements  DeviceService  {
 		result.setTotal(pageInfo.getTotal());
 		return result;
 	}
+
+	@Override
+	public Device selectByPrimaryKey(String deviceId) {
+
+		Device device = deviceMapper.selectByPrimaryKey(deviceId);
+		return device;
+	}
 }
 
