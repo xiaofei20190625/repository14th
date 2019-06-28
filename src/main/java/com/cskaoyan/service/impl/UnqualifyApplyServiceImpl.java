@@ -23,4 +23,20 @@ public class UnqualifyApplyServiceImpl implements UnqualifyApplyService {
         Vo<UnqualifyApply> unqualifyApplyVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
         return unqualifyApplyVo;
     }
+
+    @Override
+    public int insertSelective(UnqualifyApply record) {
+        return unqualifyApplyMapper.insertSelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(UnqualifyApply record) {
+        int update = unqualifyApplyMapper.updateByPrimaryKeySelective(record);
+        return update;
+    }
+
+    @Override
+    public int deleteByIds(String[] ids) {
+        return unqualifyApplyMapper.deleteByIds(ids);
+    }
 }

@@ -16,6 +16,8 @@ public interface EmployeeService {
 
     int deleteEmployeeByIds(String[] ids);
 
+    List<EmployeeResponse> queryAllEmployee();
+
     EmployeeResponse selectByPrimaryKey(String empId);
 
     Vo<EmployeeResponse> fuzzyQueryByEmployeeId(String empId, int page, int rows);

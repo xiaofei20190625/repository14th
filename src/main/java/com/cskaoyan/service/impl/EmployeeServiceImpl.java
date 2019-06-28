@@ -74,4 +74,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeResponse selectByPrimaryKey(String empId) {
         return employeeMapper.selectByPrimaryKey(empId);
     }
+
+    @Override
+    public List<EmployeeResponse> queryAllEmployee() {
+        return employeeMapper.queryAllEmployee();
+    }
 }

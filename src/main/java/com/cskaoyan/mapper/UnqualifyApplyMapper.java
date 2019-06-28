@@ -17,5 +17,7 @@ public interface UnqualifyApplyMapper {
 
     int updateByPrimaryKey(UnqualifyApply record);
 
+    int deleteByIds(String[] ids);
+
     List<UnqualifyApply> queryAllUnqualifyApply();
 }
