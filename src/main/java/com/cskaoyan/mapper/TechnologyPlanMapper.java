@@ -1,6 +1,7 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.TechnologyPlan;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,4 +21,5 @@ public interface TechnologyPlanMapper {
 
     List<TechnologyPlan> findTechnologyPlan();
 
+    TechnologyPlan getTechnologyPlan(@Param("planid")int planid);
 }

@@ -25,8 +25,8 @@
     insert into technology_requirement (technology_requirement_id, technology_id, 
       requirement, add_time, revise_time
       )
-    values (#{technologyRequirementId,jdbcType=VARCHAR}, #{technologyId,jdbcType=VARCHAR}, 
-      #{requirement,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{reviseTime,jdbcType=TIMESTAMP}
+    values (#{tr.technologyRequirementId,jdbcType=VARCHAR}, #{tr.technologyId,jdbcType=VARCHAR},
+      #{tr.requirement,jdbcType=VARCHAR}, #{tr.addTime,jdbcType=TIMESTAMP}, #{tr.reviseTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cskaoyan.bean.TechnologyRequirement">
@@ -113,5 +113,39 @@
       tech.technology_name
     from technology_requirement req LEFT JOIN technology tech
     ON req.technology_id = tech.technology_id
+  </select>
+
+
+  <delete id="deleteTechnologyRequirementList">
+    delete from technology_requirement where technology_requirement_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="searchTechnologyRequirementById" resultMap="requirementMap">
+    SELECT
+      req.technology_requirement_id,
+      req.technology_id,
+      req.requirement,
+      req.add_time,
+      req.revise_time,
+      tech.technology_name
+    from technology_requirement req LEFT JOIN technology tech
+    ON req.technology_id = tech.technology_id
+    where req.technology_requirement_id like "%"#{searchValue}"%"
+  </select>
+
+  <select id="searchTechnologyRequirementByTechnologyName" resultMap="requirementMap">
+    SELECT
+      req.technology_requirement_id,
+      req.technology_id,
+      req.requirement,
+      req.add_time,
+      req.revise_time,
+      tech.technology_name
+    from technology_requirement req LEFT JOIN technology tech
+    ON req.technology_id = tech.technology_id
+    where tech.technology_name like "%"#{searchValue}"%"
   </select>
 </mapper>

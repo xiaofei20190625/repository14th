@@ -21,4 +21,5 @@ public interface DepartmentService {
     Department selectByPrimaryKey(String departmentId);
 
 
+    List<Department> showAllDepartment();
 }

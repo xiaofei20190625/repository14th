@@ -22,4 +22,10 @@ public interface TechnologyMapper {
     List<Technology> findTechnology();
 
     Technology getTechnology(@Param("tid")int tid);
+
+    int deleteTechnologyList(@Param("ids")String[] ids);
+
+    List<Technology> searchTechnologyById(@Param("searchValue")String searchValue);
+
+    List<Technology> searchTechnologyByName(@Param("searchValue")String searchValue);
 }

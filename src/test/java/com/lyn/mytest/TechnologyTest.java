@@ -2,7 +2,9 @@ package com.lyn.mytest;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.cskaoyan.bean.Technology;
+import com.cskaoyan.mapper.TechnologyMapper;
 import com.cskaoyan.service.TechnologyService;
+import com.cskaoyan.vo.Vo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -26,8 +28,14 @@ import java.util.List;
 public class TechnologyTest {
     @Autowired
     TechnologyService technologyService;
+    @Autowired
+    TechnologyMapper technologyMapper;
 
-
+    @Test
+    public void test1(){
+        List<Technology> technologies = technologyMapper.searchTechnologyById("1");
+        System.out.println(technologies);
+    }
 
 
 }

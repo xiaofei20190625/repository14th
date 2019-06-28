@@ -1,19 +1,21 @@
 package com.cskaoyan.vo;
-
+/**
+ * Created by IceFloe_Rot
+ * Date 2019/6/27 Time 20:33
+ */
 public class ResponseVo {
     int status;
-
     String msg;
-
     String data;
 
-    public ResponseVo() {
-    }
+    @Override
+    public String toString() {
+        return "ResponseVo{" +
+                "status=" + status +
+                ", msg='" + msg + '\'' +
+                ", data='" + data + '\'' +
+                '}';
 
-    public ResponseVo(int status, String msg, String data) {
-        this.status = status;
-        this.msg = msg;
-        this.data = data;
     }
 
     public int getStatus() {
@@ -40,12 +42,12 @@ public class ResponseVo {
         this.data = data;
     }
 
-    @Override
-    public String toString() {
-        return "ResponseVo{" +
-                "status=" + status +
-                ", msg='" + msg + '\'' +
-                ", data='" + data + '\'' +
-                '}';
+    public ResponseVo(int status, String msg, String data) {
+        this.status = status;
+        this.msg = msg;
+        this.data = data;
+    }
+
+    public ResponseVo() {
     }
 }
