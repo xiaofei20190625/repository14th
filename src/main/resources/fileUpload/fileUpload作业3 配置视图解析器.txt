@@ -1,0 +1,13 @@
+配置视图解析器
+后进行返回字符串：分别包含forward和redirect
+forward和direct后分别测试包含“/”和不包含“/”的情况，
+比如“forward:/hello”和“forward:hello”
+
+
+forward包含“/ 异常
+不包含“/” 转发form表单提交数据可以正常显示 url不变
+
+redirect包含“/ 转发表单提交数据可以不正常显示报错 url改变
+
+不包含“/” 转发表单提交数据显示为空白 url改变
+

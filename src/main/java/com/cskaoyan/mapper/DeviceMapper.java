@@ -1,12 +1,12 @@
-
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Device;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 
+import java.util.List;
 
 public interface DeviceMapper {
     int deleteByPrimaryKey(String deviceId);
@@ -34,5 +34,4 @@ public interface DeviceMapper {
     List<Device> searchDeviceByDeviceName(String deviceName);
 
     List<Device> searchDeviceByDeviceTypeName(String deviceTypeName);
-
 }

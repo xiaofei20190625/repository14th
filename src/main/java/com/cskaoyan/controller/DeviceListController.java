@@ -118,11 +118,13 @@ public class DeviceListController {
     @RequestMapping("/get/{deviceId}")
     @ResponseBody
     public Device getItemById(@PathVariable String deviceId)  {
+
         Device device = deviceService.getDeviceId(deviceId);
         return device;
     }
 
     //新增
+
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
     private DeviceResult insert(@Valid Device device, BindingResult bindingResult)  {

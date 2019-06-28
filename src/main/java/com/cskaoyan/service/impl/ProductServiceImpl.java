@@ -24,6 +24,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> selectProductList() {
+        return productMapper.selectProductList();
+    }
+
+    @Override
     public Vo<Product> findProductPage(int page, int rows) {
 
         PageHelper.startPage(page,rows);
@@ -33,9 +38,5 @@ public class ProductServiceImpl implements ProductService {
         return productVo;
     }
 
-    @Override
-    public List<Product> selectProductList() {
-        return productMapper.selectProductList();
-    }
 }
 

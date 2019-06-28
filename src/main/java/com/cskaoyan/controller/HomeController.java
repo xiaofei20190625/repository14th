@@ -22,10 +22,42 @@ public class HomeController {
         sysPermissionList.add("department:edit");
         sysPermissionList.add("department:delete");
 
+        /**
+         * 计划进度
+         */
+        //订单管理
+        sysPermissionList.add("order:add");
+        sysPermissionList.add("order:edit");
+        sysPermissionList.add("order:delete");
+        //客户管理
+        sysPermissionList.add("custom:add");
+        sysPermissionList.add("custom:edit");
+        sysPermissionList.add("custom:delete");
+        //产品管理
+        sysPermissionList.add("product:add");
+        sysPermissionList.add("product:edit");
+        sysPermissionList.add("product:delete");
+        //作业管理
+        sysPermissionList.add("work:add");
+        sysPermissionList.add("work:edit");
+        sysPermissionList.add("work:delete");
+        //生产计划管理
+        sysPermissionList.add("manufacture:add");
+        sysPermissionList.add("manufacture:edit");
+        sysPermissionList.add("manufacture:delete");
+        //生产派工管理
+        sysPermissionList.add("task:add");
+        sysPermissionList.add("task:edit");
+        sysPermissionList.add("task:delete");
+        /**
+         * 工艺
+         */
+
         //质量监控
         sysPermissionList.add("unqualify:add");
         sysPermissionList.add("unqualify:edit");
         sysPermissionList.add("unqualify:delete");
+
 
 
         //工艺模块：
@@ -60,7 +92,9 @@ public class HomeController {
         sysPermissionList.add("employee:add");
         sysPermissionList.add("employee:edit");
         sysPermissionList.add("employee:delete");
-
+        /**
+         * 设备
+         */
         /*设备台账*/
         sysPermissionList.add("device:add");
         sysPermissionList.add("device:edit");

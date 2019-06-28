@@ -40,5 +40,7 @@ public class WorkServiceImpl implements WorkService {
         return workMapper.selectWorkList();
     }
 
-
+    public Work selectWork(String workId) {
+        return workMapper.selectWork(workId);
+    }
 }
