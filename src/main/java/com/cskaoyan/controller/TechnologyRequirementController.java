@@ -104,7 +104,7 @@ public class TechnologyRequirementController {
     public ResponseVo technologyRequirementDelete(String[] ids){
         ResponseVo responseVo = new ResponseVo();
         int delete = technologyRequirementService.deleteTechnologyRequirementList(ids);
-        if (delete > 1){
+        if (delete > 0){
             responseVo.setMsg("OK");
             responseVo.setStatus(200);
         }
