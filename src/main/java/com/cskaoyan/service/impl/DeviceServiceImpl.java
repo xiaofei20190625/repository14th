@@ -4,7 +4,7 @@ package com.cskaoyan.service.impl;
 import java.util.List;
 
 import com.cskaoyan.bean.Device;
-import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.mapper.DeviceMapper;
 import com.cskaoyan.service.DeviceService;
 import com.cskaoyan.vo.Vo;
@@ -36,7 +36,7 @@ public class DeviceServiceImpl implements  DeviceService  {
 	}
 	
 	@Override
-	public List<Device> find()  {
+	public List<Device> getData()  {
 		List<Device> deviceList = deviceMapper.getData();
 		return deviceList;
 	}
@@ -48,55 +48,55 @@ public class DeviceServiceImpl implements  DeviceService  {
 	}
 	
 	@Override
-	public CustomResult insert(Device device)  {
+	public DeviceResult insert(Device device)  {
 		int i = deviceMapper.insert(device);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "新增设备信息失败");
+			return DeviceResult.build(101, "新增设备信息失败");
 		}
 	}
 
 	@Override
-	public CustomResult deleteBatch(String[] deviceIds)  {
+	public DeviceResult deleteBatch(String[] deviceIds)  {
 		int i = deviceMapper.deleteBatch(deviceIds);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
 			return null;
 		}
 	}
 
 	@Override
-	public CustomResult update(Device device)  {
+	public DeviceResult update(Device device)  {
 		System.out.println("device update service");
 		System.out.println(device.getNote());
 		//System.out.println(JsonUtils.objectToJson(device));
 		int i = deviceMapper.updateByPrimaryKeySelective(device);
 		if(i>=0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "修改设备信息失败");
+			return DeviceResult.build(101, "修改设备信息失败");
 		}
 	}
 
 	@Override
-	public CustomResult updateNote(Device device)  {
+	public DeviceResult updateNote(Device device)  {
 		int i = deviceMapper.updateNote(device);
 		if(i>0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "修改设备备注失败");
+			return DeviceResult.build(101, "修改设备备注失败");
 		}
 	}
 	
 	@Override
-	public CustomResult updateAll(Device device)  {
+	public DeviceResult updateAll(Device device)  {
 		int i = deviceMapper.updateByPrimaryKey(device);
 		if(i>0){
-			return CustomResult.ok();
+			return DeviceResult.ok();
 		}else{
-			return CustomResult.build(101, "修改设备信息失败");
+			return DeviceResult.build(101, "修改设备信息失败");
 		}
 	}
 

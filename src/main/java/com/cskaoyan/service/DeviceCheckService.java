@@ -2,7 +2,7 @@ package com.cskaoyan.service;
 
 
 import com.cskaoyan.bean.DeviceCheck;
-import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.vo.DeviceResult;
 
 import com.cskaoyan.vo.Vo;
 
@@ -12,15 +12,15 @@ public interface DeviceCheckService {
 	
 	DeviceCheck get(String string) throws Exception;
 
-	CustomResult insert(DeviceCheck deviceCheck) throws Exception;
+	DeviceResult insert(DeviceCheck deviceCheck) throws Exception;
 	
-	CustomResult delete(String deviceCheckId) throws Exception;
+	DeviceResult delete(String deviceCheckId) throws Exception;
 	
-	CustomResult deleteBatch(String[] deviceCheckIds) throws Exception;
+	DeviceResult deleteBatch(String[] deviceCheckIds) throws Exception;
 
-    CustomResult update(DeviceCheck deviceCheck) throws Exception;
+    DeviceResult update(DeviceCheck deviceCheck) throws Exception;
 
-    CustomResult updateNote(DeviceCheck deviceCheck) throws Exception;
+    DeviceResult updateNote(DeviceCheck deviceCheck) throws Exception;
     
 	Vo searchDeviceCheckByDeviceCheckId(Integer page,
 			Integer rows, String deviceCheckId) throws Exception;

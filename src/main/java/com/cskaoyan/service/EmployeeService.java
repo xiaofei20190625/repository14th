@@ -9,4 +9,8 @@ public interface EmployeeService {
     Vo<EmployeeResponse> queryAllEmployee(int page, int rows);
 
     int insertSelective(Employee record);
+
+    int updateByPrimaryKeySelective(Employee employee);
+
+    int deleteEmployeeByIds(String[] ids);
 }

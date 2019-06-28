@@ -59,6 +59,16 @@
     delete from employee
     where emp_id = #{empId,jdbcType=VARCHAR}
   </delete>
+  <!--根据ids数组批量删除-->
+  <delete id="deleteEmployeeByIds" parameterType="java.lang.String">
+    delete from employee
+    where emp_id in
+    <foreach collection="array" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+
   <insert id="insert" parameterType="com.cskaoyan.bean.Employee">
     insert into employee (emp_id, emp_name, sex, 
       id_code, birthday, join_date, 

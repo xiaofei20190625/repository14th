@@ -3,7 +3,7 @@ package com.cskaoyan.service;
 
 
 import com.cskaoyan.bean.DeviceMaintain;
-import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.vo.Vo;
 
 import java.util.List;
@@ -15,15 +15,15 @@ public interface DeviceMaintainService {
 	
 	DeviceMaintain get(String string) ;
 	
-	CustomResult insert(DeviceMaintain deviceMaintain) ;
+	DeviceResult insert(DeviceMaintain deviceMaintain) ;
 	
-	CustomResult delete(String deviceMaintainId) ;
+	DeviceResult delete(String deviceMaintainId) ;
 	
-	CustomResult deleteBatch(String[] deviceMaintainIds) ;
+	DeviceResult deleteBatch(String[] deviceMaintainIds) ;
 
-    CustomResult update(DeviceMaintain deviceMaintain) ;
+    DeviceResult update(DeviceMaintain deviceMaintain) ;
 
-	CustomResult updateNote(DeviceMaintain deviceMaintain) ;
+	DeviceResult updateNote(DeviceMaintain deviceMaintain) ;
 
 	Vo searchDeviceMaintainByDeviceMaintainId(Integer page,
 			Integer rows, String deviceMaintainId) ;

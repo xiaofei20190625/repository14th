@@ -4,7 +4,7 @@ package com.cskaoyan.service;
 import java.util.List;
 
 import com.cskaoyan.bean.Device;
-import com.cskaoyan.customiz.CustomResult;
+import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.vo.Vo;
 
 
@@ -13,21 +13,22 @@ public interface DeviceService {
 
 	Vo getList(int page, int rows, Device device) ;
 
-
-	List<Device> find() ;
-
+	
+	List<Device> getData() ;
+	
 	Device get(String string) ;
 
-	CustomResult insert(Device device) ;
+	DeviceResult insert(Device device) ;
+	
+	DeviceResult deleteBatch(String[] deviceIds) ;
 
-	CustomResult deleteBatch(String[] deviceIds) ;
 
-    CustomResult update(Device device) ;
+    DeviceResult update(Device device) ;
 
-	CustomResult updateNote(Device device) ;
+	DeviceResult updateNote(Device device) ;
 
 	//更新全部字段，不判断非空，直接进行更新
-    CustomResult updateAll(Device device) ;
+    DeviceResult updateAll(Device device) ;
 
 	Vo searchDeviceByDeviceId(Integer page, Integer rows,
 			String deviceId);

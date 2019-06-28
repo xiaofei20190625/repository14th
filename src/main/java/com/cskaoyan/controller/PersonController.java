@@ -219,4 +219,44 @@ public class PersonController {
         return "employee_edit";
     }
 
+    //修改员工，返回修改状态码
+    @RequestMapping("employee/update_all")
+    @ResponseBody
+    public ResponseVo updateEmployee(Employee employee) {
+        int update = employeeService.updateByPrimaryKeySelective(employee);
+        if (update == 1) {
+            ResponseVo responseVo = new ResponseVo();
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+            responseVo.setData(null);
+            return responseVo;
+        } else {
+            return null;
+        }
+    }
+
+    /*------------------------删除员工------------------------*/
+    //返回null的json
+    @RequestMapping("employee/delete_judge")
+    @ResponseBody
+    public String deleteEmployee() {
+        return null;
+    }
+
+    //执行删除并返回删除结果的状态码
+    @RequestMapping("employee/delete_batch")
+    @ResponseBody
+    public ResponseVo employeeDelete(String[] ids) {
+        int delete = employeeService.deleteEmployeeByIds(ids);
+        if (delete > 0) {
+            ResponseVo responseVo = new ResponseVo();
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+            responseVo.setData(null);
+            return responseVo;
+        } else {
+            return null;
+        }
+    }
+
 }
