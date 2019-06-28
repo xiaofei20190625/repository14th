@@ -6,10 +6,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
         http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- bean definitions here -->
-    <context:component-scan base-package="com.cskaoyan.controller"/>
+    <context:component-scan base-package="com.cskaoyan.controller">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
+    <mvc:resources mapping="image/**" location="/WEB-INF/image/"/>
 
 
     <mvc:annotation-driven conversion-service="conversionService"/>
@@ -33,6 +41,9 @@
         </property>
     </bean>
 
-
+    <!--文件上传-->
+    <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5242880"></property>
+    </bean>
 
 </beans>

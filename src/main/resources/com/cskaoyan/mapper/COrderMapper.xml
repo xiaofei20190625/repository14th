@@ -97,6 +97,15 @@
     delete from c_order
     where order_id = #{orderId,jdbcType=VARCHAR}
   </delete>
+
+  <delete id="deleteByPrimaryKeys" parameterType="list">
+    delete from c_order
+    where order_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")" >
+      #{id}
+    </foreach>
+  </delete>
+
   <delete id="deleteByExample" parameterType="com.cskaoyan.bean.COrderExample">
     delete from c_order
     <if test="_parameter != null">
@@ -281,13 +290,38 @@
   </select>
 
 
-    <select id="selectByPrimaryKey" resultMap="cOrderMap1">
+    <select id="searchCOderById" resultMap="cOrderMap1">
         <include refid="base"/>
         from c_order co
         LEFT JOIN custom c on c.custom_id = co.custom_id
-        LEFT JOIN product p on p.product_id =co.product_id  order by co.order_id
-        where order_id like '%${orderId,jdbcType=VARCHAR}%'
+        LEFT JOIN product p on p.product_id =co.product_id
+        where order_id like '%${searchValue}%' order by co.order_id
     </select>
+
+
+  <select id="searchCOderByOrderCustom" resultMap="cOrderMap1">
+    <include refid="base"/>
+    from c_order co
+    LEFT JOIN custom c on c.custom_id = co.custom_id
+    LEFT JOIN product p on p.product_id =co.product_id
+    where order_id like '%${searchValue}%' order by co.order_id
+  </select>
+
+  <select id="searchCOderByOrderProduct" resultMap="cOrderMap1">
+    <include refid="base"/>
+    from c_order co
+    LEFT JOIN custom c on c.custom_id = co.custom_id
+    LEFT JOIN product p on p.product_id =co.product_id
+    where order_id like '%${searchValue}%' order by co.order_id
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="cOrderMap1">
+      <include refid="base"/>
+      from c_order co
+      LEFT JOIN custom c on c.custom_id = co.custom_id
+      LEFT JOIN product p on p.product_id =co.product_id
+      where order_id = #{orderId} order by co.order_id
+  </select>
 
   <update id="updateByExampleSelective" parameterType="map">
     update c_order

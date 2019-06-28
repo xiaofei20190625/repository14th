@@ -71,5 +71,10 @@ public class ProcessServiceImpl implements ProcessService {
         return processVo;
     }
 
+    @Override
+    public List<Process> findAllProcess() {
+        return processMapper.findProcess();
+    }
+
 }
 

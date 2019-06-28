@@ -1,6 +1,7 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.COrder;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface COrderMapper {
 
     int insertSelective(COrder record);
 
-    List<COrder> selectByPrimaryKey(String orderId);
+    COrder selectByPrimaryKey(String orderId);
 
     int updateByPrimaryKeySelective(COrder record);
 
@@ -21,6 +22,14 @@ public interface COrderMapper {
     List<COrder> selectCOrderlist();
 
     Long countCOrder();
+
+    List<COrder> searchCOderById(@Param("searchValue")String orderId);
+
+    List<COrder> searchCOderByOrderCustom(@Param("searchValue")String searchValue);
+
+    List<COrder> searchCOderByOrderProduct(@Param("searchValue")String searchValue);
+
+    int deleteByPrimaryKeys(@Param("ids")String[] ids);
 
 
 }

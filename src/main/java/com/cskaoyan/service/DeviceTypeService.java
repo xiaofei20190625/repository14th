@@ -11,7 +11,7 @@ public interface DeviceTypeService {
 	
 	Vo getList(int page, int rows, DeviceType deviceType) ;
 	
-	DeviceType get(String string) ;
+	DeviceType getDeviceTypeId(String deviceTypeId) ;
 	
 	List<DeviceType> getData() ;
 	
@@ -29,6 +29,7 @@ public interface DeviceTypeService {
 
 	Vo searchDeviceTypeByDeviceTypeName(Integer page,
 										Integer rows, String deviceTypeName) ;
+
 
 
 }

@@ -16,7 +16,7 @@ public interface DeviceService {
 	
 	List<Device> getData() ;
 	
-	Device get(String string) ;
+	Device getDeviceId(String string) ;
 
 	DeviceResult insert(Device device) ;
 	
@@ -39,5 +39,6 @@ public interface DeviceService {
 	Vo searchDeviceByDeviceTypeName(Integer page, Integer rows,
 			String deviceTypeName) ;
 
+	Device selectByPrimaryKey(String deviceId);
 }
 

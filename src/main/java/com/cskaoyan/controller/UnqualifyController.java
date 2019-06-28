@@ -39,12 +39,12 @@ public class UnqualifyController {
     }
 
     //产品回显
-    @RequestMapping("product/get/{pid}")
+/*    @RequestMapping("product/get/{pid}")
     @ResponseBody
     public Product showProduct(@PathVariable("pid") String pid) {
         Product product = productService.selectByPrimaryKey(pid);
         return product;
-    }
+    }*/
     //不合格品申请人的回显
     @RequestMapping("employee/get/{empId}")
     @ResponseBody
@@ -53,12 +53,12 @@ public class UnqualifyController {
     }
 
     //增加不合格项时product的回显
-    @RequestMapping("product/get_data")
+/*    @RequestMapping("product/get_data")
     @ResponseBody
     public List<Product> showProduct() {
         List<Product> products = productService.selectProductList();
         return products;
-    }
+    }*/
 
     //增加不合格项时所有EmployeeResponse(申请人)的回显
     /*Request URL: http://192.168.2.100:8080/erp/employee/get_data*/

@@ -74,16 +74,5 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technologyList;
     }
 
-
-
-
-
-
-
-
-
-
-
-
 }
 
