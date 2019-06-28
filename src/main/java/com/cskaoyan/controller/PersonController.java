@@ -259,4 +259,29 @@ public class PersonController {
         }
     }
 
+    /*-------------------员工的模糊查询-----------------------*/
+    //根据员工id模糊查询
+    @RequestMapping("employee/search_employee_by_employeeId")
+    @ResponseBody
+    public Vo<EmployeeResponse> fuzzyQueryEmployeeById(String searchValue, int page, int rows) {
+        Vo<EmployeeResponse> employeeResponseVo = employeeService.fuzzyQueryByEmployeeId("%" + searchValue + "%", page, rows);
+        return employeeResponseVo;
+    }
+
+    //根据员工名称模糊查询
+    @RequestMapping("employee/search_employee_by_employeeName")
+    @ResponseBody
+    public Vo<EmployeeResponse> fuzzyQueryEmployeeByName(String searchValue, int page, int rows) {
+        Vo<EmployeeResponse> employeeResponseVo = employeeService.fuzzyQueryByEmployeeName("%" + searchValue + "%", page, rows);
+        return employeeResponseVo;
+    }
+
+    //根据部门名称模糊查询
+    @RequestMapping("employee/search_employee_by_departmentName")
+    @ResponseBody
+    public Vo<EmployeeResponse> fuzzyQueryEmployeeByDepartmentName(String searchValue, int page, int rows) {
+        Vo<EmployeeResponse> employeeResponseVo = employeeService.fuzzyQueryByDepartmentName("%" + searchValue + "%", page, rows);
+        return employeeResponseVo;
+    }
+
 }

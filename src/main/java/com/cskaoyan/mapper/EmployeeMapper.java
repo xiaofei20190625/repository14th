@@ -12,9 +12,15 @@ public interface EmployeeMapper {
 
     int insertSelective(Employee record);
 
-    Employee selectByPrimaryKey(String empId);
+    EmployeeResponse selectByPrimaryKey(String empId);
 
     List<EmployeeResponse> queryAllEmployee();
+
+    List<EmployeeResponse> fuzzyQueryByEmployeeId(String empId);
+
+    List<EmployeeResponse> fuzzyQueryByEmployeeName(String empName);
+
+    List<EmployeeResponse> fuzzyQueryByDepartmentName(String departmentName);
 
     int updateByPrimaryKeySelective(Employee record);
 

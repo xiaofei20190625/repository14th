@@ -32,5 +32,10 @@ public class ProductServiceImpl implements ProductService {
         Vo<Product> productVo = new Vo<>(productPageInfo.getTotal(), productPageInfo.getList());
         return productVo;
     }
+
+    @Override
+    public List<Product> selectProductList() {
+        return productMapper.selectProductList();
+    }
 }
 
