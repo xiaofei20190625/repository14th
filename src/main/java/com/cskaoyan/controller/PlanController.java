@@ -240,12 +240,12 @@ public class PlanController {
         return customs;
     }
 
-    @RequestMapping("product/get_data")
+    /*@RequestMapping("product/get_data")
     @ResponseBody
     public List<Product> productGet_data() {
         List<Product> products = productService.selectProductList();
         return products;
-    }
+    }*/
 
 
     @RequestMapping("custom/get/{custom_id}")
