@@ -1,8 +1,9 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.impl;
 
 import java.util.List;
 
 import com.cskaoyan.bean.DeviceCheck;
+import com.cskaoyan.service.DeviceCheckService;
 import com.cskaoyan.vo.DeviceResult;
 import com.cskaoyan.mapper.DeviceCheckMapper;
 import com.cskaoyan.vo.Vo;
@@ -13,7 +14,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 @Service
-public class DeviceCheckServiceImpl implements DeviceCheckService{
+public class DeviceCheckServiceImpl implements DeviceCheckService {
 
 	@Autowired
 	DeviceCheckMapper deviceCheckMapper;

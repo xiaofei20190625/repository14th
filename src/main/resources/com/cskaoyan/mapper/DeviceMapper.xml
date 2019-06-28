@@ -81,7 +81,7 @@
     #{deviceName},'%' )
   </select>
  <!--按种类查找-->
-  <select id=" searchDeviceByDeviceTypeName"  resultMap="OutResultMap">
+  <select id="searchDeviceByDeviceTypeName"  resultMap="OutResultMap">
     SELECT
     <include refid="Device_DeviceType_Employee"/>
     FROM
@@ -95,6 +95,16 @@
     '%',
     #{deviceTypeName,jdbcType=VARCHAR} ,'%' )
   </select>
+  <!--更新备注-->
+  <update id="updateNote" parameterType="com.cskaoyan.bean.Device">
+    update device
+     <set>
+    <if test="note != null">
+      note = #{note,jdbcType=VARCHAR},
+    </if>
+  </set>
+  where device_id = #{deviceId,jdbcType=VARCHAR}
+  </update>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 

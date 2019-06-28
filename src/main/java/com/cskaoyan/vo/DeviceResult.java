@@ -7,6 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 自定义响应结构
+ * 100：添加失败
+ * 101：修改失败
+ * 102：删除失败
  * * 200：表示成功
  * * 500：表示错误，错误信息在msg字段中
  * * 501：bean验证错误，不管多少个错误都以map形式返回
