@@ -69,4 +69,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         Vo<EmployeeResponse> employeeResponseVo = new Vo<>(pageInfo.getTotal(), pageInfo.getList());
         return employeeResponseVo;
     }
+
+    @Override
+    public EmployeeResponse selectByPrimaryKey(String empId) {
+        return employeeMapper.selectByPrimaryKey(empId);
+    }
 }
