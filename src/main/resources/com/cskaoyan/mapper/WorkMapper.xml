@@ -154,4 +154,14 @@
       rating = #{rating,jdbcType=INTEGER}
     where work_id = #{workId,jdbcType=VARCHAR}
   </update>
+
+  <select id="getWork" resultMap="BaseResultMap1">
+    select
+    *
+    from work w
+    LEFT JOIN product p on p.product_id =w.product_id
+    LEFT JOIN process  on process.process_id = w.process_id
+    LEFT JOIN device d on d.device_id =w.device_id  order by w.work_id
+    where w.work_id = #{wid}
+  </select>
 </mapper>

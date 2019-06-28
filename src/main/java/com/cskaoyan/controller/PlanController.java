@@ -124,6 +124,19 @@ public class PlanController {
         return workPage;
     }
 
+    @RequestMapping("work/get/{wid}")
+    @ResponseBody
+    public Work getWork(@PathVariable("wid") String wid){
+        Work work = workService.getWork(wid);
+        return work;
+    }
+
+    @RequestMapping("work/get_data")
+    @ResponseBody
+    public List<Work> findAllWork(){
+        return workService.findAllWork();
+    }
+
     @RequestMapping("process/get/{process_id}")
     @ResponseBody
     public Process process(@PathVariable("process_id")String process_id) {

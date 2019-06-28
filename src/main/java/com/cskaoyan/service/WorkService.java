@@ -9,4 +9,7 @@ public interface WorkService {
     List<Work> selectWorkList();
     Vo<Work> findWorkPage(int pag, int rows);
 
+    Work getWork(String wid);
+
+    List<Work> findAllWork();
 }
