@@ -15,6 +15,8 @@ public interface WorkMapper {
 
     List<Work> selectWorkList();
 
+    Work selectWork(String workId);
+
     int updateByPrimaryKeySelective(Work record);
 
     int updateByPrimaryKey(Work record);

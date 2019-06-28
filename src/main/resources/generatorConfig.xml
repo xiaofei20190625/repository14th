@@ -75,8 +75,7 @@
         <!-- 指定数据库表 -->
 
             <!-- 指定所有数据库表 -->
-
-            <table tableName="device"
+            <!--<table tableName="task"
                    enableCountByExample="false"
                    enableUpdateByExample="false"
                    enableDeleteByExample="false"
@@ -85,8 +84,8 @@
                    enableDeleteByPrimaryKey="true"
                    enableSelectByPrimaryKey="true"
                    selectByExampleQueryId="false"
-                   domainObjectName="Device"
-            ></table>
+                   domainObjectName="Task"
+            ></table>-->
 
     </context>
 </generatorConfiguration>

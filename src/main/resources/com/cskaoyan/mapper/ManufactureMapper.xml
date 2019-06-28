@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.ManufactureMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Manufacture">
+    <id column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    manufacture_sn, order_id, technology_id, launch_quantity, begin_date, end_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manufacture
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </select>
+
+
+
+
+  <!--一对多左连接查找-->
+  <resultMap id="manufactureMap1" type="com.cskaoyan.bean.Manufacture">
+
+    <result column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn"/>
+    <result column="launch_quantity" jdbcType="VARCHAR" property="launchQuantity"/>
+    <result column="begin_date" jdbcType="VARCHAR" property="beginDate"/>
+    <result column="end_date" jdbcType="VARCHAR" property="endDate"/>
+
+    <association property="cOrder" javaType="com.cskaoyan.bean.COrder">
+      <result column="order_id" jdbcType="VARCHAR" property="orderId"/>
+      <result column="order_date" jdbcType="VARCHAR" property="orderDate"/>
+      <result column="request_date" jdbcType="VARCHAR" property="requestDate"/>
+      <result column="note" jdbcType="VARCHAR" property="note"/>
+      <result column="quantity" jdbcType="VARCHAR" property="quantity"/>
+      <result column="unit_price" jdbcType="VARCHAR" property="unitPrice"/>
+      <result column="unit" jdbcType="VARCHAR" property="unit"/>
+      <result column="image" jdbcType="VARCHAR" property="image"/>
+      <result column="file" jdbcType="VARCHAR" property="file"/>
+      <result column="status" jdbcType="VARCHAR" property="status"/>
+    </association>
+
+    <association property="technology" javaType="com.cskaoyan.bean.Technology">
+      <result column="technology_id" jdbcType="VARCHAR" property="technologyId"/>
+      <result column="technology_name" jdbcType="VARCHAR" property="technologyName"/>
+      <result column="price" jdbcType="VARCHAR" property="price"/>
+      <result column="vital_process_period" jdbcType="VARCHAR" property="vitalProcessPeriod"/>
+      <result column="standard_capacity" jdbcType="VARCHAR" property="standardCapacity"/>
+      <result column="overtime_standard_capacity" jdbcType="VARCHAR" property="overtimeStandardCapacity"/>
+      <result column="overtime_overfulfil_capacity" jdbcType="VARCHAR" property="overtimeOverfulfilCapacity"/>
+      <result column="double_capacity" jdbcType="VARCHAR" property="doubleCapacity"/>
+      <result column="overfulfil_capacity" jdbcType="VARCHAR" property="overfulfilCapacity"/>
+    </association>
+  </resultMap>
+
+
+  <select id="selectManufactureList" resultMap="manufactureMap1">
+    select
+    *
+    from manufacture m
+    LEFT JOIN c_order c on c.order_id=m.order_id
+    LEFT JOIN technology t on t.technology_id=m.technology_id  order by m.manufacture_sn
+  </select>
+
+
+  <select id="selectManufacture"  parameterType="java.lang.String" resultMap="manufactureMap1">
+    select
+    *
+    from manufacture m
+    LEFT JOIN c_order c on c.order_id=m.order_id
+    LEFT JOIN technology t on t.technology_id=m.technology_id
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from manufacture
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cskaoyan.bean.Manufacture">
+    insert into manufacture (manufacture_sn, order_id, technology_id, 
+      launch_quantity, begin_date, end_date
+      )
+    values (#{manufactureSn,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{technologyId,jdbcType=VARCHAR}, 
+      #{launchQuantity,jdbcType=INTEGER}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.Manufacture">
+    insert into manufacture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="manufactureSn != null">
+        manufacture_sn,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="technologyId != null">
+        technology_id,
+      </if>
+      <if test="launchQuantity != null">
+        launch_quantity,
+      </if>
+      <if test="beginDate != null">
+        begin_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="manufactureSn != null">
+        #{manufactureSn,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="technologyId != null">
+        #{technologyId,jdbcType=VARCHAR},
+      </if>
+      <if test="launchQuantity != null">
+        #{launchQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Manufacture">
+    update manufacture
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="technologyId != null">
+        technology_id = #{technologyId,jdbcType=VARCHAR},
+      </if>
+      <if test="launchQuantity != null">
+        launch_quantity = #{launchQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beginDate != null">
+        begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Manufacture">
+    update manufacture
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      technology_id = #{technologyId,jdbcType=VARCHAR},
+      launch_quantity = #{launchQuantity,jdbcType=INTEGER},
+      begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP}
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </update>
+</mapper>

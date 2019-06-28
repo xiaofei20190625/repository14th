@@ -8,5 +8,5 @@ import java.util.List;
 public interface WorkService {
     List<Work> selectWorkList();
     Vo<Work> findWorkPage(int pag, int rows);
-
+    Work selectWork(String workId);
 }

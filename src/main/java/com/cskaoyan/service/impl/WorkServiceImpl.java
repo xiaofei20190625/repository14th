@@ -30,5 +30,10 @@ public class WorkServiceImpl implements WorkService {
         return workVo;
     }
 
+    @Override
+    public Work selectWork(String workId) {
+        return workMapper.selectWork(workId);
+    }
+
 
 }
