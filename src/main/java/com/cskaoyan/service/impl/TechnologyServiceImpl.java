@@ -26,13 +26,6 @@ public class TechnologyServiceImpl implements TechnologyService {
     @Autowired
     TechnologyMapper technologyMapper;
 
-    @Autowired
-    TechnologyPlanMapper technologyPlanMapper;
-    @Autowired
-    ProcessMapper processMapper;
-
-    //==================================================================================================
-    //---------------工艺管理---------------
     @Override
     public Vo<Technology> findTechnology(int page, int rows) {
         PageHelper.startPage(page, rows);
@@ -50,6 +43,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     public Technology getTechnology(int tid) {
         return technologyMapper.getTechnology(tid);
     }
+
     @Override
     public int insertTechnology(Technology technology) {
         int insert = technologyMapper.insert(technology);
@@ -71,7 +65,6 @@ public class TechnologyServiceImpl implements TechnologyService {
         Vo<Technology> technologyList = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
         return technologyList;
     }
-
     @Override
     public Vo<Technology> searchTechnologyByName(String searchValue, int page, int rows) {
         PageHelper.startPage(page, rows);
@@ -80,17 +73,6 @@ public class TechnologyServiceImpl implements TechnologyService {
         Vo<Technology> technologyList = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
         return technologyList;
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

@@ -38,5 +38,38 @@ public class ProcessServiceImpl implements ProcessService {
         return process;
     }
 
+    @Override
+    public int insertProcess(Process process) {
+        return processMapper.insert(process);
+    }
+
+    @Override
+    public int updateProcess(Process process) {
+        return processMapper.updateByPrimaryKeySelective(process);
+    }
+
+    @Override
+    public int deleteProcessList(String[] ids) {
+        return processMapper.deleteProcessList(ids);
+    }
+
+    @Override
+    public Vo<Process> searchProcessByProcessId(String searchValue, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<Process> processes = processMapper.searchProcessByProcessId(searchValue);
+        PageInfo<Process> pageInfo = new PageInfo<>(processes);
+        Vo<Process> processVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
+        return processVo;
+    }
+
+    @Override
+    public Vo<Process> searchProcessByTechnologyPlanId(String searchValue, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<Process> processes = processMapper.searchProcessByTechnologyPlanId(searchValue);
+        PageInfo<Process> pageInfo = new PageInfo<>(processes);
+        Vo<Process> processVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
+        return processVo;
+    }
+
 }
 

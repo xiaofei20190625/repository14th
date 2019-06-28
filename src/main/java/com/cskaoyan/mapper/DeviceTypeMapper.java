@@ -8,7 +8,7 @@ import java.util.List;
 public interface DeviceTypeMapper {
     int deleteByPrimaryKey(String deviceTypeId);
 
-    int insert(DeviceType record);
+    int insertDeviceType(DeviceType record);
 
     int insertSelective(DeviceType record);
 
@@ -21,4 +21,10 @@ public interface DeviceTypeMapper {
     List<DeviceType> getData();
 
     List<Device> getList(DeviceType deviceType);
+
+    int deleteBatch(String[] deviceTypeIds);
+
+    List<Device> searchDeviceTypeByDeviceTypeId(String deviceTypeId);
+
+    List<Device> searchDeviceTypeByDeviceTypeName(String deviceTypeName);
 }

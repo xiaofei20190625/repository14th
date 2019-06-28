@@ -20,18 +20,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DeviceTypeController {
 	@Autowired
 	 DeviceTypeService deviceTypeService;
-	
+
+	//刷新
 	@RequestMapping("/list")
 	@ResponseBody
 	public Vo getListType(Integer page, Integer rows, DeviceType deviceType) {
 		Vo result = deviceTypeService.getList(page, rows, deviceType);
 		return result;
 	}
-	
-	@RequestMapping("/get/{orderId}")
+
+	//根据种类号获取全部信息
+	@RequestMapping("/get/{deviceTypeId}")
 	@ResponseBody
-	public DeviceType getItemById(@PathVariable String orderId) {
-		DeviceType device = deviceTypeService.get(orderId);
+	public DeviceType getItemById(@PathVariable String deviceTypeId) {
+		DeviceType device = deviceTypeService.getDeviceTypeId(deviceTypeId);
 		return device;
 	}
 	
@@ -42,17 +44,26 @@ public class DeviceTypeController {
 		List<DeviceType> list = deviceTypeService.getData();
 		return list;
 	}
-	
+
+	//添加
 	@RequestMapping("/add")
-	public String add() {
+	public String add()  {
 		return "deviceType_add";
 	}
-	
+	@RequestMapping("/add_judge")
+	@ResponseBody
+	public void addJudge(){}
+
+	//编辑
+	@RequestMapping("edit_judge")
+	@ResponseBody
+	public void editJudge(){}
 	@RequestMapping("/edit")
 	public String edit() {
 		return "deviceType_edit";
 	}
-	 
+
+	//新增设备种类
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	@ResponseBody
 	private DeviceResult insert(@Valid DeviceType deviceType, BindingResult bindingResult)  {
@@ -61,7 +72,7 @@ public class DeviceTypeController {
 			FieldError fieldError = bindingResult.getFieldError();
 			return DeviceResult.build(100, fieldError.getDefaultMessage());
 		}
-		if(deviceTypeService.get(deviceType.getDeviceTypeId()) != null){
+		if(deviceTypeService.getDeviceTypeId(deviceType.getDeviceTypeId()) != null){
 			result = new DeviceResult(0, "该设备种类编号已经存在，请更换设备种类编号！", null);
 		}else{
 			result = deviceTypeService.insert(deviceType);
@@ -69,13 +80,15 @@ public class DeviceTypeController {
 		return result;
 	}
 
+	//删除所选
 	@RequestMapping(value="/delete_batch")
 	@ResponseBody
 	private DeviceResult deleteBatch(String[] ids)  {
 		DeviceResult result = deviceTypeService.deleteBatch(ids);
 		return result;
 	}
-	
+
+	//修改设备详细（种类传入）
 	@RequestMapping(value="/update")
 	@ResponseBody
 	private DeviceResult update(@Valid DeviceType deviceType, BindingResult bindingResult)  {
@@ -85,7 +98,8 @@ public class DeviceTypeController {
 		}
 		return deviceTypeService.update(deviceType);
 	}
-	
+
+	//修改设备详细(台账传入)
 	@RequestMapping(value="/update_all")
 	@ResponseBody
 	private DeviceResult updateAll(@Valid DeviceType deviceType, BindingResult bindingResult)  {

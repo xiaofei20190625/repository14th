@@ -62,5 +62,23 @@ public class PersonTest {
         System.out.println(delete);
     }
 
+    @Test
+    public void mytest7() {
+        Vo<EmployeeResponse> employeeResponseVo = employeeService.fuzzyQueryByEmployeeId("%" + "1" + "%", 1, 5);
+        System.out.println(employeeResponseVo);
+    }
+
+    @Test
+    public void mytest8() {
+        Vo<EmployeeResponse> employeeResponseVo = employeeService.fuzzyQueryByEmployeeName("%" + "刘" + "%", 1, 5);
+        System.out.println(employeeResponseVo);
+    }
+
+    @Test
+    public void mytest9() {
+        Vo<EmployeeResponse> employeeResponseVo = employeeService.fuzzyQueryByDepartmentName("%" + "人" + "%", 1, 5);
+        System.out.println(employeeResponseVo);
+    }
+
 
 }

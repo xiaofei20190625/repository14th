@@ -84,4 +84,19 @@
   <select id="findProcess" resultMap="BaseResultMap">
     select process_id,technology_plan_id,sequence,quota from process
   </select>
+
+  <delete id="deleteProcessList">
+    delete from process where process_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="searchProcessByProcessId" resultMap="BaseResultMap">
+    select process_id,technology_plan_id,sequence,quota from process where process_id like "%"#{searchValue}"%"
+  </select>
+
+  <select id="searchProcessByTechnologyPlanId" resultMap="BaseResultMap">
+    select process_id,technology_plan_id,sequence,quota from process where technology_plan_id like "%"#{searchValue}"%"
+  </select>
 </mapper>

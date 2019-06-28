@@ -35,8 +35,9 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     }
 
     @Override
-    public DeviceType get(String string)  {
-        return null;
+    public DeviceType getDeviceTypeId(String deviceTypeId)  {
+        DeviceType deviceType = deviceTypeMapper.selectByPrimaryKey(deviceTypeId);
+        return deviceType;
     }
 
     @Override
@@ -47,31 +48,64 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
 
     @Override
     public DeviceResult insert(DeviceType deviceType)  {
-        return null;
+        int i =  deviceTypeMapper.insertDeviceType(deviceType);
+        if(i>0){
+            return  DeviceResult.ok();
+        }else {
+            return  DeviceResult.build(100, "添加设备失败");
+        }
     }
 
     @Override
     public DeviceResult deleteBatch(String[] deviceTypeIds)  {
-        return null;
+        int i = deviceTypeMapper.deleteBatch(deviceTypeIds);
+        if(i>0){
+            return  DeviceResult.ok();
+        }else {
+            return  DeviceResult.build(102, "删除设备失败");
+        }
     }
 
     @Override
     public DeviceResult update(DeviceType deviceType)  {
-        return null;
+        int i = deviceTypeMapper.updateByPrimaryKey(deviceType);
+        if(i>0){
+            return DeviceResult.ok();
+        }else{
+            return DeviceResult.build(101, "种类：修改设备信息失败");
+        }
     }
 
     @Override
     public DeviceResult updateAll(DeviceType deviceType)  {
-        return null;
+        int i = deviceTypeMapper.updateByPrimaryKey(deviceType);
+        if(i>0){
+            return DeviceResult.ok();
+        }else{
+            return DeviceResult.build(101, "台账：修改设备信息失败");
+        }
     }
 
     @Override
     public Vo searchDeviceTypeByDeviceTypeId(Integer page, Integer rows, String deviceTypeId)  {
-        return null;
+        PageHelper.startPage(page, rows);
+        List<Device> list = deviceTypeMapper.searchDeviceTypeByDeviceTypeId(deviceTypeId);
+        Vo result = new Vo();
+        result.setRows(list);
+        PageInfo<Device> pageInfo = new PageInfo<>(list);
+        result.setTotal(pageInfo.getTotal());
+        return result;
     }
 
     @Override
     public Vo searchDeviceTypeByDeviceTypeName(Integer page, Integer rows, String deviceTypeName)  {
-        return null;
+
+        PageHelper.startPage(page, rows);
+        List<Device> list = deviceTypeMapper.searchDeviceTypeByDeviceTypeName(deviceTypeName);
+        Vo result = new Vo();
+        result.setRows(list);
+        PageInfo<Device> pageInfo = new PageInfo<>(list);
+        result.setTotal(pageInfo.getTotal());
+        return result;
     }
 }

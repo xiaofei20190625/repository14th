@@ -1,4 +1,3 @@
-
 package com.cskaoyan.service.impl;
 
 import java.util.List;
@@ -43,7 +42,7 @@ public class DeviceServiceImpl implements  DeviceService  {
 
 	
 	@Override
-	public Device get(String id)  {
+	public Device getDeviceId(String id)  {
 		return deviceMapper.selectByPrimaryKey(id);
 	}
 	
@@ -53,7 +52,7 @@ public class DeviceServiceImpl implements  DeviceService  {
 		if(i>=0){
 			return DeviceResult.ok();
 		}else{
-			return DeviceResult.build(101, "新增设备信息失败");
+			return DeviceResult.build(101, "添加设备失败");
 		}
 	}
 
@@ -69,14 +68,11 @@ public class DeviceServiceImpl implements  DeviceService  {
 
 	@Override
 	public DeviceResult update(Device device)  {
-		System.out.println("device update service");
-		System.out.println(device.getNote());
-		//System.out.println(JsonUtils.objectToJson(device));
 		int i = deviceMapper.updateByPrimaryKeySelective(device);
 		if(i>=0){
 			return DeviceResult.ok();
 		}else{
-			return DeviceResult.build(101, "修改设备信息失败");
+			return DeviceResult.build(102, "修改设备信息失败");
 		}
 	}
 
@@ -86,7 +82,7 @@ public class DeviceServiceImpl implements  DeviceService  {
 		if(i>0){
 			return DeviceResult.ok();
 		}else{
-			return DeviceResult.build(101, "修改设备备注失败");
+			return DeviceResult.build(102, "修改设备备注失败");
 		}
 	}
 	
@@ -96,7 +92,7 @@ public class DeviceServiceImpl implements  DeviceService  {
 		if(i>0){
 			return DeviceResult.ok();
 		}else{
-			return DeviceResult.build(101, "修改设备信息失败");
+			return DeviceResult.build(102, "修改设备信息失败");
 		}
 	}
 

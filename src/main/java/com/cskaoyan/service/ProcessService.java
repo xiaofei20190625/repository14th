@@ -11,5 +11,15 @@ import com.cskaoyan.vo.Vo;
 public interface ProcessService {
     Vo<Process> findProcess(int page, int rows);
     Process selectByPrimaryKey(String processId);
+
+    int insertProcess(Process process);
+
+    int updateProcess(Process process);
+
+    int deleteProcessList(String[] ids);
+
+    Vo<Process> searchProcessByProcessId(String searchValue, int page, int rows);
+
+    Vo<Process> searchProcessByTechnologyPlanId(String searchValue, int page, int rows);
 }
 

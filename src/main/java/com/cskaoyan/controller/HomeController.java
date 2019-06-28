@@ -17,9 +17,11 @@ public class HomeController {
     @RequestMapping("home")
     public String goToHome(HttpSession session) {
         List<String> sysPermissionList = new ArrayList<>();
+        //部门
         sysPermissionList.add("department:add");
         sysPermissionList.add("department:edit");
         sysPermissionList.add("department:delete");
+
         /**
          * 计划进度
          */
@@ -50,6 +52,14 @@ public class HomeController {
         /**
          * 工艺
          */
+
+        //质量监控
+        sysPermissionList.add("unqualify:add");
+        sysPermissionList.add("unqualify:edit");
+        sysPermissionList.add("unqualify:delete");
+
+
+
         //工艺模块：
         sysPermissionList.add("technology:add");
         sysPermissionList.add("technology:edit");
@@ -66,6 +76,18 @@ public class HomeController {
         sysPermissionList.add("process:add");
         sysPermissionList.add("process:edit");
         sysPermissionList.add("process:delete");
+        //物料模块
+        sysPermissionList.add("material:add");
+        sysPermissionList.add("material:edit");
+        sysPermissionList.add("material:delete");
+        //物料收入
+        sysPermissionList.add("materialReceive:add");
+        sysPermissionList.add("materialReceive:edit");
+        sysPermissionList.add("materialReceive:delete");
+        //物料消耗
+        sysPermissionList.add("materialConsume:add");
+        sysPermissionList.add("materialConsume:edit");
+        sysPermissionList.add("materialConsume:delete");
 
         sysPermissionList.add("employee:add");
         sysPermissionList.add("employee:edit");

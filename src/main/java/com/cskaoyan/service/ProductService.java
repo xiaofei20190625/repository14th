@@ -9,4 +9,7 @@ public interface ProductService {
     Product selectByPrimaryKey(String productId);
     List<Product> selectProductList();
     Vo<Product> findProductPage(int page, int rows);
+
+    List<Product> selectProductList();
+
 }

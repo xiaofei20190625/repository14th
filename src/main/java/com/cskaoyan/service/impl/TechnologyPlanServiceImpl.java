@@ -22,9 +22,7 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
 
     @Override
     public Vo<TechnologyPlan> findTechnologyPlan(int page, int rows) {
-        //开启分页
         PageHelper.startPage(page, rows);
-        //查询technologyRequirement
         List<TechnologyPlan> technologyPlans = technologyPlanMapper.findTechnologyPlan();
         PageInfo<TechnologyPlan> pageInfo = new PageInfo<>(technologyPlans);
         Vo<TechnologyPlan> technologyPlanVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
@@ -33,5 +31,42 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
     @Override
     public TechnologyPlan getTechnologyPlan(int planid) {
         return technologyPlanMapper.getTechnologyPlan(planid);
+    }
+    @Override
+    public int insertTechnologyPlan(TechnologyPlan technologyPlan) {
+        return technologyPlanMapper.insert(technologyPlan);
+    }
+
+    @Override
+    public int updateTechnologyPlan(TechnologyPlan technologyPlan) {
+        return technologyPlanMapper.updateByPrimaryKeySelective(technologyPlan);
+    }
+
+    @Override
+    public int deleteTechnologyPlanList(String[] ids) {
+        return technologyPlanMapper.deleteTechnologyPlanList(ids);
+    }
+
+    @Override
+    public Vo<TechnologyPlan> searchTechnologyPlanByTechnologyPlanId(String searchValue, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<TechnologyPlan> technologyPlans = technologyPlanMapper.searchTechnologyPlanByTechnologyPlanId(searchValue);
+        PageInfo<TechnologyPlan> pageInfo = new PageInfo<>(technologyPlans);
+        Vo<TechnologyPlan> technologyPlanVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
+        return technologyPlanVo;
+    }
+
+    @Override
+    public Vo<TechnologyPlan> searchTechnologyPlanByTechnologyName(String searchValue, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<TechnologyPlan> technologyPlans = technologyPlanMapper.searchTechnologyPlanByTechnologyName(searchValue);
+        PageInfo<TechnologyPlan> pageInfo = new PageInfo<>(technologyPlans);
+        Vo<TechnologyPlan> technologyPlanVo = new Vo<>(pageInfo.getTotal(),pageInfo.getList());
+        return technologyPlanVo;
+    }
+
+    @Override
+    public List<TechnologyPlan> findAllTechnologyPlan() {
+        return technologyPlanMapper.findTechnologyPlan();
     }
 }
