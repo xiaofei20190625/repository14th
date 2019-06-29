@@ -315,13 +315,13 @@ public class PlanController {
         return workPage;
     }
 
-    /*@RequestMapping("process/get/{process_id}")
-    @RequestMapping("work/get/{wid}")
+//    @RequestMapping("process/get/{process_id}")
+    /*@RequestMapping("work/get/{wid}")
     @ResponseBody
     public Work getWork(@PathVariable("wid") String wid){
         Work work = workService.getWork(wid);
         return work;
-    }
+    }*/
 
     @RequestMapping("work/get_data")
     @ResponseBody
@@ -336,14 +336,14 @@ public class PlanController {
         return work;
     }
 
-    @RequestMapping("process/get/{process_id}")
+    /*@RequestMapping("process/get/{process_id}")
     @ResponseBody
     public Process process(@PathVariable("process_id")String process_id) {
         Process process = processService.selectByPrimaryKey(process_id);
         return process;
-    }*/
+    }
 
-  /*  @RequestMapping("deviceList/get/{device_id}")
+    @RequestMapping("deviceList/get/{device_id}")
     @ResponseBody
     public Device device(@PathVariable("device_id")String device_id) {
         Device device = deviceService.selectByPrimaryKey(device_id);
