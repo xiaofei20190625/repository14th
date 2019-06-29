@@ -17,7 +17,7 @@ public interface DeviceCheckMapper {
 
     int updateByPrimaryKey(DeviceCheck record);
 
-    List<DeviceCheck> find(DeviceCheck deviceCheck);
+    List<DeviceCheck> getList(DeviceCheck deviceCheck);
 
     int deleteBatch(String[] deviceCheckIds);
 
@@ -26,4 +26,6 @@ public interface DeviceCheckMapper {
     List<DeviceCheck> searchDeviceCheckByDeviceName(String deviceName);
 
     int updateNote(DeviceCheck deviceCheck);
+
+    int insertDeviceCheck(DeviceCheck deviceCheck);
 }

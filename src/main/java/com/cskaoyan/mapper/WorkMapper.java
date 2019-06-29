@@ -1,6 +1,7 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Work;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface WorkMapper {
     int updateByPrimaryKeySelective(Work record);
 
     int updateByPrimaryKey(Work record);
+
+    Work getWork(@Param("wid")String wid);
 }

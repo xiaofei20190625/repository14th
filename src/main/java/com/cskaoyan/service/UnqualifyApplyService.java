@@ -13,5 +13,8 @@ public interface UnqualifyApplyService {
 
     int deleteByIds(String[] ids);
 
+    Vo<UnqualifyApply> fuzzyQueryUnqualifyById(String unqualifyApplyId, int page, int rows);
+
+    Vo<UnqualifyApply> fuzzyQueryUnqualifyByProductName(String searchValue, int page, int rows);
 
 }

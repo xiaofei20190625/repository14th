@@ -10,27 +10,27 @@ import java.util.List;
 
 public interface DeviceFaultService {
 
-	Vo getList(int page, int rows, DeviceFault deviceFault) throws Exception;
+	Vo getList(int page, int rows, DeviceFault deviceFault) ;
 	
-	DeviceFault get(String string) throws Exception;
+	DeviceFault get(String string) ;
 	
-	List<DeviceFault> find() throws Exception;
+	List<DeviceFault> find() ;
 
-	DeviceResult insert(DeviceFault deviceFault) throws Exception;
+	DeviceResult insert(DeviceFault deviceFault) ;
 	
-	DeviceResult delete(String deviceFaultId) throws Exception;
+	DeviceResult delete(String deviceFaultId) ;
 	
-	DeviceResult deleteBatch(String[] deviceFaultIds) throws Exception;
+	DeviceResult deleteBatch(String[] deviceFaultIds) ;
 
-    DeviceResult update(DeviceFault deviceFault) throws Exception;
+    DeviceResult update(DeviceFault deviceFault) ;
 
-	DeviceResult updateNote(DeviceFault deviceFault) throws Exception;
+	DeviceResult updateNote(DeviceFault deviceFault) ;
 
-	DeviceResult updateAll(DeviceFault deviceFault) throws Exception;
+	DeviceResult updateAll(DeviceFault deviceFault) ;
 
 	Vo searchDeviceFaultByDeviceFaultId(Integer page,
-			Integer rows, String deviceFaultId) throws Exception;
+			Integer rows, String deviceFaultId) ;
 
 	Vo searchDeviceFaultByDeviceName(Integer page, Integer rows,
-			String deviceName) throws Exception;
+			String deviceName) ;
 }

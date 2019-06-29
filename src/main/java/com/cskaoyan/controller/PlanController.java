@@ -31,6 +31,7 @@ import java.util.List;
 
 
 @Controller
+
 public class PlanController {
     @Autowired
     COrderService cOrderService;
@@ -55,6 +56,7 @@ public class PlanController {
 
 
 
+
     @RequestMapping("order/list")
     @ResponseBody
     public Vo<COrder> cOrderList(int page , int rows) {
@@ -72,6 +74,12 @@ public class PlanController {
     public COrder order(@PathVariable("order_id")String order_id) {
         COrder cOrder = cOrderService.selectByPrimaryKey(order_id);
         return cOrder;
+    }
+    //回显COrderList数据
+    @RequestMapping("order/get_data")
+    @ResponseBody
+    public List<COrder> order() {
+        return cOrderService.selectCOrderlist();
     }
 
     @RequestMapping("order/add")
@@ -267,12 +275,12 @@ public class PlanController {
         return customs;
     }
 
-    @RequestMapping("product/get_data")
+    /*@RequestMapping("product/get_data")
     @ResponseBody
     public List<Product> productGet_data() {
         List<Product> products = productService.selectProductList();
         return products;
-    }
+    }*/
 
 
     @RequestMapping("custom/get/{custom_id}")
@@ -282,13 +290,13 @@ public class PlanController {
         return custom;
     }
 
-    @RequestMapping("product/get/{product_id}")
+    /*@RequestMapping("product/get/{product_id}")
     @ResponseBody
     public Product product(@PathVariable("product_id")String product_id) {
 
         Product product = productService.selectByPrimaryKey(product_id);
         return product;
-    }
+    }*/
 
 
     @RequestMapping("custom/find")
@@ -336,6 +344,20 @@ public class PlanController {
         return workPage;
     }
 
+//    @RequestMapping("process/get/{process_id}")
+    /*@RequestMapping("work/get/{wid}")
+    @ResponseBody
+    public Work getWork(@PathVariable("wid") String wid){
+        Work work = workService.getWork(wid);
+        return work;
+    }*/
+
+    @RequestMapping("work/get_data")
+    @ResponseBody
+    public List<Work> findAllWork(){
+        return workService.findAllWork();
+    }
+
     @RequestMapping("work/get/{work_id}")
     @ResponseBody
     public Work work(@PathVariable("work_id")String work_id) {
@@ -343,14 +365,14 @@ public class PlanController {
         return work;
     }
 
-    @RequestMapping("process/get/{process_id}")
+    /*@RequestMapping("process/get/{process_id}")
     @ResponseBody
     public Process process(@PathVariable("process_id")String process_id) {
         Process process = processService.selectByPrimaryKey(process_id);
         return process;
     }
 
-  /*  @RequestMapping("deviceList/get/{device_id}")
+    @RequestMapping("deviceList/get/{device_id}")
     @ResponseBody
     public Device device(@PathVariable("device_id")String device_id) {
         Device device = deviceService.selectByPrimaryKey(device_id);

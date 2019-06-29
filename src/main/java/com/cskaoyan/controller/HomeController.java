@@ -58,6 +58,12 @@ public class HomeController {
         sysPermissionList.add("unqualify:edit");
         sysPermissionList.add("unqualify:delete");
 
+        //成品计量质检
+        sysPermissionList.add("fMeasureCheck:add");
+        sysPermissionList.add("fMeasureCheck:edit");
+        sysPermissionList.add("fMeasureCheck:delete");
+
+
 
 
         //工艺模块：

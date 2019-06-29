@@ -28,6 +28,28 @@
     LEFT JOIN employee emp on emp.emp_id=u.emp_id
   </select>
 
+  <!--根据id模糊查询-->
+  <select id="fuzzyQueryUnqualifyById" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from unqualify_apply u
+    LEFT JOIN product p on p.product_id=u.product_id
+    LEFT JOIN employee emp on emp.emp_id=u.emp_id
+    where u.unqualify_apply_id like #{unqualifyApplyId}
+  </select>
+
+  <!--根据product的name模糊查询-->
+  <select id="fuzzyQueryUnqualifyByProductName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from unqualify_apply u
+    LEFT JOIN product p on p.product_id=u.product_id
+    LEFT JOIN employee emp on emp.emp_id=u.emp_id
+    where p.product_name like #{pName}
+  </select>
+
+
+
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select

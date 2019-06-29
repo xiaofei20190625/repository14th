@@ -114,4 +114,10 @@ public class ProcessController {
         return processVo;
     }
 
+    @RequestMapping("process/get_data")
+    @ResponseBody
+    public List<Process> findAllProcess(){
+        return processService.findAllProcess();
+    }
+
 }

@@ -31,9 +31,16 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
+    public Work getWork(String wid) {
+        return workMapper.getWork(wid);
+    }
+
+    @Override
+    public List<Work> findAllWork() {
+        return workMapper.selectWorkList();
+    }
+
     public Work selectWork(String workId) {
         return workMapper.selectWork(workId);
     }
-
-
 }
