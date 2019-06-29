@@ -75,6 +75,12 @@ public class PlanController {
         COrder cOrder = cOrderService.selectByPrimaryKey(order_id);
         return cOrder;
     }
+    //回显COrderList数据
+    @RequestMapping("order/get_data")
+    @ResponseBody
+    public List<COrder> order() {
+        return cOrderService.selectCOrderlist();
+    }
 
 
     @RequestMapping("order/add")

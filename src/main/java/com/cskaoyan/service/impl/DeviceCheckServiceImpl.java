@@ -20,10 +20,10 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
 	DeviceCheckMapper deviceCheckMapper;
 	
 	@Override
-	public Vo getList(int page, int rows, DeviceCheck deviceCheck) throws Exception {
+	public Vo getList(int page, int rows, DeviceCheck deviceCheck)  {
 		//分页处理
 		PageHelper.startPage(page, rows);
-		List<DeviceCheck> list = deviceCheckMapper.find(deviceCheck);
+		List<DeviceCheck> list = deviceCheckMapper.getList(deviceCheck);
 		//创建一个返回值对象
 		Vo result = new Vo();
 		result.setRows(list);
@@ -34,13 +34,13 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
 	}
 	
 	@Override
-	public DeviceCheck get(String id) throws Exception {
+	public DeviceCheck get(String id)  {
 		return deviceCheckMapper.selectByPrimaryKey(id);
 	}
 	
 	@Override
-	public DeviceResult insert(DeviceCheck deviceCheck) throws Exception {
-		int i = deviceCheckMapper.insert(deviceCheck);
+	public DeviceResult insertDeviceCheck(DeviceCheck deviceCheck)  {
+		int i = deviceCheckMapper.insertDeviceCheck(deviceCheck);
 		if(i>=0){
 			return DeviceResult.ok();
 		}else{
@@ -49,7 +49,7 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
 	}
 
 	@Override
-	public DeviceResult delete(String deviceCheckId) throws Exception {
+	public DeviceResult delete(String deviceCheckId)  {
 		int i = deviceCheckMapper.deleteByPrimaryKey(deviceCheckId);
 		if(i>=0){
 			return DeviceResult.ok();
@@ -59,7 +59,7 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
 	}
 
 	@Override
-	public DeviceResult deleteBatch(String[] deviceCheckIds) throws Exception {
+	public DeviceResult deleteBatch(String[] deviceCheckIds)  {
 		int i = deviceCheckMapper.deleteBatch(deviceCheckIds);
 		if(i>=0){
 			return DeviceResult.ok();
@@ -69,7 +69,7 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
 	}
 
 	@Override
-	public DeviceResult update(DeviceCheck deviceCheck) throws Exception {
+	public DeviceResult update(DeviceCheck deviceCheck)  {
 		int i = deviceCheckMapper.updateByPrimaryKeySelective(deviceCheck);
 		if(i>=0){
 			return DeviceResult.ok();
@@ -109,7 +109,7 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
 	}
 
 	@Override
-	public DeviceResult updateNote(DeviceCheck deviceCheck) throws Exception {
+	public DeviceResult updateNote(DeviceCheck deviceCheck)  {
 		int i = deviceCheckMapper.updateNote(deviceCheck);
 		if(i>0){
 			return DeviceResult.ok();

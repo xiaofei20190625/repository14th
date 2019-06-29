@@ -21,7 +21,7 @@ public interface FinalMeasuretCheckMapper {
 
     List<FinalMeasuretCheck> queryAllFinalMeasuretCheck();
 
-    List<FinalMeasuretCheck> fuzzyQueryUnqualifyById(String searchValue);
+    List<FinalMeasuretCheck> fuzzyQueryFinalMeasuretCheckById(String searchValue);
 
-    List<FinalMeasuretCheck> fuzzyQueryUnqualifyByProductName(String searchValue);
+    List<FinalMeasuretCheck> fuzzyQueryFinalMeasuretCheckByOrderId(String searchValue);
 }

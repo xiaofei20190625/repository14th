@@ -13,8 +13,8 @@ public interface FinalMeasureService {
 
     int deleteByIds(String[] ids);
 
-    Vo<FinalMeasuretCheck> fuzzyQueryUnqualifyById(String FinalMeasuretCheckId, int page, int rows);
+    Vo<FinalMeasuretCheck> fuzzyQueryFinalMeasuretCheckById(String FinalMeasuretCheckId, int page, int rows);
 
-    Vo<FinalMeasuretCheck> fuzzyQueryUnqualifyByProductName(String searchValue, int page, int rows);
+    Vo<FinalMeasuretCheck> fuzzyQueryFinalMeasuretCheckByOrderId(String searchValue, int page, int rows);
 
 }

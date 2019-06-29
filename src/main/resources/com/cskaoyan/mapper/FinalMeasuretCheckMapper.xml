@@ -31,6 +31,24 @@
     from final_measuret_check f
     LEFT JOIN employee e on f.emp_id=e.emp_id
   </select>
+  <!--根据id模糊查询-->
+  <select id="fuzzyQueryFinalMeasuretCheckById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from final_measuret_check f
+    LEFT JOIN employee e on f.emp_id=e.emp_id
+    where f.f_measure_check_id like #{id}
+  </select>
+
+  <!--根据orderId模糊查询-->
+  <select id="fuzzyQueryFinalMeasuretCheckByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from final_measuret_check f
+    LEFT JOIN employee e on f.emp_id=e.emp_id
+    where f.order_id like #{id}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from final_measuret_check
     where f_measure_check_id = #{fMeasureCheckId,jdbcType=VARCHAR}
