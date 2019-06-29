@@ -38,9 +38,5 @@ public class ProductServiceImpl implements ProductService {
         return productVo;
     }
 
-    @Override
-    public List<Product> selectProductList() {
-        return productMapper.selectProductList();
-    }
 }
 

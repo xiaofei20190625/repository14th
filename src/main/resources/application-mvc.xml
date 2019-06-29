@@ -14,17 +14,11 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-
-    <mvc:annotation-driven conversion-service="conversionService"/>
-
-    <mvc:resources mapping="image/**" location="/WEB-INF/image/"/>
-
-
     <mvc:annotation-driven conversion-service="conversionService"/>
     <mvc:resources mapping="/image/**" location="/WEB-INF/image/"/>
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
-
+    <mvc:resources mapping="/pic/**" location="/WEB-INF/pic/"/>
 
 
     <!--视图解析器-->
