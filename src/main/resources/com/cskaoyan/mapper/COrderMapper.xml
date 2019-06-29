@@ -304,7 +304,7 @@
     from c_order co
     LEFT JOIN custom c on c.custom_id = co.custom_id
     LEFT JOIN product p on p.product_id =co.product_id
-    where order_id like '%${searchValue}%' order by co.order_id
+    where c.custom_name like '%${searchValue}%' order by co.order_id
   </select>
 
   <select id="searchCOderByOrderProduct" resultMap="cOrderMap1">
@@ -312,7 +312,7 @@
     from c_order co
     LEFT JOIN custom c on c.custom_id = co.custom_id
     LEFT JOIN product p on p.product_id =co.product_id
-    where order_id like '%${searchValue}%' order by co.order_id
+    where p.product_name like '%${searchValue}%' order by co.order_id
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="cOrderMap1">
