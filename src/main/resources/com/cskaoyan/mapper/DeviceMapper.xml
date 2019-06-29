@@ -43,20 +43,6 @@
       device_keeper_id, note , emp_name as device_keeper
        </sql>
 
-  <resultMap id="OutResultMap" type="com.cskaoyan.bean.Device">
-    <id column="device_id" jdbcType="VARCHAR" property="deviceId" />
-    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
-    <result column="device_type_id" jdbcType="VARCHAR" property="deviceTypeId" />
-    <result column="device_status_id" jdbcType="VARCHAR" property="deviceStatusId" />
-    <result column="device_status" jdbcType="VARCHAR" property="deviceStatus" />
-    <result column="device_purchase_date" jdbcType="TIMESTAMP" property="devicePurchaseDate" />
-    <result column="device_purchase_price" jdbcType="DECIMAL" property="devicePurchasePrice" />
-    <result column="device_manufacture_date" jdbcType="TIMESTAMP" property="deviceManufactureDate" />
-    <result column="device_service_life" jdbcType="TIMESTAMP" property="deviceServiceLife" />
-    <result column="device_keeper_id" jdbcType="VARCHAR" property="deviceKeeperId" />
-    <result column="note" jdbcType="VARCHAR" property="note" />
-  </resultMap>
-
   <!--查找所有设备-->
   <select id="find"  resultMap="OutResultMap">
     SELECT
