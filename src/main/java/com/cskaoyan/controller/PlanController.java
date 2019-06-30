@@ -9,6 +9,7 @@ import com.cskaoyan.vo.Upload;
 import com.cskaoyan.vo.UploadDelete;
 import com.cskaoyan.vo.Vo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
@@ -68,7 +69,6 @@ public class PlanController {
         return "order_list";
     }
 
-
     @RequestMapping("order/get/{order_id}")
     @ResponseBody
     public COrder order(@PathVariable("order_id")String order_id) {
@@ -82,13 +82,11 @@ public class PlanController {
         return cOrderService.selectCOrderlist();
     }
 
-
     @RequestMapping("order/add")
     public String orderAdd() {
 
         return "order_add";
     }
-
 
     @RequestMapping("order/add_judge")
     @ResponseBody
@@ -97,12 +95,28 @@ public class PlanController {
     }
 
 
-    /*提交增加order，返回json的结果*/
+    /**
+     * 提交增加order
+     * @param cOrder 添加的数据
+     * @return 返回json的结果
+     */
     @RequestMapping("order/insert")
     @ResponseBody
     public ResponseVo submitAddOrder(COrder cOrder) {
 
         int i = cOrderService.insertSelective(cOrder);
+        ResponseVo responseVo = responseVo(i);
+        return responseVo;
+
+    }
+
+
+    /**
+     * 返回状态
+     * @param i 返回值获得对应的状态
+     * @return 封装responseVo
+     */
+    private ResponseVo responseVo(int i){
         if (i == 1) {
             ResponseVo responseVo = new ResponseVo();
             responseVo.setStatus(200);
@@ -112,53 +126,82 @@ public class PlanController {
         } else {
             return null;
         }
-
     }
 
+    /**
+     * 订单文件上传
+     * @param file 订单文件
+     * @return json Upload
+     * @throws IOException
+     */
     @RequestMapping("file/upload")
     @ResponseBody
-    public Upload fileUpload(MultipartFile file) throws IOException {
-
-        if (!file.equals(null)) {
-            String realurl = "D:\\Spring\\repository14th\\src\\main\\resources\\fileUpload\\";
-
-            File directory = new File(realurl);
-            if (!directory.exists()){
-                directory.mkdir();
-            }
-
-            String fileName = file.getOriginalFilename();
-            String fileurl =realurl + fileName;
-            file.transferTo(new File(fileurl));
-            Upload upload = new Upload();
-            upload.setError("0");
-            upload.setUrl(fileName);
-            return upload;
-        } else {
-            return null;
-        }
-
+    public Upload orderFileUpload(MultipartFile file) throws IOException {
+        String realurl = "D:\\Spring\\repository14th\\src\\main\\resources\\fileUpload\\";
+        Upload upload = cOrderService.orderFileUpload(file,realurl);
+        return upload;
     }
 
+    /**
+     * 订单文件删除
+     * @param fileName 订单文件
+     * @return success or failed
+     */
     @RequestMapping("file/delete")
     @ResponseBody
-    public UploadDelete deleteUpload(String fileName) throws IOException {
+    public UploadDelete orderDeleteUpload(String fileName) {
 
         File folder = new File("D:\\Spring\\repository14th\\src\\main\\resources\\fileUpload\\");
-        File[] files = folder.listFiles();
-        UploadDelete uploadDelete = new UploadDelete();
-        for(File file:files){
-            if(file.getName().equals(fileName)){
-                file.delete();
-                uploadDelete.setData("success");
-                return uploadDelete;
-            }
-        }
-        uploadDelete.setData("failed");
+        UploadDelete uploadDelete = cOrderService.orderDeleteUpload(fileName, folder);
         return uploadDelete;
 
     }
 
+
+    @RequestMapping("file/download")
+    @ResponseBody
+    public ResponseEntity<byte[]>  orderDownloadDownloadFile(String fileName) throws IOException {
+        File folder = new File("D:\\Spring\\repository14th\\src\\main\\resources\\fileUpload\\");
+        String regex = "/";
+        String[] strings = fileName.split(regex);
+        ResponseEntity<byte[]> responseEntity = cOrderService.orderDownloadDownloadFile(strings[strings.length-1], folder);
+        return responseEntity;
+    }
+
+    /**
+     * 图片上传
+     * @param uploadFile 上传图片文件
+     * @return 图片回显路径
+     * @throws IOException
+     */
+    @RequestMapping("pic/upload")
+    @ResponseBody
+    public Upload uploadImage(MultipartFile uploadFile,String dir) throws IOException {
+       if (dir.equals("image")){
+           String realurl = "D:\\Spring\\repository14th\\src\\main\\webapp\\WEB-INF\\pic\\";
+           Upload upload = cOrderService.orderFileUpload(uploadFile,realurl);
+           return upload;
+       }
+        return null;
+    }
+
+    /**
+     * 订单图片删除
+     * @param picName 图片name
+     * @return 是否删除成功
+     */
+    @RequestMapping("pic/delete")
+    @ResponseBody
+    public UploadDelete deleteImage(String picName) {
+
+        File folder = new File( "D:\\Spring\\repository14th\\src\\main\\webapp\\WEB-INF\\pic\\");
+        //File folder = new File( "");
+        String regex = "/";
+        String[] strings = picName.split(regex);
+        UploadDelete uploadDelete = cOrderService.orderDeleteUpload(strings[strings.length-1], folder);
+        return uploadDelete;
+
+    }
 
     /*转到编辑order的页面*/
     @RequestMapping("order/edit")
@@ -179,21 +222,14 @@ public class PlanController {
     @ResponseBody
     public ResponseVo submiteditOrder(COrder cOrder) {
         int update = cOrderService.updateByPrimaryKeySelective(cOrder);
-        if (update == 1) {
-            ResponseVo responseVo = new ResponseVo();
-            responseVo.setStatus(200);
-            responseVo.setMsg("OK");
-            responseVo.setData(null);
-            return responseVo;
-        } else {
-            return null;
-        }
+        ResponseVo responseVo = responseVo(update);
+        return responseVo;
     }
     /*根据order编号搜索order，返回json数据*/
     @RequestMapping("order/search_order_by_orderId")
     @ResponseBody
     public  Vo<COrder> search_order_by_orderId(int page , int rows,HttpServletRequest request) throws Exception{
-        String searchValue = new String((request.getParameter("searchValue")).getBytes("iso-8859-1"),"utf-8");
+        String searchValue = request.getParameter("searchValue");
         Vo<COrder> cOrderVo = cOrderService.searchCOderById(page,rows,searchValue);
         return cOrderVo;
     }
@@ -202,7 +238,7 @@ public class PlanController {
     @RequestMapping("order/search_order_by_orderCustom")
     @ResponseBody
     public  Vo<COrder> search_order_by_orderCustom(int page , int rows,HttpServletRequest request) throws Exception{
-        String searchValue = new String((request.getParameter("searchValue")).getBytes("iso-8859-1"),"utf-8");
+        String searchValue = request.getParameter("searchValue");
         Vo<COrder> cOrderVo = cOrderService.searchCOderByOrderCustom(page,rows,searchValue);
         return cOrderVo;
     }
@@ -211,7 +247,7 @@ public class PlanController {
     @RequestMapping("order/search_order_by_orderProduct")
     @ResponseBody
     public  Vo<COrder> search_order_by_orderProduct(int page , int rows,HttpServletRequest request) throws Exception{
-        String searchValue = new String((request.getParameter("searchValue")).getBytes("iso-8859-1"),"utf-8");
+        String searchValue = request.getParameter("searchValue");
         Vo<COrder> cOrderVo = cOrderService.searchCOderByOrderProduct(page,rows,searchValue);
         return cOrderVo;
     }
@@ -228,15 +264,8 @@ public class PlanController {
     @ResponseBody
     public ResponseVo doDeleteOrderById(String[] ids) {
        int delete = cOrderService.deleteByPrimaryKeys(ids);
-        if (delete > 0) {
-            ResponseVo responseVo = new ResponseVo();
-            responseVo.setStatus(200);
-            responseVo.setMsg("OK");
-            responseVo.setData(null);
-            return responseVo;
-        } else {
-            return null;
-        }
+        ResponseVo responseVo = responseVo(delete);
+        return responseVo;
     }
 
     @RequestMapping("custom/get_data")
@@ -315,13 +344,13 @@ public class PlanController {
         return workPage;
     }
 
-    /*@RequestMapping("process/get/{process_id}")
-    @RequestMapping("work/get/{wid}")
+//    @RequestMapping("process/get/{process_id}")
+    /*@RequestMapping("work/get/{wid}")
     @ResponseBody
     public Work getWork(@PathVariable("wid") String wid){
         Work work = workService.getWork(wid);
         return work;
-    }
+    }*/
 
     @RequestMapping("work/get_data")
     @ResponseBody
@@ -336,14 +365,14 @@ public class PlanController {
         return work;
     }
 
-    @RequestMapping("process/get/{process_id}")
+    /*@RequestMapping("process/get/{process_id}")
     @ResponseBody
     public Process process(@PathVariable("process_id")String process_id) {
         Process process = processService.selectByPrimaryKey(process_id);
         return process;
-    }*/
+    }
 
-  /*  @RequestMapping("deviceList/get/{device_id}")
+    @RequestMapping("deviceList/get/{device_id}")
     @ResponseBody
     public Device device(@PathVariable("device_id")String device_id) {
         Device device = deviceService.selectByPrimaryKey(device_id);

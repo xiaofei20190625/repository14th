@@ -1,22 +1,17 @@
 package com.cskaoyan.vo;
 
 public class Upload {
-    String error;
+    int error;
     String url;
 
     public Upload() {
     }
 
-    public Upload(String error, String url) {
-        this.error = error;
-        this.url = url;
-    }
-
-    public String getError() {
+    public int getError() {
         return error;
     }
 
-    public void setError(String error) {
+    public void setError(int error) {
         this.error = error;
     }
 
@@ -31,7 +26,7 @@ public class Upload {
     @Override
     public String toString() {
         return "Upload{" +
-                "error='" + error + '\'' +
+                "error=" + error +
                 ", url='" + url + '\'' +
                 '}';
     }
