@@ -24,7 +24,7 @@ public class DeviceServiceImpl implements  DeviceService  {
 	public Vo getList(int page, int rows, Device device)  {
 		//分页处理
 		PageHelper.startPage(page, rows);
-		List<Device> list = deviceMapper.find(device);
+		List<Device> list = deviceMapper.getList(device);
 		//创建一个返回值对象
 		Vo result = new Vo();
 		result.setRows(list);
@@ -62,7 +62,7 @@ public class DeviceServiceImpl implements  DeviceService  {
 		if(i>=0){
 			return DeviceResult.ok();
 		}else{
-			return null;
+			return DeviceResult.build(103,"删除失败");
 		}
 	}
 

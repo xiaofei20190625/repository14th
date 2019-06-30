@@ -2,6 +2,8 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.DeviceFault;
 
+import java.util.List;
+
 public interface DeviceFaultMapper {
     int deleteByPrimaryKey(String deviceFaultId);
 
@@ -14,4 +16,8 @@ public interface DeviceFaultMapper {
     int updateByPrimaryKeySelective(DeviceFault record);
 
     int updateByPrimaryKey(DeviceFault record);
+
+    List<DeviceFault> getData();
+
+    List<DeviceFault> getList(DeviceFault deviceFault);
 }

@@ -13,6 +13,66 @@
     device_check_id, device_id, device_check_emp_id, device_check_date, device_check_result, 
     device_check_fault_id
   </sql>
+
+  <resultMap id="Device_EmployeeResultMap" type="com.cskaoyan.bean.DeviceCheckEX" extends="BaseResultMap">
+    <result column="device_check_emp_id" property="deviceCheckEmp" jdbcType="VARCHAR" />
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <!--查找全部数据-->
+  <select id="getList" resultMap="Device_EmployeeResultMap">
+    select c.device_check_date,
+           e.emp_name,c.device_check_emp_id,c.device_check_fault_id,c.device_check_id,
+           c.device_check_result,c.device_id,d.device_name
+    from device_check c left join employee e on c.device_check_emp_id = e.emp_id
+                        left join device d on c.device_id = d.device_id
+    order by c.device_check_id asc
+  </select>
+<!--删除-->
+  <delete id="deleteBatch">
+    delete from device_check
+    where device_check_id in
+    <foreach collection="array" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <!--例检编号-->
+  <select id="searchDeviceCheckByDeviceCheckId" resultMap="Device_EmployeeResultMap">
+    select c.device_check_date,
+           e.emp_name,c.device_check_emp_id,c.device_check_fault_id,c.device_check_id,
+           c.device_check_result,c.device_id,d.device_name
+    from device_check c,
+       employee e ,
+         device d
+         where c.device_check_emp_id = e.emp_id
+         and c.device_id = d.device_id
+       AND	c.device_check_id LIKE CONCAT('%', #{device_check_id},'%' )
+      </select>
+
+  <!--设备名称-->
+<select id="searchDeviceCheckByDeviceName" resultMap="Device_EmployeeResultMap">
+  select c.device_check_date,
+         e.emp_name,c.device_check_emp_id,c.device_check_fault_id,c.device_check_id,
+         c.device_check_result,c.device_id,d.device_name
+  from device_check c,
+       employee e ,
+       device d
+  where c.device_check_emp_id = e.emp_id
+    and c.device_id = d.device_id
+    AND	d.device_name LIKE CONCAT('%', #{device_name},'%' )
+</select>
+  <!--更新日志-->
+  <update id="updateNote" parameterType="com.cskaoyan.bean.DeviceCheck">
+    update device_check
+    <set>
+      <if test="deviceCheckResult != null">
+        device_check_result = #{deviceCheckResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
+  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -23,7 +83,7 @@
     delete from device_check
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.DeviceCheck">
+  <insert id="insertDeviceCheck" parameterType="com.cskaoyan.bean.DeviceCheck">
     insert into device_check (device_check_id, device_id, device_check_emp_id, 
       device_check_date, device_check_result, device_check_fault_id
       )

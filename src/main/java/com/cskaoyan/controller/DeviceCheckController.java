@@ -23,30 +23,30 @@ public class DeviceCheckController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public Vo getListType(Integer page, Integer rows, DeviceCheck deviceCheck) throws Exception {
+    public Vo getListType(Integer page, Integer rows, DeviceCheck deviceCheck)  {
         Vo result = deviceCheckService.getList(page, rows, deviceCheck);
         return result;
     }
 
+    @RequestMapping("/add_judge")
+    @ResponseBody
+    public void addJudge(){}
     @RequestMapping("/add")
-    public String add() throws Exception {
+    public String add()  {
         return "deviceCheck_add";
     }
 
+    @RequestMapping("edit_judge")
+    @ResponseBody
+    public void editJudge(){}
     @RequestMapping("/edit")
-    public String edit() throws Exception {
+    public String edit()  {
         return "deviceCheck_edit";
     }
-
-    
-/*     *此处的method可以取两个值，
-     *一个是RequestMethod.GET，一个是RequestMethod.POST，
-     *就是请求该方法使用的模式，是get还是post，即参数提交的方法
-     *ajax或者form表单提交数据有两种方法，即get和post。*/
      
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    private DeviceResult insert(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
+    private DeviceResult insert(@Valid DeviceCheck deviceCheck, BindingResult bindingResult)  {
         DeviceResult result;
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
@@ -55,14 +55,14 @@ public class DeviceCheckController {
         if (deviceCheckService.get(deviceCheck.getDeviceCheckId()) != null) {
             result = new DeviceResult(0, "该设备例检编号已经存在，请更换设备例检编号！", null);
         } else {
-            result = deviceCheckService.insert(deviceCheck);
+            result = deviceCheckService.insertDeviceCheck(deviceCheck);
         }
         return result;
     }
 
     @RequestMapping(value = "/update")
     @ResponseBody
-    private DeviceResult update(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
+    private DeviceResult update(@Valid DeviceCheck deviceCheck, BindingResult bindingResult)  {
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
             return DeviceResult.build(100, fieldError.getDefaultMessage());
@@ -72,7 +72,7 @@ public class DeviceCheckController {
 
     @RequestMapping(value = "/update_note")
     @ResponseBody
-    private DeviceResult updateNote(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception {
+    private DeviceResult updateNote(@Valid DeviceCheck deviceCheck, BindingResult bindingResult)  {
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
             return DeviceResult.build(100, fieldError.getDefaultMessage());
@@ -80,27 +80,30 @@ public class DeviceCheckController {
         return deviceCheckService.updateNote(deviceCheck);
     }
 
+    @RequestMapping("delete_judge")
+    @ResponseBody
+    public  void deleteJudge(){}
     @RequestMapping(value = "/delete_batch")
     @ResponseBody
-    private DeviceResult deleteBatch(String[] ids) throws Exception {
+    private DeviceResult deleteBatch(String[] ids)  {
         DeviceResult result = deviceCheckService.deleteBatch(ids);
         return result;
     }
 
-    //搜索
+    //例检编号
     @RequestMapping("/search_deviceCheck_by_deviceCheckId")
     @ResponseBody
     public Vo searchDeviceCheckByDeviceCheckId(Integer page, Integer rows, String searchValue)
-            throws Exception {
+             {
         Vo result = deviceCheckService.searchDeviceCheckByDeviceCheckId(page, rows, searchValue);
         return result;
     }
 
-    //搜索
+    //设备名称
     @RequestMapping("/search_deviceCheck_by_deviceName")
     @ResponseBody
     public Vo searchDeviceCheckByDeviceName(Integer page, Integer rows, String searchValue)
-            throws Exception {
+             {
         Vo result = deviceCheckService.searchDeviceCheckByDeviceName(page, rows, searchValue);
         return result;
     }

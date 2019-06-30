@@ -41,7 +41,7 @@
   </delete>
   <!--删除所选-->
   <delete id="deleteBatch" >
-    delete from department
+    delete from device_type
     where device_type_id in
     <foreach collection="array" item="id" open="(" separator="," close=")">
       #{id}

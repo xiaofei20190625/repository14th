@@ -14,6 +14,16 @@ public class DeviceFault {
     private Date deviceFaultDate;
 
     private String deviceFaultMaintenance;
+    //新增
+    private  String deviceName;
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
 
     public String getDeviceFaultId() {
         return deviceFaultId;

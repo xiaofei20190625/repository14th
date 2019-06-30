@@ -8,23 +8,25 @@ import com.cskaoyan.vo.Vo;
 
 public interface DeviceCheckService {
 	
-	Vo getList(int page, int rows, DeviceCheck deviceCheck) throws Exception;
+	Vo getList(int page, int rows, DeviceCheck deviceCheck) ;
 	
-	DeviceCheck get(String string) throws Exception;
+	DeviceCheck get(String string) ;
 
-	DeviceResult insert(DeviceCheck deviceCheck) throws Exception;
+	DeviceResult insertDeviceCheck(DeviceCheck deviceCheck) ;
 	
-	DeviceResult delete(String deviceCheckId) throws Exception;
+	DeviceResult delete(String deviceCheckId) ;
 	
-	DeviceResult deleteBatch(String[] deviceCheckIds) throws Exception;
+	DeviceResult deleteBatch(String[] deviceCheckIds) ;
 
-    DeviceResult update(DeviceCheck deviceCheck) throws Exception;
+    DeviceResult update(DeviceCheck deviceCheck) ;
 
-    DeviceResult updateNote(DeviceCheck deviceCheck) throws Exception;
+    DeviceResult updateNote(DeviceCheck deviceCheck) ;
     
 	Vo searchDeviceCheckByDeviceCheckId(Integer page,
-			Integer rows, String deviceCheckId) throws Exception;
+			Integer rows, String deviceCheckId) ;
 
 	Vo searchDeviceCheckByDeviceName(Integer page, Integer rows,
-									 String deviceName) throws Exception;
+									 String deviceName) ;
+
+
 }
