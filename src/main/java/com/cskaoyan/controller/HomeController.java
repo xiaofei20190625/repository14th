@@ -22,6 +22,11 @@ public class HomeController {
         sysPermissionList.add("department:edit");
         sysPermissionList.add("department:delete");
 
+        //成品计数
+        //'fCountCheck:add'
+        sysPermissionList.add("fCountCheck:add");
+        sysPermissionList.add("fCountCheck:edit");
+        sysPermissionList.add("fCountCheck:delete");
         /**
          * 计划进度
          */

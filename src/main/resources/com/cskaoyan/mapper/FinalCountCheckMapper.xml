@@ -12,23 +12,60 @@
     <result column="cdate" jdbcType="TIMESTAMP" property="cdate" />
     <result column="measure_data" jdbcType="VARCHAR" property="measureData" />
     <result column="emp_id" jdbcType="VARCHAR" property="empId" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
     <result column="result" jdbcType="VARCHAR" property="result" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <sql id="Base_Column_List">
-    f_count_check_id, order_id, check_item, sample, check_number, unqualify, qualify, 
-    cdate, measure_data, emp_id, result, note
+    f.f_count_check_id, f.order_id, f.check_item, f.sample,
+    f.check_number, f.unqualify, f.qualify,
+    f.cdate, f.measure_data, f.emp_id, f.result, f.note,e.emp_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from final_count_check
-    where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
+    from final_count_check f
+    left join employee e on e.emp_id = f.emp_id
+    where f.f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
+  </select>
+  <!--查询所有-->
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from final_count_check f
+    left join employee e on e.emp_id = f.emp_id
+  </select>
+  <!--根据id模糊查询-->
+  <select id="fuzzyQueryFinalCountCheckById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from final_count_check f
+    left join employee e on e.emp_id = f.emp_id
+    where f.f_count_check_id like #{searchValue}
+  </select>
+
+  <!--根据orderId模糊查询-->
+  <select id="fuzzyQueryFinalCountCheckByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from final_count_check f
+    left join employee e on e.emp_id = f.emp_id
+    where f.order_id like #{searchValue}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from final_count_check
     where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
   </delete>
+
+  <!--根据ids删除-->
+  <delete id="deleteByIds" parameterType="java.lang.String">
+    delete from final_count_check
+    where f_count_check_id in
+    <foreach collection="array" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
   <insert id="insert" parameterType="com.cskaoyan.bean.FinalCountCheck">
     insert into final_count_check (f_count_check_id, order_id, check_item, 
       sample, check_number, unqualify, 
