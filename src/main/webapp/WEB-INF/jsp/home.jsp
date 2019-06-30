@@ -1,5 +1,5 @@
 <%@page import="org.springframework.web.context.request.SessionScope"%>
-<%--<%@page import="org.apache.shiro.session.Session"%>--%>
+<%@page import="org.apache.shiro.session.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -158,7 +158,7 @@
 		</div>
 		
 		<c:if test="${activeUser.rolename == '超级管理员' }">
-			<div title="系统管理" style="padding:10px;">
+			<div title="系统管理"  style="padding:10px;">
 	
 				<ul id="sysManager" class="easyui-tree"
 					data-options="animate:true,lines:true">

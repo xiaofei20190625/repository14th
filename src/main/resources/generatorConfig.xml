@@ -75,7 +75,7 @@
         <!-- 指定数据库表 -->
 
             <!-- 指定所有数据库表 -->
-            <!--<table tableName="task"
+            <!--<table tableName="user_role"
                    enableCountByExample="false"
                    enableUpdateByExample="false"
                    enableDeleteByExample="false"
@@ -84,8 +84,20 @@
                    enableDeleteByPrimaryKey="true"
                    enableSelectByPrimaryKey="true"
                    selectByExampleQueryId="false"
-                   domainObjectName="Task"
-            ></table>-->
+                   domainObjectName="UserRole"
+            ></table>
+        <table tableName="sys_user"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableInsert="true"
+               enableDeleteByPrimaryKey="true"
+               enableSelectByPrimaryKey="true"
+               selectByExampleQueryId="false"
+               domainObjectName="SysUser"
+        ></table>-->
+
 
     </context>
 </generatorConfiguration>

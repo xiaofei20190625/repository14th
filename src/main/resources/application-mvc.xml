@@ -41,4 +41,26 @@
         <property name="maxUploadSize" value="5242880"></property>
     </bean>
 
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <!--  <bean class="cn.lzc.interceptor.CustomInterceptor"></bean>--><!--拦截所有请求-->
+
+        <!-- <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/" /><&lt;!&ndash;配置了mapping 这个 将不再起作用&ndash;&gt;
+            <bean class="cn.lzc.interceptor.CustomInterceptor"></bean>
+        </mvc:interceptor>-->
+
+        <!--<mvc:interceptor>-->
+        <!--<mvc:mapping path="/hello" />&lt;!&ndash;配置拦截hello结尾的&ndash;&gt;-->
+        <!--<bean class="cn.lzc.interceptor.CustomInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+
+        <!--登录拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.cskaoyan.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

@@ -5,7 +5,7 @@
 * @author Roddy <luolonghao@gmail.com>
 * @website http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
-* @version 4.1.10 (2013-log4j.properties-23)
+* @version 4.1.10 (2013-11-23)
 *******************************************************************************/
 (function (window, undefined) {
 	if (window.KindEditor) {
@@ -17,7 +17,7 @@ if (!window.console) {
 if (!console.log) {
 	console.log = function () {};
 }
-var _VERSION = '4.1.10 (2013-log4j.properties-23)',
+var _VERSION = '4.1.10 (2013-11-23)',
 	_ua = navigator.userAgent.toLowerCase(),
 	_IE = _ua.indexOf('msie') > -1 && _ua.indexOf('opera') == -1,
 	_NEWIE = _ua.indexOf('msie') == -1 && _ua.indexOf('trident') > -1,
@@ -7599,7 +7599,7 @@ KindEditor.plugin('map', function(K) {
 			'function initialize() {',
 			'	var latlng = new google.maps.LatLng(31.230393, 121.473704);',
 			'	var options = {',
-			'		zoom: log4j.properties,',
+			'		zoom: 11,',
 			'		center: latlng,',
 			'		disableDefaultUI: true,',
 			'		panControl: true,',
@@ -7624,7 +7624,7 @@ KindEditor.plugin('map', function(K) {
 			'	if (!map) return;',
 			'	geocoder.geocode({address : address}, function(results, status) {',
 			'		if (status == google.maps.GeocoderStatus.OK) {',
-			'			map.setZoom(log4j.properties);',
+			'			map.setZoom(11);',
 			'			map.setCenter(results[0].geometry.location);',
 			'			var marker = new google.maps.Marker({',
 			'				map: map,',

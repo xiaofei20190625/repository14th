@@ -14,9 +14,25 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+
     @RequestMapping("home")
     public String goToHome(HttpSession session) {
         List<String> sysPermissionList = new ArrayList<>();
+
+        sysPermissionList.add("CountCheck:add" );
+        sysPermissionList.add("fCountCheck:edit");
+        sysPermissionList.add("fCountCheck:delete");
+        sysPermissionList.add("pCountCheck:add");
+        sysPermissionList.add("pCountCheck:edit");
+        sysPermissionList.add("pCountCheck:delete");
+        sysPermissionList.add("pMeasureCheck:add");
+        sysPermissionList.add("pMeasureCheck:edit");
+        sysPermissionList.add("pMeasureCheck:delete");
+        sysPermissionList.add("user:add");
+        sysPermissionList.add("user:edit");
+        sysPermissionList.add("user:delete");
+        sysPermissionList.add("role:add");
+        sysPermissionList.add("role:edit");
         //部门
         sysPermissionList.add("department:add");
         sysPermissionList.add("department:edit");
@@ -122,8 +138,9 @@ public class HomeController {
         sysPermissionList.add("deviceMaintain:edit");
         sysPermissionList.add("deviceMaintain:delete");
 
-
+        Object activeUser = session.getAttribute("activeUser");
         session.setAttribute("sysPermissionList", sysPermissionList);
+
         return "home";
     }
 

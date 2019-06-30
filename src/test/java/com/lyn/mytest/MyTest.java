@@ -30,7 +30,7 @@ public class MyTest {
 
     @Test
     public void testMD5(){
-        String password = "123456";
+        String password = "123";
         String md5 = MD5Utils.getMD5(password);
         System.out.println(md5);
     }
