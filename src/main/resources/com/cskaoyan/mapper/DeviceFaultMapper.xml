@@ -8,11 +8,36 @@
     <result column="device_fault_detail" jdbcType="VARCHAR" property="deviceFaultDetail" />
     <result column="device_fault_date" jdbcType="TIMESTAMP" property="deviceFaultDate" />
     <result column="device_fault_maintenance" jdbcType="VARCHAR" property="deviceFaultMaintenance" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName"/>
   </resultMap>
   <sql id="Base_Column_List">
     device_fault_id, device_id, device_fault_cause, device_fault_detail, device_fault_date, 
     device_fault_maintenance
   </sql>
+  <!--回显-->
+  <select id="getData" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from device_fault
+    order by device_fault_id asc
+  </select>
+  <!--查找-->
+  <select id="getList" resultMap="BaseResultMap">
+    SELECT
+      device_fault_id,
+      device_fault.device_id,
+      device_name,
+      device_fault_cause,
+      device_fault_detail,
+      device_fault_date,
+      device_fault_maintenance
+    FROM
+      device_fault,
+      device
+    WHERE
+      device_fault.device_id = device.device_id
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

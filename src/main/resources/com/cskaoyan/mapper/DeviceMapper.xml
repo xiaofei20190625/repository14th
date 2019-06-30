@@ -45,8 +45,9 @@
       AND device.device_keeper_id = employee.emp_id
     order by device_id ASC
   </select>
+
   <select id="getData" resultMap="BaseResultMap">
-    SELECT device_id,device_name FROM device
+    SELECT device_id,device_name,note FROM device
   </select>
 
 <!--按编号查找-->

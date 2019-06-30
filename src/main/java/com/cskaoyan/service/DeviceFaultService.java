@@ -13,8 +13,8 @@ public interface DeviceFaultService {
 	Vo getList(int page, int rows, DeviceFault deviceFault) ;
 	
 	DeviceFault get(String string) ;
-	
-	List<DeviceFault> find() ;
+
+	List<DeviceFault> getData();
 
 	DeviceResult insert(DeviceFault deviceFault) ;
 	
@@ -33,4 +33,6 @@ public interface DeviceFaultService {
 
 	Vo searchDeviceFaultByDeviceName(Integer page, Integer rows,
 			String deviceName) ;
+
+
 }
