@@ -33,12 +33,12 @@
 							<span style="display:inline-block;font-size:20px;color:#c1dff7;margin:0 0 8px 0;">
 								大型生产管理中间件
 							</span><br/>
-							
+
 							<span style="color:#c1dff7;">${activeUser.rolename}:</span>
 							<span style="color:#c1dff7;">
 								${activeUser.username}
 							</span>
-						    &nbsp;<a href="logout" style="text-decoration:none;color:#A9C3D6;"> 退出</a>&nbsp;  &nbsp; 
+						    &nbsp;<a href="logout" style="text-decoration:none;color:#A9C3D6;"> 退出</a>&nbsp;  &nbsp;
 						</div>
 					</div>
 				</td>
@@ -46,7 +46,7 @@
 		</tbody>
 	</table>
 	</div>
-	
+
 	<!-- <div data-options="region:'west',title:'功能菜单',split:true"
 		style="width:213px;"> -->
 	<div id="HomeFuncAccordion" class="easyui-accordion" style="width:213px;"
@@ -54,9 +54,9 @@
 		<div title="功能搜索"
 			data-options="iconCls:'icon-search',collapsed:false,collapsible:false"
 			style="padding:10px;">
-			<input id="HomeFuncSearch" class="easyui-searchbox" 
+			<input id="HomeFuncSearch" class="easyui-searchbox"
 				data-options={prompt:'请输入想要搜索的功能'}
-				searcher="doSearch" 
+				searcher="doSearch"
 				style="width:178px;height:25px;">
 			<!---------------------------------------------------->
 			<!-- http://www.jeasyui.net/demo/408.html#  ExpandTo-->
@@ -113,20 +113,20 @@
 				</li>
 			</ul>
 		</div>
-		
+
 		<div title="物料监控" data-options="selected:true" style="padding:10px">
-		
+
 			<ul id="materialMonitor" class="easyui-tree" data-options="animate:true,lines:true">
 				<li><span>物料监控 </span>
 					<ul>
 						<li id=41 data-options="attributes:{'url':'material/find'}">物料信息</li>
 						<li id=42 data-options="attributes:{'url':'materialReceive/find'}">物料收入</li>
-				    	<li id=43 data-options="attributes:{'url':'materialConsume/find'}">物料消耗</li>	 					
+				    	<li id=43 data-options="attributes:{'url':'materialConsume/find'}">物料消耗</li>
 					</ul>
 				</li>
 			</ul>
 		</div>
-		
+
 		<div title="质量监控" data-options="selected:true" style="padding:10px;">
 			<ul id="qualifyMonitor" class="easyui-tree"
 				data-options="animate:true,lines:true">
@@ -142,7 +142,7 @@
 			</ul>
 
 		</div>
-		
+
 		<div title="人员监控" data-options="selected:true" style="padding:10px">
 			<ul id="employeeMonitor" class="easyui-tree"
 				data-options="animate:true,lines:true">
@@ -156,12 +156,12 @@
 				</li>
 			</ul>
 		</div>
-		
+
 
 		<c:if test="${activeUser.rolename == '超级管理员' }">
 			<div title="系统管理"  style="padding:10px;">
 
-	
+
 				<ul id="sysManager" class="easyui-tree"
 					data-options="animate:true,lines:true">
 					<li><span>系统管理</span>
@@ -183,22 +183,22 @@
 			<div title="首页" style="padding:20px;"></div>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">
 
 		var allItem = [
-						["计划进度","订单管理","客户管理","产品管理","作业管理","生产计划管理","生产派工管理"], 
+						["计划进度","订单管理","客户管理","产品管理","作业管理","生产计划管理","生产派工管理"],
 						["设备管理","设备台账","设备种类","设备例检","设备故障","设备维修"],
 						["工艺监控","工艺","工艺要求","工艺计划","工序"],
 						["物料监控","物料信息","物料收入","物料消耗"],
 						["质量监控","不合格品管理","成品计量质检","成品计数质检","工序计量质检","工序计数质检"],
 						["人员监控","部门管理","员工管理"]
 					  ];
-					  
+
 		function isContains(str, substr) {
 		    return new RegExp(substr).test(str);
 		}
-		
+
 		//HomeFuncSearch
 		function doSearch(value){
 			var subItem;
@@ -210,7 +210,7 @@
 						ifElseContain=true;
 						if(j==0){
 							switch(i){
-								case 0 : 
+								case 0 :
 									$('#HomeFuncAccordion').accordion('select',allItem[0][0]);
 									var node = $('#scheduleMonitor').tree('find',11);
 									$('#scheduleMonitor').tree('expandTo', node.target).tree('select', node.target);
@@ -241,12 +241,12 @@
 									$('#employeeMonitor').tree('expandTo', node.target).tree('select', node.target);
 									break;
 								default:
-									break; 
+									break;
 							}
 						}else if(j>0){
 							var k = (i+1)*10+j;
 							switch(i){
-								case 0 : 
+								case 0 :
 									$('#HomeFuncAccordion').accordion('select',allItem[0][0]);
 									var node = $('#scheduleMonitor').tree('find',k);
 									$('#scheduleMonitor').tree('expandTo', node.target).tree('select', node.target);
@@ -277,9 +277,9 @@
 									$('#employeeMonitor').tree('expandTo', node.target).tree('select', node.target);
 									break;
 								default:
-									break; 
+									break;
 							}
-							
+
 						}
 						break;
 					}
@@ -288,8 +288,8 @@
 					break;
 				}
 			}
-		}  
-		
+		}
+
 		$(function() {
 			/* Schedule Manager Tree onClick Event */
 			$('#scheduleMonitor').tree({
@@ -310,7 +310,7 @@
 					}
 				}
 			});
-	
+
 			/* Device Manager Tree onClick Event */
 			$('#deviceMonitor').tree({
 				onClick : function(node) {
@@ -331,7 +331,7 @@
 					}
 				}
 			});
-			
+
 			/* Material Manager Tree onClick Event */
 			$('#materialMonitor').tree({
 				onClick : function(node) {
@@ -351,7 +351,7 @@
 					}
 				}
 			});
-			
+
 			/* qualify Manager Tree onClick Event */
 			$('#qualifyMonitor').tree({
 				onClick : function(node) {
@@ -371,7 +371,7 @@
 					}
 				}
 			});
-			
+
 			/* Technology Manager Tree onClick Event */
 			$('#technologyMonitor').tree({
 				onClick : function(node) {
@@ -391,7 +391,7 @@
 					}
 				}
 			});
-			
+
 			/* Device Manager Tree onClick Event */
 			$('#employeeMonitor').tree({
 				onClick : function(node) {
@@ -412,7 +412,7 @@
 					}
 				}
 			});
-			
+
 			/* Sys Manager Tree onClick Event */
 			$('#sysManager').tree({
 				onClick : function(node) {
@@ -432,9 +432,10 @@
 					}
 				}
 			});
-						
+
 	});
-		
+
 	</script>
+	</c:if>
 </body>
 </html>
