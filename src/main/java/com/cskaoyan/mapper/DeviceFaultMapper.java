@@ -20,4 +20,12 @@ public interface DeviceFaultMapper {
     List<DeviceFault> getData();
 
     List<DeviceFault> getList(DeviceFault deviceFault);
+
+    int updateNote(DeviceFault deviceFault);
+
+    int deleteBatch(String[] deviceFaultIds);
+
+    List<DeviceFault> searchDeviceFaultByDeviceFaultId(String deviceFaultId);
+
+    List<DeviceFault> searchDeviceFaultByDeviceName(String deviceName);
 }

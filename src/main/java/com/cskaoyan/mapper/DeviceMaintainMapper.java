@@ -18,7 +18,7 @@ public interface DeviceMaintainMapper {
 
     int updateByPrimaryKey(DeviceMaintain record);
 
-    List<DeviceMaintain> find(DeviceMaintain deviceMaintain);
+    List<DeviceMaintain> getList(DeviceMaintain deviceMaintain);
 
     int deleteBatch(String[] deviceMaintainIds);
 

@@ -9,7 +9,75 @@
     <result column="device_maintain_result" jdbcType="VARCHAR" property="deviceMaintainResult" />
     <result column="device_maintain_cost" jdbcType="DECIMAL" property="deviceMaintainCost" />
     <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="device_maintain_emp" jdbcType="VARCHAR" property="deviceMaintainEmp"/>
   </resultMap>
+
+  <!--getList-->
+  <select id="getList" resultMap="BaseResultMap">
+select
+<include refid="Base_Column_List"/>,emp_name as device_maintain_emp
+from device_maintain , employee
+where device_maintain.device_maintain_emp_id =  employee.emp_id
+order by device_maintain_id asc
+  </select>
+<!--删除-->
+  <delete id="deleteBatch">
+    delete  from  device_maintain
+where  device_maintain_id in 
+<foreach collection="array" item="id" open="(" separator="," close=")">
+  #{id}
+</foreach>
+  </delete>
+  <!--更新日志-->
+  <update id="updateNote" parameterType="com.cskaoyan.bean.DeviceMaintain">
+    update  device_maintain
+    <set>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where device_maintain_id = #{device_maintain_id,jdbcType=VARCHAR}
+  </update>
+  <!--维修编号-->
+  <select id="searchDeviceMaintainByDeviceMaintainId" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+      device_maintain_id,
+      device_fault_id,
+      device_maintain_emp_id,
+      emp_name as device_maintain_emp,
+      device_maintain_date,
+      device_maintain_result,
+      device_maintain_cost,
+      note
+    FROM
+      device_maintain,
+      employee
+    WHERE
+      device_maintain.device_maintain_emp_id = employee.emp_id
+      AND	device_maintain_id LIKE CONCAT(
+            '%',
+            #{deviceMaintainId},'%' )
+  </select>
+  <!--故障编号-->
+  <select id="searchDeviceMaintainByDeviceFaultId" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+      device_maintain_id,
+      device_fault_id,
+      device_maintain_emp_id,
+      emp_name as device_maintain_emp,
+      device_maintain_date,
+      device_maintain_result,
+      device_maintain_cost,
+      note
+    FROM
+      device_maintain,
+      employee
+    WHERE
+      device_maintain.device_maintain_emp_id = employee.emp_id
+      AND	device_fault_id LIKE CONCAT(
+            '%',
+            #{deviceFaultId},'%' )
+  </select>
   <sql id="Base_Column_List">
     device_maintain_id, device_fault_id, device_maintain_emp_id, device_maintain_date, 
     device_maintain_result, device_maintain_cost, note

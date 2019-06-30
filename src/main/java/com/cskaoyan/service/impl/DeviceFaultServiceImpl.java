@@ -36,8 +36,8 @@ public class DeviceFaultServiceImpl implements DeviceFaultService {
     }
 
     @Override
-    public DeviceFault get(String string) {
-        return null;
+    public DeviceFault getFaultId(String string) {
+        return deviceFaultMapper.selectByPrimaryKey(string);
     }
 
     @Override
@@ -47,7 +47,11 @@ public class DeviceFaultServiceImpl implements DeviceFaultService {
 
     @Override
     public DeviceResult insert(DeviceFault deviceFault) {
-        return null;
+        int i = deviceFaultMapper.insert(deviceFault);
+        if(i == 1){
+            return  DeviceResult.ok();
+        }else
+            return DeviceResult.build(100 , "添加故障失败");
     }
 
     @Override
@@ -57,17 +61,29 @@ public class DeviceFaultServiceImpl implements DeviceFaultService {
 
     @Override
     public DeviceResult deleteBatch(String[] deviceFaultIds) {
-        return null;
+        int i = deviceFaultMapper.deleteBatch(deviceFaultIds);
+        if(i == 1) {
+            return  DeviceResult.ok();
+        }else
+            return DeviceResult.build(102 , "删除故障失败");
     }
 
     @Override
     public DeviceResult update(DeviceFault deviceFault) {
-        return null;
+        int i = deviceFaultMapper.updateByPrimaryKeySelective(deviceFault);
+        if (i == 1){
+            return  DeviceResult.ok();
+        }else
+            return DeviceResult.build(101 ,"修改故障失败");
     }
 
     @Override
     public DeviceResult updateNote(DeviceFault deviceFault) {
-        return null;
+        int i = deviceFaultMapper.updateNote(deviceFault);
+        if(i == 1){
+            return  DeviceResult.ok();
+        }else
+            return  DeviceResult.build(101 , "修改故障描述失败");
     }
 
     @Override
@@ -77,11 +93,30 @@ public class DeviceFaultServiceImpl implements DeviceFaultService {
 
     @Override
     public Vo searchDeviceFaultByDeviceFaultId(Integer page, Integer rows, String deviceFaultId) {
-        return null;
+        PageHelper.startPage(page, rows);
+        List<DeviceFault> list = deviceFaultMapper.searchDeviceFaultByDeviceFaultId(deviceFaultId) ;
+        Vo vo = new Vo();
+        vo.setRows(list);
+        PageInfo<DeviceFault> deviceFaultPageInfo = new PageInfo<>(list);
+        vo.setTotal(deviceFaultPageInfo.getTotal());
+        return vo;
     }
 
     @Override
     public Vo searchDeviceFaultByDeviceName(Integer page, Integer rows, String deviceName) {
-        return null;
+        PageHelper.startPage(page, rows);
+        List<DeviceFault> list = deviceFaultMapper.searchDeviceFaultByDeviceName(deviceName) ;
+        Vo vo = new Vo();
+        vo.setRows(list);
+        PageInfo<DeviceFault> deviceFaultPageInfo = new PageInfo<>(list);
+        vo.setTotal(deviceFaultPageInfo.getTotal());
+        return vo;
     }
+
+    @Override
+    public DeviceFault getDeviceFaultId(String deviceFaultId) {
+        return  deviceFaultMapper.selectByPrimaryKey(deviceFaultId);
+    }
+
+
 }

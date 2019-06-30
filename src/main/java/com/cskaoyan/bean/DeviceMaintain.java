@@ -18,6 +18,16 @@ public class DeviceMaintain {
 
     private String note;
 
+    private String deviceMaintainEmp;
+
+    public String getEmpName() {
+        return deviceMaintainEmp;
+    }
+
+    public void setEmpName(String deviceMaintainEmp) {
+        this.deviceMaintainEmp = deviceMaintainEmp;
+    }
+
     public String getDeviceMaintainId() {
         return deviceMaintainId;
     }

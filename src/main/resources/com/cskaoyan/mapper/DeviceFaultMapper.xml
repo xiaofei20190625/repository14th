@@ -14,6 +14,15 @@
     device_fault_id, device_id, device_fault_cause, device_fault_detail, device_fault_date, 
     device_fault_maintenance
   </sql>
+  <sql id="Query">
+    device_fault_id,
+      device_fault.device_id,
+      device_name,
+      device_fault_cause,
+      device_fault_detail,
+      device_fault_date,
+      device_fault_maintenance
+  </sql>
   <!--回显-->
   <select id="getData" resultMap="BaseResultMap">
     select
@@ -24,8 +33,36 @@
   <!--查找-->
   <select id="getList" resultMap="BaseResultMap">
     SELECT
+ <include refid="Query"/>
+    FROM
+      device_fault,
+      device
+    WHERE
+      device_fault.device_id = device.device_id
+  </select>
+  <!--修改描述-->
+  <update id="updateNote" parameterType="com.cskaoyan.bean.DeviceFault">
+    update  device_fault
+    <set>
+      <if test="deviceFaultDetail != null">
+        device_fault_detail = #{deviceFaultDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
+  </update>
+  <!--批量删除-->
+  <delete id="deleteBatch">
+    delete   from  device_fault
+where device_fault_id in
+<foreach collection="array" item="faultId" open="(" separator="," close=")">
+  #{faultId}
+</foreach>
+  </delete>
+  <!--编号查找-->
+  <select id="searchDeviceFaultByDeviceFaultId" parameterType="string" resultMap="BaseResultMap">
+    SELECT
       device_fault_id,
-      device_fault.device_id,
+      device_fault.device_fault_id,
       device_name,
       device_fault_cause,
       device_fault_detail,
@@ -36,6 +73,27 @@
       device
     WHERE
       device_fault.device_id = device.device_id
+      AND	device_fault_id LIKE CONCAT(
+            '%', #{deviceFaultId}, '%' )
+  </select>
+<!--设备名查找-->
+  <select id="searchDeviceFaultByDeviceName" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+      device_fault_id,
+      device_fault.device_fault_id,
+      device_name,
+      device_fault_cause,
+      device_fault_detail,
+      device_fault_date,
+      device_fault_maintenance
+    FROM
+      device_fault,
+      device
+    WHERE
+      device_fault.device_id = device.device_id
+      AND	device_name LIKE CONCAT(
+            '%',
+            #{deviceName},'%' )
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
