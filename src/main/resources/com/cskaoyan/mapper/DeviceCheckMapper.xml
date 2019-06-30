@@ -62,6 +62,16 @@
     and c.device_id = d.device_id
     AND	d.device_name LIKE CONCAT('%', #{device_name},'%' )
 </select>
+  <!--更新日志-->
+  <update id="updateNote" parameterType="com.cskaoyan.bean.DeviceCheck">
+    update device_check
+    <set>
+      <if test="deviceCheckResult != null">
+        device_check_result = #{deviceCheckResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
+  </update>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 

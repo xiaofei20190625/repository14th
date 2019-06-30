@@ -62,7 +62,7 @@ public class DeviceServiceImpl implements  DeviceService  {
 		if(i>=0){
 			return DeviceResult.ok();
 		}else{
-			return null;
+			return DeviceResult.build(103,"删除失败");
 		}
 	}
 

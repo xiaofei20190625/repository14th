@@ -24,7 +24,7 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 	public Vo getList(int page, int rows, DeviceMaintain deviceMaintain)  {
 		//分页处理
 		PageHelper.startPage(page, rows);
-		List<DeviceMaintain> list = deviceMaintainMapper.find(deviceMaintain);
+		List<DeviceMaintain> list = deviceMaintainMapper.getList(deviceMaintain);
 		//创建一个返回值对象
 		Vo result = new Vo();
 		result.setRows(list);
@@ -120,8 +120,8 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 	}
 
 	@Override
-	public List<DeviceMaintain> find() {
-		List<DeviceMaintain> deviceMaintains = deviceMaintainMapper.find(new DeviceMaintain());
+	public List<DeviceMaintain> getData() {
+		List<DeviceMaintain> deviceMaintains = deviceMaintainMapper.getList(new DeviceMaintain());
 		return deviceMaintains;
 	}
 }

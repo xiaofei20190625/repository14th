@@ -31,6 +31,6 @@ public interface DeviceMaintainService {
 	Vo searchDeviceMaintainByDeviceFaultId(Integer page,
 			Integer rows, String deviceFaultId) ;
 
-	List<DeviceMaintain> find();
+    List<DeviceMaintain> getData();
 }
 

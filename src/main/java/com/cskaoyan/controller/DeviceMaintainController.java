@@ -24,61 +24,51 @@ public class DeviceMaintainController {
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public Vo getListType(Integer page, Integer rows, DeviceMaintain deviceMaintain)
-			{
-		Vo result = deviceMaintainService.getList(page, rows, deviceMaintain);
-		return result;
+	public Vo getListType(Integer page, Integer rows, DeviceMaintain deviceMaintain) {
+		return deviceMaintainService.getList(page, rows, deviceMaintain);
 	}
 
 	@RequestMapping("get_data")
 	@ResponseBody
-	public List<DeviceMaintain> getdata(){
-		List<DeviceMaintain> list = deviceMaintainService.find();
-		return  list;
+	public List<DeviceMaintain> getData(){
+		return deviceMaintainService.getData();
 	}
 
+	@RequestMapping("/add_judge")
+	@ResponseBody
+	public void addJudge(){}
 	@RequestMapping("/add")
 	public String add() {
 		return "deviceMaintain_add";
 	}
 
+	@RequestMapping("edit_judge")
+	@ResponseBody
+	public  void  editJudge(){}
 	@RequestMapping("/edit")
 	public String edit() {
 		return "deviceMaintain_edit";
 	}
 
-
-/*	 *此处的method可以取两个值，
-	 *一个是RequestMethod.GET，一个是RequestMethod.POST，
-	 *就是请求该方法使用的模式，是get还是post，即参数提交的方法
-	 *ajax或者form表单提交数据有两种方法，即get和post。*/
-
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	@ResponseBody
-	private DeviceResult insert(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)  {
-		DeviceResult result;
-		if(bindingResult.hasErrors()){
-			FieldError fieldError = bindingResult.getFieldError();
-			return DeviceResult.build(100, fieldError.getDefaultMessage());
-		}
+	private DeviceResult insert(@Valid DeviceMaintain deviceMaintain)  {
 		if(deviceMaintainService.get(deviceMaintain.getDeviceMaintainId()) != null){
-			result = new DeviceResult(0, "该设备维修编号已经存在，请更换设备维修编号！", null);
+			return DeviceResult.build(0, "该设备维修编号已经存在，请更换设备维修编号！", null);
 		}else{
-			result = deviceMaintainService.insert(deviceMaintain);
+			return  deviceMaintainService.insert(deviceMaintain);
 		}
-		return result;
 	}
 
 	@RequestMapping(value="/update")
 	@ResponseBody
-	private DeviceResult update(@Valid DeviceMaintain deviceMaintain, BindingResult bindingResult)  {
-		if(bindingResult.hasErrors()){
-			FieldError fieldError = bindingResult.getFieldError();
-			return DeviceResult.build(100, fieldError.getDefaultMessage());
-		}
+	private DeviceResult update(@Valid DeviceMaintain deviceMaintain)  {
 		return  deviceMaintainService.update(deviceMaintain);
 	}
 
+	@RequestMapping("delete_judge")
+	@ResponseBody
+	public  void deleteJudge(){}
 	@RequestMapping(value="/delete_batch")
 	@ResponseBody
 	private DeviceResult deleteBatch(String[] ids)  {
@@ -100,19 +90,15 @@ public class DeviceMaintainController {
 	//根据设备维修编号查找
 	@RequestMapping("/search_deviceMaintain_by_deviceMaintainId")
 	@ResponseBody
-	public Vo searchDeviceMaintainByDeviceMaintainId(Integer page, Integer rows, String searchValue)
-			{
-		Vo result = deviceMaintainService.searchDeviceMaintainByDeviceMaintainId(page, rows, searchValue);
-		return result;
+	public Vo searchDeviceMaintainByDeviceMaintainId(Integer page, Integer rows, String searchValue) {
+		return deviceMaintainService.searchDeviceMaintainByDeviceMaintainId(page, rows, searchValue);
 	}
 
 	//根据设备故障编号查找
 	@RequestMapping("/search_deviceMaintain_by_deviceFaultId")
 	@ResponseBody
-	public Vo searchDeviceMaintainByDeviceFaultId(Integer page, Integer rows, String searchValue)
-			{
-		Vo result = deviceMaintainService.searchDeviceMaintainByDeviceFaultId(page, rows, searchValue);
-		return result;
+	public Vo searchDeviceMaintainByDeviceFaultId(Integer page, Integer rows, String searchValue) {
+		return deviceMaintainService.searchDeviceMaintainByDeviceFaultId(page, rows, searchValue);
 	}
 }
 
